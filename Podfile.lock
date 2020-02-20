@@ -1,10 +1,16 @@
 PODS:
+  - AuthLoginScreen (0.1.0)
+  - AuthManager (0.1.0)
+  - AuthPinScreen (0.1.0)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - SwiftLint (0.38.2)
 
 DEPENDENCIES:
+  - AuthLoginScreen (from `LocalPods/AuthLoginScreen`)
+  - AuthManager (from `LocalPods/AuthManager`)
+  - AuthPinScreen (from `LocalPods/AuthPinScreen`)
   - R.swift
   - SwiftLint
 
@@ -14,11 +20,22 @@ SPEC REPOS:
     - R.swift.Library
     - SwiftLint
 
+EXTERNAL SOURCES:
+  AuthLoginScreen:
+    :path: LocalPods/AuthLoginScreen
+  AuthManager:
+    :path: LocalPods/AuthManager
+  AuthPinScreen:
+    :path: LocalPods/AuthPinScreen
+
 SPEC CHECKSUMS:
+  AuthLoginScreen: b4b72d2541891639d05c03a82161f941b27a5b81
+  AuthManager: e5787171449b5a541d45debf54541fd8d71f34e6
+  AuthPinScreen: 73464bb46accfdac05b4b455cccf1894c43c0ffb
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 9ef4598f67ee7c7eec86360f751c0f98c2bdcffe
+PODFILE CHECKSUM: 07727a3d6259e72a4cc3128ee5e418a0fed2f173
 
 COCOAPODS: 1.8.4

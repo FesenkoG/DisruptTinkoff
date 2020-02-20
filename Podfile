@@ -6,6 +6,10 @@ target 'TinkoffMidProject' do
   use_frameworks!
   pod 'SwiftLint'
   pod 'R.swift'
+  
+  pod 'AuthManager', :path => 'LocalPods/AuthManager'
+  pod 'AuthLoginScreen', :path => 'LocalPods/AuthLoginScreen'
+  pod 'AuthPinScreen', :path => 'LocalPods/AuthPinScreen'
 
   # Pods for TinkoffMidProject
 
