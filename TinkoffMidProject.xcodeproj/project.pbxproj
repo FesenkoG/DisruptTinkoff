@@ -18,6 +18,7 @@
 		6E3E4A992402B9E9002C0D32 /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E4A922402B815002C0D32 /* SF-Pro-Rounded-Ultralight.otf */; };
 		6E3E4A9A2402B9E9002C0D32 /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E4A8F2402B814002C0D32 /* SF-Pro-Rounded-Light.otf */; };
 		6E3E4A9B2402B9E9002C0D32 /* SF-Pro-Rounded-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6E3E4A8D2402B814002C0D32 /* SF-Pro-Rounded-Thin.otf */; };
+		6E3E4AA32402DCE1002C0D32 /* UISoftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3E4AA22402DCE1002C0D32 /* UISoftButton.swift */; };
 		CD15C92FA8A1513509934550 /* Pods_TinkoffMidProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4DC788C68991C8784A3397 /* Pods_TinkoffMidProjectTests.framework */; };
 		E5060E1A23FDBE64005812F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E1923FDBE64005812F1 /* AppDelegate.swift */; };
 		E5060E1C23FDBE64005812F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */; };
@@ -55,6 +56,7 @@
 		6E3E4A902402B814002C0D32 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
 		6E3E4A912402B814002C0D32 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		6E3E4A922402B815002C0D32 /* SF-Pro-Rounded-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Ultralight.otf"; sourceTree = "<group>"; };
+		6E3E4AA22402DCE1002C0D32 /* UISoftButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISoftButton.swift; sourceTree = "<group>"; };
 		E5060E1623FDBE64005812F1 /* TinkoffMidProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffMidProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5060E1923FDBE64005812F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				E5060E1923FDBE64005812F1 /* AppDelegate.swift */,
 				E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */,
 				6E3E4A6724026698002C0D32 /* PlainTextField.swift */,
+				6E3E4AA22402DCE1002C0D32 /* UISoftButton.swift */,
 				E5060E1D23FDBE64005812F1 /* ViewController.swift */,
 				E5060E2223FDBE66005812F1 /* Assets.xcassets */,
 				E5060E2423FDBE66005812F1 /* LaunchScreen.storyboard */,
@@ -402,6 +405,7 @@
 				E5060E1E23FDBE64005812F1 /* ViewController.swift in Sources */,
 				E5060E1A23FDBE64005812F1 /* AppDelegate.swift in Sources */,
 				6E3E4A6824026698002C0D32 /* PlainTextField.swift in Sources */,
+				6E3E4AA32402DCE1002C0D32 /* UISoftButton.swift in Sources */,
 				E5060E1C23FDBE64005812F1 /* SceneDelegate.swift in Sources */,
 				E5F5BD8724025E5C008AA81C /* UIColor+Extension.swift in Sources */,
 				E57BA6C724025CF100467341 /* PinCodeView.swift in Sources */,
