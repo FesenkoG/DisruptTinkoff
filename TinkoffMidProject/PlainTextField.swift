@@ -37,22 +37,22 @@ class PlainTextField: UITextField {
     private var titleFadeInDuration: TimeInterval = 0.4
     private var titleFadeOutDuration: TimeInterval = 0.4
     public var mainBackgroundColor = UIColor.white
-    public var plainPlaceholderColor = UIColor(red: 0.733, green: 0.733, blue: 0.733, alpha: 1) {
+    public var plainPlaceholderColor: UIColor = R.color.plainTextFieldPlaceholder() ?? .green {
         didSet { updatePlaceholder() }
     }
-    private var filledColor = UIColor(red: 0.32, green: 0.547, blue: 1, alpha: 1) {
+    private var filledColor: UIColor = R.color.plainTextFieldFilled() ?? .green {
         didSet { updateColors() }
     }
-    private var selectedColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1) {
+    private var selectedColor: UIColor = R.color.plainTextFieldSelected() ?? .green {
         didSet { updateColors() }
     }
-    private var initialColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1) {
+    private var initialColor: UIColor = R.color.plainTextFieldInitial() ?? .green {
         didSet { updateColors() }
     }
-    private var errorColor = UIColor(red: 1, green: 0.467, blue: 0.467, alpha: 1) {
+    private var errorColor: UIColor = R.color.plainTextFieldError() ?? .green {
         didSet { updateColors() }
     }
-    private var placeholderFont: UIFont? = UIFont(name: "SFProRounded-Medium", size: 14) {
+    private var placeholderFont: UIFont? = R.font.sfProRoundedMedium(size: 14) {
         didSet { updatePlaceholder() }
     }
     public var error: String = "" {
@@ -102,7 +102,7 @@ class PlainTextField: UITextField {
 
     fileprivate final func setup() {
         self.clearButtonMode = .never
-        self.font = UIFont(name: "SFProRounded-Medium", size: 14)
+        self.font = R.font.sfProRoundedMedium(size: 14)
         self.contentVerticalAlignment = .center
 
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +153,7 @@ class PlainTextField: UITextField {
         self.addSubview(self.titleView)
 
         let label = UILabel()
-        label.font = UIFont(name: "SFProRounded-Medium", size: 10)
+        label.font = R.font.sfProRoundedMedium(size: 10)
         label.alpha = 0
         label.textColor = self.filledColor
 
@@ -169,7 +169,7 @@ class PlainTextField: UITextField {
         self.addSubview(self.errorView)
 
         let label = UILabel()
-        label.font = UIFont(name: "SFProRounded-Medium", size: 10)
+        label.font = R.font.sfProRoundedMedium(size: 10)
         label.alpha = 0
         label.textColor = errorColor
 
