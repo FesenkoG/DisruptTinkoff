@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     // #ECECEC
     static let borderGrey = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
 }
