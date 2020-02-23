@@ -21,24 +21,83 @@ Minimum height implemented and it's **44px**. No need for setting heightAnchor f
     }
 */
 class PlainTextField: UITextField {
+    // MARK: - Subviews
+
+    private var borderView = UIView()
+    private var titleView = UIView()
+    private var titleLabel = UILabel()
+    private var errorView = UIView()
+    private var errorLabel = UILabel()
+
+    // MARK: - PlainTextField Properties
+
+    private let textFieldHeight: CGFloat = 44
+    private let sideLabelsOffset: CGFloat = 12
+    private let sideLabelsInset: CGFloat = 4
+    private var titleFadeInDuration: TimeInterval = 0.4
+    private var titleFadeOutDuration: TimeInterval = 0.4
+    public var mainBackgroundColor = UIColor.white
+    public var plainPlaceholderColor = UIColor(red: 0.733, green: 0.733, blue: 0.733, alpha: 1) {
+        didSet { updatePlaceholder() }
+    }
+    private var filledColor = UIColor(red: 0.32, green: 0.547, blue: 1, alpha: 1) {
+        didSet { updateColors() }
+    }
+    private var selectedColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1) {
+        didSet { updateColors() }
+    }
+    private var initialColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1) {
+        didSet { updateColors() }
+    }
+    private var errorColor = UIColor(red: 1, green: 0.467, blue: 0.467, alpha: 1) {
+        didSet { updateColors() }
+    }
+    private var placeholderFont: UIFont? = UIFont(name: "SFProRounded-Medium", size: 14) {
+        didSet { updatePlaceholder() }
+    }
+    public var error: String = "" {
+        didSet { updateControl(animated: true) }
+    }
+    public var title: String = "[Title]" {
+        didSet { updateControl(animated: false) }
+    }
+    override var textColor: UIColor? {
+        didSet { updateControl(animated: false) }
+    }
+    override var text: String? {
+        didSet { updateControl(animated: false) }
+    }
+    override var isSelected: Bool {
+        didSet { updateControl(animated: true) }
+    }
+    fileprivate var hasError: Bool {
+        return !error.isEmpty
+    }
+    override var placeholder: String? {
+        didSet {
+            self.setNeedsDisplay()
+            self.updatePlaceholder()
+            self.updateTitleLabel()
+        }
+    }
 
     // MARK: - Init
 
     init(title: String, placeholder: String? = nil) {
         super.init(frame: .zero)
-        self.setup()
+        setup()
         self.title = title
         self.placeholder = placeholder ?? title
     }
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        self.setup()
+        setup()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setup()
+        setup()
     }
 
     fileprivate final func setup() {
@@ -49,19 +108,19 @@ class PlainTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
 
-        self.setNeedsDisplay()
+        setNeedsDisplay()
 
-        self.createBorderView()
-        self.createTitleLabel()
-        self.createErrorLabel()
+        createBorderView()
+        createTitleLabel()
+        createErrorLabel()
 
-        self.updatePlaceholder()
-        self.updateTitleLabel()
+        updatePlaceholder()
+        updateTitleLabel()
 
-        self.updateColors()
-        self.setNeedsDisplay()
-        self.updatePlaceholder()
-        self.updateTitleLabel()
+        updateColors()
+        setNeedsDisplay()
+        updatePlaceholder()
+        updateTitleLabel()
 
         self.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
@@ -70,65 +129,8 @@ class PlainTextField: UITextField {
         updateControl(animated: true)
         updateTitleLabel(true)
     }
-    // MARK: - Subviews
 
-    private var borderView: UIView!
-    private var titleView: UIView!
-    private var titleLabel: UILabel!
-    private var errorView: UIView!
-    private var errorLabel: UILabel!
-
-    // MARK: - PlainTextField roperties
-
-    private var textFieldHeight: CGFloat = 44
-    private var titleFadeInDuration: TimeInterval = 0.4
-    private var titleFadeOutDuration: TimeInterval = 0.4
-    public var mainBackgroundColor = UIColor.white
-    public var plainPlaceholderColor = UIColor(red: 0.733, green: 0.733, blue: 0.733, alpha: 1) {
-        didSet { self.updatePlaceholder() }
-    }
-    private var filledColor = UIColor(red: 0.32, green: 0.547, blue: 1, alpha: 1) {
-        didSet { self.updateColors() }
-    }
-    private var selectedColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1) {
-        didSet { self.updateColors() }
-    }
-    private var initialColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1) {
-        didSet { self.updateColors() }
-    }
-    private var errorColor = UIColor(red: 1, green: 0.467, blue: 0.467, alpha: 1) {
-        didSet { self.updateColors() }
-    }
-    private var placeholderFont: UIFont? = UIFont(name: "SFProRounded-Medium", size: 14) {
-        didSet { self.updatePlaceholder() }
-    }
-    public var error: String? {
-        didSet { self.updateControl(animated: true) }
-    }
-    public var title: String = "[Title]" {
-        didSet { self.updateControl(animated: false) }
-    }
-    override var textColor: UIColor? {
-        didSet { self.updateControl(animated: false) }
-    }
-    override var text: String? {
-        didSet { self.updateControl(animated: false) }
-    }
-    override var isSelected: Bool {
-        didSet { self.updateControl(animated: true) }
-    }
-    fileprivate var hasError: Bool {
-        return error != nil && !error!.isEmpty
-    }
-    override var placeholder: String? {
-        didSet {
-            self.setNeedsDisplay()
-            self.updatePlaceholder()
-            self.updateTitleLabel()
-        }
-    }
-
-    // MARK: create components
+    // MARK: - Creating components
 
     fileprivate func createBorderView() {
         let view = UIView()
@@ -151,7 +153,6 @@ class PlainTextField: UITextField {
         self.addSubview(self.titleView)
 
         let label = UILabel()
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.font = UIFont(name: "SFProRounded-Medium", size: 10)
         label.alpha = 0
         label.textColor = self.filledColor
@@ -168,9 +169,8 @@ class PlainTextField: UITextField {
         self.addSubview(self.errorView)
 
         let label = UILabel()
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.font = UIFont(name: "SFProRounded-Medium", size: 10)
-        label.alpha = 1.0
+        label.alpha = 0
         label.textColor = errorColor
 
         self.errorLabel = label
@@ -250,7 +250,7 @@ class PlainTextField: UITextField {
 
     fileprivate func isTitleVisible() -> Bool { return self.hasText }
 
-    fileprivate func isErrorVisible() -> Bool { return error != nil && !error!.isEmpty }
+    fileprivate func isErrorVisible() -> Bool { return self.hasError }
 
     fileprivate func updateTitleVisibility(_ animated: Bool = false) {
         let alpha: CGFloat = isTitleVisible() ? 1.0 : 0.0
@@ -352,27 +352,37 @@ class PlainTextField: UITextField {
     // MARK: - Title & error view positioning
 
     fileprivate func titleLabelRectForBounds(_ bounds: CGRect) -> CGRect {
-        let titleLabelWidth = self.titleLabel.intrinsicContentSize.width
-        let titleLabelHeight = self.titleLabel.intrinsicContentSize.height
-        return CGRect(x: 12 + 4, y: -titleLabelHeight / 2, width: titleLabelWidth + 4 * 2, height: titleLabelHeight)
+        let xOrigin: CGFloat = sideLabelsOffset + sideLabelsInset
+        let yOrigin: CGFloat = -self.titleLabel.intrinsicContentSize.height / 2
+        let width: CGFloat = self.titleLabel.intrinsicContentSize.width + sideLabelsInset * 2
+        let height: CGFloat = self.titleLabel.intrinsicContentSize.height
+        return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
     fileprivate func titleViewRectForBounds(_ bounds: CGRect) -> CGRect {
-        let titleLabelSize = self.titleLabel.intrinsicContentSize
-        return CGRect(x: 12, y: 0, width: titleLabelSize.width + 4 * 2, height: 1)
+        let xOrigin: CGFloat = sideLabelsOffset
+        let yOrigin: CGFloat = 0
+        let width: CGFloat = self.titleLabel.intrinsicContentSize.width + sideLabelsInset * 2
+        let height: CGFloat = 1
+        return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
     fileprivate func errorLabelRectForBounds(_ bounds: CGRect) -> CGRect {
-        guard let error = error, !error.isEmpty else { return CGRect.zero }
-        let errorLabelWidth = self.errorLabel.intrinsicContentSize.width
-        let errorLabelHeight = self.errorLabel.intrinsicContentSize.height
-        return CGRect(x: 12 + 4, y: textFieldHeight - 1 - errorLabelHeight / 2, width: errorLabelWidth + 4 * 2, height: errorLabelHeight)
+        guard !error.isEmpty else { return CGRect.zero }
+        let xOrigin: CGFloat = sideLabelsOffset + sideLabelsInset
+        let yOrigin: CGFloat = textFieldHeight - 1 - self.errorLabel.intrinsicContentSize.height / 2
+        let width: CGFloat = self.errorLabel.intrinsicContentSize.width + sideLabelsInset * 2
+        let height: CGFloat = self.errorLabel.intrinsicContentSize.height
+        return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
     fileprivate func errorViewRectForBounds(_ bounds: CGRect) -> CGRect {
-        guard let error = error, !error.isEmpty else { return CGRect.zero }
-        let errorLabelSize = self.errorLabel.intrinsicContentSize
-        return CGRect(x: 12, y: textFieldHeight - 1, width: errorLabelSize.width + 4 * 2, height: 1)
+        guard !error.isEmpty else { return CGRect.zero }
+        let xOrigin: CGFloat = sideLabelsOffset
+        let yOrigin: CGFloat = textFieldHeight - 1
+        let width: CGFloat = self.errorLabel.intrinsicContentSize.width + sideLabelsInset * 2
+        let height: CGFloat = 1
+        return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
     fileprivate func borderViewRectForBounds(_ bounds: CGRect) -> CGRect {
