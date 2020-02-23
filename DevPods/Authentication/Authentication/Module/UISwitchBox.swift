@@ -15,16 +15,13 @@ class UISwitchBox: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-//        label.font = R.font.sfProRoundedMedium(size: 14)
         label.font = UIFont.systemFont(ofSize: 14)
-//        label.textColor = R.color.blackText()
-        label.textColor = UIColor(hex: 0x333)
+        label.textColor = UIColor.blackText
         return label
     }()
 
     private let innerSwitch: UISwitch = {
         let swi = UISwitch()
-//        swi.onTintColor = R.color.uiSwitchBoxOnTintColor()
         swi.onTintColor = .accentBlue
         return swi
     }()

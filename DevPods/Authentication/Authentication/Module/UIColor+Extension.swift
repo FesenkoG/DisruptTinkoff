@@ -22,10 +22,6 @@ public extension UIColor {
 
     // PlainTextField
     static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
-//    static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
-//    static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
-//    static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
-//    static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
 }
 
 extension UIColor {

@@ -37,27 +37,21 @@ class PlainTextField: UITextField {
     private var titleFadeInDuration: TimeInterval = 0.4
     private var titleFadeOutDuration: TimeInterval = 0.4
     public var mainBackgroundColor = UIColor.white
-//    public var plainPlaceholderColor: UIColor = R.color.plainTextFieldPlaceholder() ?? .green {
     public var plainPlaceholderColor = UIColor.plainPlaceholder {
         didSet { updatePlaceholder() }
     }
-//    private var filledColor: UIColor = R.color.plainTextFieldFilled() ?? .green {
     private var filledColor = UIColor.accentBlue {
         didSet { updateColors() }
     }
-//    private var selectedColor: UIColor = R.color.plainTextFieldSelected() ?? .green {
     private var selectedColor = UIColor.blackText {
         didSet { updateColors() }
     }
-//    private var initialColor: UIColor = R.color.plainTextFieldInitial() ?? .green {
     private var initialColor = UIColor.borderGray {
         didSet { updateColors() }
     }
-//    private var errorColor: UIColor = R.color.plainTextFieldError() ?? .green {
     private var errorColor = UIColor.dangerRed {
         didSet { updateColors() }
     }
-//    private var placeholderFont: UIFont? = R.font.sfProRoundedMedium(size: 14) {
     private var placeholderFont = UIFont.systemFont(ofSize: 14) {
         didSet { updatePlaceholder() }
     }
@@ -108,7 +102,6 @@ class PlainTextField: UITextField {
 
     fileprivate final func setup() {
         self.clearButtonMode = .never
-//        self.font = R.font.sfProRoundedMedium(size: 14)
         self.font = UIFont.systemFont(ofSize: 14)
         self.contentVerticalAlignment = .center
 
@@ -160,7 +153,6 @@ class PlainTextField: UITextField {
         self.addSubview(self.titleView)
 
         let label = UILabel()
-//        label.font = R.font.sfProRoundedMedium(size: 10)
         label.font = UIFont.systemFont(ofSize: 10)
         label.alpha = 0
         label.textColor = self.filledColor
@@ -177,7 +169,6 @@ class PlainTextField: UITextField {
         self.addSubview(self.errorView)
 
         let label = UILabel()
-//        label.font = R.font.sfProRoundedMedium(size: 10)
         label.font = UIFont.systemFont(ofSize: 10)
         label.alpha = 0
         label.textColor = errorColor
