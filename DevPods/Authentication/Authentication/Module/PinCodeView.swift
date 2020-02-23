@@ -27,7 +27,7 @@ public final class PinCodeView: UIView {
 
     var didEnterPin: ([Int]) -> Void = { _ in }
 
-    init() {
+    public init() {
         super.init(frame: .zero)
         setupUI()
     }

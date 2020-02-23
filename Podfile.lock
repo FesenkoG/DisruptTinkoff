@@ -1,10 +1,14 @@
 PODS:
+  - Authentication (0.1.0):
+    - R.swift
+    - SwiftLint
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - SwiftLint (0.38.2)
 
 DEPENDENCIES:
+  - Authentication (from `DevPods/Authentication`)
   - R.swift
   - SwiftLint
 
@@ -14,11 +18,16 @@ SPEC REPOS:
     - R.swift.Library
     - SwiftLint
 
+EXTERNAL SOURCES:
+  Authentication:
+    :path: DevPods/Authentication
+
 SPEC CHECKSUMS:
+  Authentication: fbe52e26bfcdb1da94f49778cc5882783b750fe1
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 9ef4598f67ee7c7eec86360f751c0f98c2bdcffe
+PODFILE CHECKSUM: 56048228ae7e40979d3adfe9fa2ca2424d2f5516
 
 COCOAPODS: 1.8.4
