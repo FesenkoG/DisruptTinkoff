@@ -47,7 +47,8 @@ class UISoftButton: UIButton {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         layer.cornerRadius = 8
-        titleLabel?.font = R.font.sfProRoundedSemibold(size: 14)
+//        titleLabel?.font = R.font.sfProRoundedSemibold(size: 14)
+        titleLabel?.font = UIFont.systemFont(ofSize: 14)
 
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: uiSoftButtonHeight).isActive = true
@@ -64,27 +65,41 @@ class UISoftButton: UIButton {
 
     func updateColors() {
         guard isEnabled else {
-            self.backgroundColor = R.color.uiSoftButtonDisabledBackground()
-            self.setTitleColor(R.color.uiSoftButtonDisabledTitle(), for: .normal)
+//            self.backgroundColor = R.color.uiSoftButtonDisabledBackground()
+            self.backgroundColor = .commonGray
+//            self.setTitleColor(R.color.uiSoftButtonDisabledTitle(), for: .normal)
+            self.setTitleColor(.disabledText, for: .normal)
             return
         }
 
         switch style {
         case .accent:
-            self.setTitleColor(R.color.uiSoftButtonTitleLight(), for: .normal)
+//            self.setTitleColor(R.color.uiSoftButtonTitleLight(), for: .normal)
+//            self.backgroundColor = isHighlighted
+//                ? R.color.uiSoftButtonAccentHighlighted()
+//                : R.color.uiSoftButtonAccent()
+            self.setTitleColor(.whiteText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? R.color.uiSoftButtonAccentHighlighted()
-                : R.color.uiSoftButtonAccent()
+                ? .accentBlue
+                : .accentBlueHighlighted
         case .common:
-            self.setTitleColor(R.color.uiSoftButtonTitleDark(), for: .normal)
+//            self.setTitleColor(R.color.uiSoftButtonTitleDark(), for: .normal)
+//            self.backgroundColor = isHighlighted
+//                ? R.color.uiSoftButtonCommonHighlighted()
+//                : R.color.uiSoftButtonCommon()
+            self.setTitleColor(.blackText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? R.color.uiSoftButtonCommonHighlighted()
-                : R.color.uiSoftButtonCommon()
+                ? .commonGray
+                : .commonGrayHighlighted
         case .danger:
-            self.setTitleColor(R.color.uiSoftButtonTitleLight(), for: .normal)
+//            self.setTitleColor(R.color.uiSoftButtonTitleLight(), for: .normal)
+//            self.backgroundColor = isHighlighted
+//                ? R.color.uiSoftButtonDangerHighlighted()
+//                : R.color.uiSoftButtonDanger()
+            self.setTitleColor(.whiteText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? R.color.uiSoftButtonDangerHighlighted()
-                : R.color.uiSoftButtonDanger()
+                ? .dangerRed
+                : .dangerRedHighlighted
         }
     }
 }
