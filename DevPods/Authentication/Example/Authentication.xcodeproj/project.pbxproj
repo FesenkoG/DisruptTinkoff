@@ -196,8 +196,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Authentication_Example/Pods-Authentication_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Authentication-iOS13.0/Authentication.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS13.0/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/Authentication/Authentication.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
