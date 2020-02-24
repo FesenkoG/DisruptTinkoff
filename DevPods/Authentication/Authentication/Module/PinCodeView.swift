@@ -32,9 +32,15 @@ public final class PinCodeView: UIView {
         setupUI()
     }
 
+    @discardableResult
     public override func becomeFirstResponder() -> Bool {
         codeFields.first?.becomeFirstResponder()
         return super.becomeFirstResponder()
+    }
+
+    public func clear() {
+        codeFields.forEach { $0.clearTextField() }
+        pinNumbers = .init(repeating: nil, count: codeLength)
     }
 
     private func setupUI() {
@@ -114,7 +120,7 @@ final class CodeView: UIView, UITextFieldDelegate {
 
         layer.cornerRadius = 8.0
         layer.borderWidth = 1.0
-        layer.borderColor = UIColor.borderGray.cgColor
+        layer.borderColor = UIColor.borderGrey.cgColor
 
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.06).cgColor
         layer.shadowOpacity = 1
