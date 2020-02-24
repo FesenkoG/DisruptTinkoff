@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol PinCodeScreenPresenterProtocol: class {
-    func viewLoaded()
+    var view: PinCodeScreenInputProtocol? { set get }
+
+    func viewDidLoad()
 
     func onPinCodeEntered(pinNumbers: [Int])
     func onActionButton()
@@ -23,7 +25,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         }
     }
 
-    public weak var view: PinCodeScreenInput?
+    public weak var view: PinCodeScreenInputProtocol?
 
     private let keychainService: KeychainAuthenticationServiceProtocol
     private let userCredentials: UserCredentials
@@ -39,7 +41,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         self.userCredentials = userCredentials
     }
 
-    public func viewLoaded() {
+    public func viewDidLoad() {
         view?.setupSubtitle(userCredentials.email)
         if keychainService.isPinCodeExist {
             view?.setupTitle("Вход")

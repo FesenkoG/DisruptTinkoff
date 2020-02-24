@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol PinCodeScreenInput: class {
+public protocol PinCodeScreenInputProtocol: class {
     func setupTitle(_ title: String)
     func setupSubtitle(_ subtitle: String)
     func setupActionButtonTitle(_ title: String)
@@ -20,13 +20,14 @@ public final class PinCodeScreenViewController: UIViewController {
     private let titleLable = UILabel()
     private let subtitleLabel = UILabel()
     private let pinCodeView = PinCodeView()
-    private let actionButton = UIButton()
+    private let actionButton = UIButton(type: .system)
 
     private let presenter: PinCodeScreenPresenterProtocol
 
     public init(presenter: PinCodeScreenPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        presenter.view = self
     }
 
     @available(*, unavailable)
@@ -39,7 +40,7 @@ public final class PinCodeScreenViewController: UIViewController {
         setupUI()
         handleClosures()
         pinCodeView.becomeFirstResponder()
-        presenter.viewLoaded()
+        presenter.viewDidLoad()
     }
 
     private func setupUI() {
@@ -59,7 +60,6 @@ public final class PinCodeScreenViewController: UIViewController {
         scrollView.addSubview(pinCodeView)
 
         actionButton.titleLabel?.font = .systemFont(ofSize: 16.0)
-        actionButton.setTitleColor(.accentBlue, for: .normal)
         scrollView.addSubview(actionButton)
 
         NSLayoutConstraint.activate(
@@ -105,7 +105,7 @@ public final class PinCodeScreenViewController: UIViewController {
     }
 }
 
-extension PinCodeScreenViewController: PinCodeScreenInput {
+extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
     public func setupTitle(_ title: String) {
         titleLable.text = title
     }
