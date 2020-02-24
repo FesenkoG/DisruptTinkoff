@@ -32,6 +32,10 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'Authentication/Module/**/*.{swift}'
   s.resources = "Authentication/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+
+  s.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Authentication/Tests/**/*.{swift}'
+  end
   
   # s.resource_bundles = {
   #   'Authentication' => ['Authentication/Assets/*.png']
@@ -41,4 +45,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'R.swift'
   s.dependency 'SwiftLint'
+  s.dependency 'KeychainAccess'
 end
