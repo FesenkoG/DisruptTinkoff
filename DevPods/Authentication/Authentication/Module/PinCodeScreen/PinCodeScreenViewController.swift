@@ -14,6 +14,8 @@ public protocol PinCodeScreenInputProtocol: class {
     func clearPinCode()
 }
 
+private let defaultLeadingTrailingSpacing: CGFloat = 16.0
+
 public final class PinCodeScreenViewController: UIViewController {
     private let scrollView = UIScrollView()
 
@@ -70,19 +72,19 @@ public final class PinCodeScreenViewController: UIViewController {
                 scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
                 titleLable.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 146),
-                titleLable.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: 16.0),
-                titleLable.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: 16.0),
+                titleLable.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: defaultLeadingTrailingSpacing),
+                titleLable.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: defaultLeadingTrailingSpacing),
                 titleLable.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
 
                 subtitleLabel.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 4.0),
-                subtitleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: 16.0),
-                subtitleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: 16.0),
+                subtitleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: defaultLeadingTrailingSpacing),
+                subtitleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: defaultLeadingTrailingSpacing),
                 subtitleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
 
                 pinCodeView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 24.0),
                 pinCodeView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-                pinCodeView.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: 16.0),
-                pinCodeView.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: 16.0),
+                pinCodeView.leadingAnchor.constraint(greaterThanOrEqualTo: scrollView.leadingAnchor, constant: defaultLeadingTrailingSpacing),
+                pinCodeView.trailingAnchor.constraint(greaterThanOrEqualTo: scrollView.trailingAnchor, constant: defaultLeadingTrailingSpacing),
 
                 actionButton.topAnchor.constraint(equalTo: pinCodeView.bottomAnchor, constant: 60),
                 actionButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
