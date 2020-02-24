@@ -19,7 +19,7 @@ public extension UIColor {
     static let blackText = UIColor(hex: 0x333333)
     static let greyText = UIColor(hex: 0x888888)
     static let disabledText = UIColor(hex: 0xAAAAAA)
-    static let borderGray = UIColor(hex: 0xECECEC)
+    static let borderGrey = UIColor(hex: 0xECECEC)
 
     // PlainTextField
     static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
