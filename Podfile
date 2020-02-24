@@ -2,7 +2,7 @@
 # platform :ios, '9.0'
 
 def authentication_pod
-  pod 'Authentication', :path => 'DevPods/Authentication'
+  pod 'Authentication', :path => 'DevPods/Authentication', :testspecs => ['Tests']
 end
 
 def development_pods
