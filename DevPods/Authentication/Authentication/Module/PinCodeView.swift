@@ -32,9 +32,15 @@ public final class PinCodeView: UIView {
         setupUI()
     }
 
+    @discardableResult
     public override func becomeFirstResponder() -> Bool {
         codeFields.first?.becomeFirstResponder()
         return super.becomeFirstResponder()
+    }
+
+    public func clear() {
+        codeFields.forEach { $0.clearTextField() }
+        pinNumbers = .init(repeating: nil, count: codeLength)
     }
 
     private func setupUI() {
