@@ -46,7 +46,7 @@ class PlainTextField: UITextField {
     private var selectedColor = UIColor.blackText {
         didSet { updateColors() }
     }
-    private var initialColor = UIColor.borderGray {
+    private var initialColor = UIColor.borderGrey {
         didSet { updateColors() }
     }
     private var errorColor = UIColor.dangerRed {
