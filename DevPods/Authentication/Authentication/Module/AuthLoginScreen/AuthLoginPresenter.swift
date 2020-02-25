@@ -14,23 +14,51 @@ protocol AuthLoginPresenterProtocol: class {
 final class AuthLoginPresenter {
 
     private weak var viewController: AuthLoginPresenterProtocol?
+    private var keychainManager = KeychainAuthenticationService()
+    private var switchBoxIsOn: Bool = false
 
     init(_ viewController: AuthLoginPresenterProtocol) {
         self.viewController = viewController
+    }
+
+    func handleSwitchBoxToggle(isOn: Bool) {
+        switchBoxIsOn = isOn
     }
 }
 
 extension AuthLoginPresenter: AuthLoginViewDelegate {
 
+    func signIn(login: String?, password: String?) {
+
+        guard let login = login, !login.isEmpty,
+              let password = password, !password.isEmpty else { return }
+
+        let isCredentialsValid = ValidationManager.validateEmail(email: login) &&
+                                 ValidationManager.validatePassword(password: password)
+        if isCredentialsValid {
+            if switchBoxIsOn {
+                //open pin code screen and pass credential
+            } else {
+                keychainManager.storeUserCredentials(email: login, password: password)
+                //open mainScreen
+            }
+        } else {
+            //show error
+            return
+        }
+    }
+
     func validate(text: String?, inRange: NSRange, rString: String, type: Int) -> Bool {
-        //TODO: -handle input from textFields
-        //return true
+
         guard let nsString = text as NSString? else { return false }
         let newText = nsString.replacingCharacters(in: inRange, with: rString)
-        if type == 0 {
-            return newText.count <= 20
+        if type == textFieldType.login {
+            return newText.count <= loginMaxLength
         } else {
-            return newText.count <= 10
+            return newText.count <= passwordMaxLength
         }
     }
 }
+
+private let loginMaxLength: Int = 20
+private let passwordMaxLength: Int = 10

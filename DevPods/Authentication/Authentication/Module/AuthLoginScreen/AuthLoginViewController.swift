@@ -10,31 +10,48 @@ import UIKit
 public final class AuthLoginViewController: UIViewController {
 
     private lazy var presenter = AuthLoginPresenter(self)
-    private var loginView: AuthLoginView!
+    private var loginView = AuthLoginView()
     private var switchBox: UISwitchBox!
-    private let isSmall = UIDevice.isSmall
+    private let isSmallDevice = UIDevice.isSmall
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
-
-        loginView = AuthLoginView(frame: CGRect(x: 0, y: isSmall ? 50 : 200, width: view.frame.width, height: 230))
         loginView.delegate = presenter
-        view.addSubview(loginView)
 
-
-        switchBox = UISwitchBox(title: "Задать пин", onSwitchChange: { (_) in
-            //TODO: -add action here
+        switchBox = UISwitchBox(title: "Задать пин", onSwitchChange: { (isOn) in
+            self.presenter.handleSwitchBoxToggle(isOn: isOn)
         })
-        switchBox.frame = CGRect(x: 52,
-                                 y: view.frame.height - 44 - CGFloat(isSmall ? 50 : 114),
-                                 width: view.frame.width - 104,
-                                 height: 44)
+
+        prepareUI()
+    }
+
+    private func prepareUI() {
+        view.backgroundColor = .white
+        view.addSubview(loginView)
         view.addSubview(switchBox)
+
+        let switchBoxMinY = CGFloat(isSmallDevice ? 50 : 114) + 44
+        NSLayoutConstraint.activate([
+
+            loginView.topAnchor.constraint(equalTo: view.topAnchor,
+                                           constant: isSmallDevice ? 50 : 200),
+            loginView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loginView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loginView.heightAnchor.constraint(equalToConstant: 230),
+
+
+            switchBox.topAnchor.constraint(equalTo: view.bottomAnchor,
+                                           constant: -switchBoxMinY),
+            switchBox.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                               constant: 52),
+            switchBox.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                constant: -52)
+        ])
     }
 }
 
 extension AuthLoginViewController: AuthLoginPresenterProtocol {
 
 }
+
