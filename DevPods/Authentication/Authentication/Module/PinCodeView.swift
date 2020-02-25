@@ -43,6 +43,10 @@ public final class PinCodeView: UIView {
         pinNumbers = .init(repeating: nil, count: codeLength)
     }
 
+    public func setErrorUI() {
+        codeFields.forEach { $0.setErrorTextField() }
+    }
+
     private func setupUI() {
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
@@ -156,6 +160,11 @@ final class CodeView: UIView, UITextFieldDelegate {
 
     func clearTextField() {
         textField.text = nil
+        layer.borderColor = UIColor.borderGrey.cgColor
+    }
+
+    func setErrorTextField() {
+        layer.borderColor = UIColor.dangerRed.cgColor
     }
 
     func textField(
