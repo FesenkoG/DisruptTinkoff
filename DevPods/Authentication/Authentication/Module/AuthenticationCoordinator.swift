@@ -46,6 +46,8 @@ public final class AuthenticationCoordinator {
     }
 
     private func onPinCodeEntered(success: Bool) {
+        guard success else { return }
+
         navigationController?.presentedViewController?.dismiss(
             animated: true,
             completion: {

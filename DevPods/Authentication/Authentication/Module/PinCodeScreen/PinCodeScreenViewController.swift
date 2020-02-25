@@ -106,9 +106,15 @@ public final class PinCodeScreenViewController: UIViewController {
 
     private func handleClosures() {
         pinCodeView.didEnterPin = { [weak self] pinNumbers in
-            guard self?.presenter.onPinCodeEnteredValidation(pinNumbers: pinNumbers) ?? false else {
+            let (errorMessage, needConfirmation) = self?.presenter.onPinCodeEnteredValidation(pinNumbers: pinNumbers) ?? (nil, false)
+
+            guard errorMessage != nil || needConfirmation else {
+                return
+            }
+
+            if let errorMessage = errorMessage {
                 self?.pinCodeView.setErrorUI()
-                self?.showInvalidPincodeAlert()
+                self?.showInvalidPincodeAlert(errorMessage)
                 return
             }
 
@@ -170,8 +176,8 @@ extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
 }
 
 extension PinCodeScreenViewController {
-    private func showInvalidPincodeAlert() {
-        let alert = UIAlertController(title: "Ошибка", message: "Вы ввели неправильный пин.", preferredStyle: .alert)
+    private func showInvalidPincodeAlert(_ message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Понятно", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
