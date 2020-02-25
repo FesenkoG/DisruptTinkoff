@@ -7,13 +7,16 @@
 
 import Foundation
 
-public protocol PinCodeScreenPresenterProtocol: class {
-    var view: PinCodeScreenInputProtocol? { set get }
+public protocol PinCodeScreenPresenterProtocol: AnyObject {
+    var view: PinCodeScreenInputProtocol? { get set }
+
+    func onPinCodeEnteredValidation(pinNumbers: [Int]) -> Bool
 
     func viewDidLoad()
+    func onDismissButtonTouchedUpInside()
+    func onActionButtonTouchedUpInside()
 
-    func onPinCodeEntered(pinNumbers: [Int])
-    func onActionButton()
+    func formDidReachedTransitionCenter()
 }
 
 public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
@@ -41,42 +44,61 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         self.userCredentials = userCredentials
     }
 
-    public func viewDidLoad() {
-        view?.setupSubtitle(userCredentials.email)
-        if keychainService.isPinCodeExist {
-            view?.setupTitle("Вход")
-            view?.setupActionButtonTitle("Выйти из аккаунта")
-        } else {
-            view?.setupTitle("Новый пин-код")
-            view?.setupActionButtonTitle("Отмена")
-        }
-    }
-
-    public func onPinCodeEntered(pinNumbers: [Int]) {
+    public func onPinCodeEnteredValidation(pinNumbers: [Int]) -> (Bool) {
         if keychainService.isPinCodeExist {
             completionHandler?(keychainService.validatePinCode(pinNumbers: pinNumbers))
         } else if enteredPinCode.isEmpty {
             enteredPinCode = pinNumbers
-            view?.clearPinCode()
-            view?.setupTitle("Подтвердить пин код")
-            view?.setupActionButtonTitle("Назад")
         } else {
-            guard enteredPinCode == pinNumbers else {
-                return
-            }
+            guard enteredPinCode == pinNumbers else { return false }
             completionHandler?(
                 keychainService.storePinCode(pinNumbers: pinNumbers) == nil
             )
         }
+        return enteredPinCode == pinNumbers
+    }
+}
+
+// MARK: - UI handling
+
+extension PinCodeScreenPresenter {
+    public func viewDidLoad() {
+        view?.setupSubtitle(userCredentials.email)
+        if keychainService.isPinCodeExist {
+            view?.setupTitle("Вход")
+            view?.setupButtonTitles(forDismiss: "Выйти из аккаунта", forAction: nil)
+        } else {
+            view?.setupTitle("Новый пин-код")
+            view?.setupButtonTitles(forDismiss: "Отмена", forAction: nil)
+        }
     }
 
-    public func onActionButton() {
+    public func onDismissButtonTouchedUpInside() {
         if enteredPinCode.isEmpty {
             completionHandler?(false)
         } else {
             enteredPinCode = []
+            view?.blinkForm()
+        }
+    }
+
+    public func onActionButtonTouchedUpInside() {
+        if enteredPinCode.isEmpty {
+            // actionButton doesn't exist here.
+        } else {
+            enteredPinCode = []
+            completionHandler?(keychainService.validatePinCode(pinNumbers: enteredPinCode))
+        }
+    }
+
+    public func formDidReachedTransitionCenter() {
+        view?.clearPinCode()
+        if !enteredPinCode.isEmpty {
+            view?.setupTitle("Подтвердить пин-код")
+            view?.setupButtonTitles(forDismiss: "Назад", forAction: "Войти")
+        } else {
             view?.setupTitle("Новый пин-код")
-            view?.setupActionButtonTitle("Отмена")
+            view?.setupButtonTitles(forDismiss: "Отмена", forAction: nil)
         }
     }
 }
