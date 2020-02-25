@@ -33,13 +33,13 @@ public final class AuthenticationCoordinator {
         userCredentials: PinCodeScreenPresenter.UserCredentials
     ) {
         let pinScreenPresenter = PinCodeScreenPresenter(userCredentials: userCredentials)
-        pinScreenPresenter.completionHandler = { isValidPinCodeEntered, isLoggedOut in
-            guard !isLoggedOut else {
+        pinScreenPresenter.completionHandler = { completion in
+            guard !completion.isLoggedOut else {
                 self.onLoggedOut()
                 return
             }
 
-            self.onPinCodeEntered(success: isValidPinCodeEntered)
+            self.onPinCodeEntered(success: completion.isValidPinCodeEntered)
         }
 
         let pinCodeScreenViewController = PinCodeScreenViewController(presenter: pinScreenPresenter)

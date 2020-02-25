@@ -28,13 +28,18 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         }
     }
 
+    public struct PinCodeScreenCompletionResult {
+        let isValidPinCodeEntered: Bool
+        let isLoggedOut: Bool
+    }
+
     public weak var view: PinCodeScreenInputProtocol?
 
     private let keychainService: KeychainAuthenticationServiceProtocol
     private let userCredentials: UserCredentials
     private var enteredPinCode: [Int] = []
 
-    public var completionHandler: ((_ isValidPinCodeEntered: Bool, _ isLoggedOut: Bool) -> Void)?
+    public var completionHandler: ((PinCodeScreenCompletionResult) -> Void)?
 
     public init(
         keychainService: KeychainAuthenticationServiceProtocol = KeychainAuthenticationService(),
@@ -47,7 +52,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
     public func onPinCodeEnteredValidation(pinNumbers: [Int]) {
         if keychainService.isPinCodeExist {
             let isValidPinCode = keychainService.validatePinCode(pinNumbers: pinNumbers)
-            completionHandler?(isValidPinCode, false)
+            completionHandler?(.init(isValidPinCodeEntered: isValidPinCode, isLoggedOut: false))
 
             if !isValidPinCode {
                 view?.showPinError("Неверный пин")
@@ -61,8 +66,10 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
                 return
             }
             completionHandler?(
-                keychainService.storePinCode(pinNumbers: pinNumbers) == nil,
-                false
+                .init(
+                    isValidPinCodeEntered: keychainService.storePinCode(pinNumbers: pinNumbers) == nil,
+                    isLoggedOut: false
+                )
             )
         }
     }
@@ -85,7 +92,7 @@ extension PinCodeScreenPresenter {
     public func onDismissButtonTouchedUpInside() {
         if enteredPinCode.isEmpty {
             keychainService.clear()
-            completionHandler?(false, true)
+            completionHandler?(.init(isValidPinCodeEntered: false, isLoggedOut: true))
         } else {
             enteredPinCode = []
             view?.blinkForm()
@@ -97,7 +104,12 @@ extension PinCodeScreenPresenter {
             // actionButton doesn't exist here.
         } else {
             enteredPinCode = []
-            completionHandler?(keychainService.validatePinCode(pinNumbers: enteredPinCode), false)
+            completionHandler?(
+                .init(
+                    isValidPinCodeEntered: keychainService.validatePinCode(pinNumbers: enteredPinCode),
+                    isLoggedOut: false
+                )
+            )
         }
     }
 
