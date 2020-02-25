@@ -153,14 +153,14 @@ extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
         DispatchQueue.main.async {
             UIView.animate(
                 withDuration: 0.22,
-                animations: { [weak self] in
-                    self?.scrollView.alpha = 0
-                }, completion: { [weak self] _ in
-                    self?.presenter.formDidReachedTransitionCenter()
+                animations: {
+                    self.scrollView.alpha = 0
+                }, completion: { _ in
+                    self.presenter.formDidReachedTransitionCenter()
                     UIView.animate(
                         withDuration: 0.22,
-                        animations: { [weak self] in
-                            self?.scrollView.alpha = 1
+                        animations: {
+                            self.scrollView.alpha = 1
                         }
                     )
                 }
