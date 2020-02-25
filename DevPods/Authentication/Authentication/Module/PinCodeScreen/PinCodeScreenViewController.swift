@@ -120,11 +120,11 @@ public final class PinCodeScreenViewController: UIViewController {
     }
 
     @objc private func dismissButtonTouchedUpInside() {
-        presenter.onDismissButton()
+        presenter.onDismissButtonTouchedUpInside()
     }
 
     @objc private func actionButtonTouchedUpInside() {
-        presenter.onActionButton()
+        presenter.onActionButtonTouchedUpInside()
     }
 }
 

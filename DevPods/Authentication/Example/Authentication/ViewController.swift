@@ -16,5 +16,12 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        let presenter = PinCodeScreenPresenter(userCredentials: .init(email: "fesenko.g@gmail.com"))
+        let viewController = PinCodeScreenViewController(presenter: presenter)
+
+        presenter.view = viewController
+
+        present(viewController, animated: true, completion: nil)
     }
 }

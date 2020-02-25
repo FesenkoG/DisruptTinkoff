@@ -13,8 +13,8 @@ public protocol PinCodeScreenPresenterProtocol: class {
     func onPinCodeEnteredValidation(pinNumbers: [Int]) -> Bool
 
     func viewDidLoad()
-    func onDismissButton()
-    func onActionButton()
+    func onDismissButtonTouchedUpInside()
+    func onActionButtonTouchedUpInside()
 
     func formDidBeginTransitioning()
     func formDidReachedTransitionCenter()
@@ -76,7 +76,7 @@ extension PinCodeScreenPresenter {
         }
     }
 
-    public func onDismissButton() {
+    public func onDismissButtonTouchedUpInside() {
         if enteredPinCode.isEmpty {
             completionHandler?(false)
         } else {
@@ -85,7 +85,7 @@ extension PinCodeScreenPresenter {
         }
     }
 
-    public func onActionButton() {
+    public func onActionButtonTouchedUpInside() {
         if enteredPinCode.isEmpty {
             // actionButton doesn't exist here.
         } else {
