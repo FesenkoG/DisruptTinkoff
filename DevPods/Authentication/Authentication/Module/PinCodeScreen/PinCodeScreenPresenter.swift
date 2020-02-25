@@ -10,7 +10,7 @@ import Foundation
 public protocol PinCodeScreenPresenterProtocol: AnyObject {
     var view: PinCodeScreenInputProtocol? { get set }
 
-    func onPinCodeEnteredValidation(pinNumbers: [Int]) -> (errorMessage: String?, needConfirmation: Bool)
+    func onPinCodeEnteredValidation(pinNumbers: [Int])
 
     func viewDidLoad()
     func onDismissButtonTouchedUpInside()
@@ -44,20 +44,25 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         self.userCredentials = userCredentials
     }
 
-    public func onPinCodeEnteredValidation(pinNumbers: [Int]) -> (errorMessage: String?, needConfirmation: Bool) {
+    public func onPinCodeEnteredValidation(pinNumbers: [Int]) {
         if keychainService.isPinCodeExist {
             let isValidPinCode = keychainService.validatePinCode(pinNumbers: pinNumbers)
             completionHandler?(isValidPinCode)
-            return (isValidPinCode ? nil : "Неверный пин", !isValidPinCode)
+
+            if !isValidPinCode {
+                view?.showPinError("Неверный пин")
+            }
         } else if enteredPinCode.isEmpty {
             enteredPinCode = pinNumbers
-            return (nil, true)
+            view?.blinkForm()
         } else {
-            guard enteredPinCode == pinNumbers else { return ("Неверный пин", false) }
+            guard enteredPinCode == pinNumbers else {
+                view?.showPinError("Неверный пин")
+                return
+            }
             completionHandler?(
                 keychainService.storePinCode(pinNumbers: pinNumbers) == nil
             )
-            return (nil, false)
         }
     }
 }

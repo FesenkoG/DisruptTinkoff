@@ -13,6 +13,7 @@ public protocol PinCodeScreenInputProtocol: AnyObject {
     func setupButtonTitles(forDismiss: String?, forAction: String?)
     func clearPinCode()
     func blinkForm()
+    func showPinError(_ message: String?)
 }
 
 private let defaultLeadingTrailingSpacing: CGFloat = 16.0
@@ -106,19 +107,7 @@ public final class PinCodeScreenViewController: UIViewController {
 
     private func handleClosures() {
         pinCodeView.didEnterPin = { [weak self] pinNumbers in
-            let (errorMessage, needConfirmation) = self?.presenter.onPinCodeEnteredValidation(pinNumbers: pinNumbers) ?? (nil, false)
-
-            guard errorMessage != nil || needConfirmation else {
-                return
-            }
-
-            if let errorMessage = errorMessage {
-                self?.pinCodeView.setErrorUI()
-                self?.showInvalidPincodeAlert(errorMessage)
-                return
-            }
-
-            self?.blinkForm()
+            self?.presenter.onPinCodeEnteredValidation(pinNumbers: pinNumbers)
         }
 
         dismissButton.addTarget(self, action: #selector(dismissButtonTouchedUpInside), for: .touchUpInside)
@@ -173,10 +162,10 @@ extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
             )
         }
     }
-}
 
-extension PinCodeScreenViewController {
-    private func showInvalidPincodeAlert(_ message: String) {
+    public func showPinError(_ message: String?) {
+        self.pinCodeView.setErrorUI()
+
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Понятно", style: .default, handler: nil))
         self.present(alert, animated: true)
