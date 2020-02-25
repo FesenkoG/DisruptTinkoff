@@ -34,7 +34,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
     private let userCredentials: UserCredentials
     private var enteredPinCode: [Int] = []
 
-    public var completionHandler: ((Bool) -> Void)?
+    public var completionHandler: ((_ isValidPinCodeEntered: Bool, _ isLoggedOut: Bool) -> Void)?
 
     public init(
         keychainService: KeychainAuthenticationServiceProtocol = KeychainAuthenticationService(),
@@ -47,7 +47,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
     public func onPinCodeEnteredValidation(pinNumbers: [Int]) {
         if keychainService.isPinCodeExist {
             let isValidPinCode = keychainService.validatePinCode(pinNumbers: pinNumbers)
-            completionHandler?(isValidPinCode)
+            completionHandler?(isValidPinCode, false)
 
             if !isValidPinCode {
                 view?.showPinError("Неверный пин")
@@ -61,7 +61,8 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
                 return
             }
             completionHandler?(
-                keychainService.storePinCode(pinNumbers: pinNumbers) == nil
+                keychainService.storePinCode(pinNumbers: pinNumbers) == nil,
+                false
             )
         }
     }
@@ -83,7 +84,8 @@ extension PinCodeScreenPresenter {
 
     public func onDismissButtonTouchedUpInside() {
         if enteredPinCode.isEmpty {
-            completionHandler?(false)
+            keychainService.clear()
+            completionHandler?(false, true)
         } else {
             enteredPinCode = []
             view?.blinkForm()
@@ -95,7 +97,7 @@ extension PinCodeScreenPresenter {
             // actionButton doesn't exist here.
         } else {
             enteredPinCode = []
-            completionHandler?(keychainService.validatePinCode(pinNumbers: enteredPinCode))
+            completionHandler?(keychainService.validatePinCode(pinNumbers: enteredPinCode), false)
         }
     }
 
