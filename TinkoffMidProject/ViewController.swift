@@ -9,7 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+
+    private let topLabel: UILabel = {
+        let tl = UILabel()
+        tl.text = "Путой экран"
+        tl.font = UIFont.systemFont(ofSize: 24)
+        return tl
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 }

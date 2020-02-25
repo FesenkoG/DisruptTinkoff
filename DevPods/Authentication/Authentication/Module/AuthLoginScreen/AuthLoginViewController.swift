@@ -20,8 +20,9 @@ public final class AuthLoginViewController: UIViewController {
         view.backgroundColor = .white
 
         loginView = AuthLoginView(frame: CGRect(x: 0, y: isSmall ? 50 : 200, width: view.frame.width, height: 230))
-        loginView.delegate = self
+        loginView.delegate = presenter
         view.addSubview(loginView)
+
 
         switchBox = UISwitchBox(title: "Задать пин", onSwitchChange: { (_) in
             //TODO: -add action here
@@ -35,9 +36,5 @@ public final class AuthLoginViewController: UIViewController {
 }
 
 extension AuthLoginViewController: AuthLoginPresenterProtocol {
-
-}
-
-extension AuthLoginViewController: AuthLoginViewDelegate {
 
 }

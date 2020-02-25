@@ -19,3 +19,18 @@ final class AuthLoginPresenter {
         self.viewController = viewController
     }
 }
+
+extension AuthLoginPresenter: AuthLoginViewDelegate {
+
+    func validate(text: String?, inRange: NSRange, rString: String, type: Int) -> Bool {
+        //TODO: -handle input from textFields
+        //return true
+        guard let nsString = text as NSString? else { return false }
+        let newText = nsString.replacingCharacters(in: inRange, with: rString)
+        if type == 0 {
+            return newText.count <= 20
+        } else {
+            return newText.count <= 10
+        }
+    }
+}

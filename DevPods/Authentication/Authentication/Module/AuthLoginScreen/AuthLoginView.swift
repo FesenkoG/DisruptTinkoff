@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AuthLoginViewDelegate: class {
-
+    func validate(text: String?, inRange: NSRange, rString: String, type: Int) -> Bool
 }
 
 final class AuthLoginView: UIView {
@@ -38,13 +38,17 @@ final class AuthLoginView: UIView {
 
     private let signInButton: UISoftButton = {
         let sb = UISoftButton(title: "Войти")
-        sb.isEnabled = false
+//        sb.isEnabled = false
         return sb
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        loginTextField.delegate = self
+        loginTextField.tag = textFieldType.login
+        passwordTextField.delegate = self
+        passwordTextField.tag = textFieldType.password
     }
 
     private func setupUI() {
@@ -94,6 +98,7 @@ final class AuthLoginView: UIView {
 }
 
 extension AuthLoginView: UITextFieldDelegate {
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print()
     }
@@ -105,11 +110,16 @@ extension AuthLoginView: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        print()
-        return true
+        guard let plainTextField = textField as? PlainTextField else { return false }
+        return delegate?.validate(text: textField.text,
+                                  inRange: range,
+                                  rString: string,
+                                  type: plainTextField.tag) ?? false
     }
 }
+
 private let loginText: (title: String, placeholder: String) = ("email", "Логин")
 private let passwordText: (title: String, placeholder: String) = ("password", "Пароль")
 private let leadingTrailingSpacing: CGFloat = 52.0
 private let elementSpacing: CGFloat = 16.0
+private let textFieldType: (login: Int, password: Int) = (0, 1)
