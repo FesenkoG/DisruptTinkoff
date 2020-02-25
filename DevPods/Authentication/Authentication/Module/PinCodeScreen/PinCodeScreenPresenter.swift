@@ -44,7 +44,7 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
         self.userCredentials = userCredentials
     }
 
-    public func onPinCodeEnteredValidation(pinNumbers: [Int]) -> (Bool) {
+    public func onPinCodeEnteredValidation(pinNumbers: [Int]) -> Bool {
         if keychainService.isPinCodeExist {
             completionHandler?(keychainService.validatePinCode(pinNumbers: pinNumbers))
         } else if enteredPinCode.isEmpty {
