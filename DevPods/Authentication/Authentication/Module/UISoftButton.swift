@@ -40,7 +40,6 @@ class UISoftButton: UIButton {
         didSet { updateColors() }
     }
 
-
     // MARK: - Init
 
     init(style: Style = .common, title: String = "") {

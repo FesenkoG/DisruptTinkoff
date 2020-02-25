@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Authentication
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let navigationController = navigationController else { return }
+        let coordinator = AuthenticationCoordinator(navigationController: navigationController)
+        coordinator.proceedWithAuthentication()
     }
 }
