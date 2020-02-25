@@ -7,8 +7,8 @@
 
 import Foundation
 
-public protocol PinCodeScreenPresenterProtocol: class {
-    var view: PinCodeScreenInputProtocol? { set get }
+public protocol PinCodeScreenPresenterProtocol: AnyObject {
+    var view: PinCodeScreenInputProtocol? { get set }
 
     func onPinCodeEnteredValidation(pinNumbers: [Int]) -> Bool
 
@@ -62,7 +62,6 @@ public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
 // MARK: - UI handling
 
 extension PinCodeScreenPresenter {
-
     public func viewDidLoad() {
         view?.setupSubtitle(userCredentials.email)
         if keychainService.isPinCodeExist {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol PinCodeScreenInputProtocol: class {
+public protocol PinCodeScreenInputProtocol: AnyObject {
     func setupTitle(_ title: String)
     func setupSubtitle(_ subtitle: String)
     func setupButtonTitles(forDismiss: String?, forAction: String?)
@@ -151,14 +151,20 @@ extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
 
     public func blinkForm() {
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.22, animations: { [weak self] in
-                self?.scrollView.alpha = 0
-            }) { [weak self] (_) in self?.presenter.formDidReachedTransitionCenter()
-
-                UIView.animate(withDuration: 0.22, animations:  { [weak self] in
-                    self?.scrollView.alpha = 1
-                })
-            }
+            UIView.animate(
+                withDuration: 0.22,
+                animations: { [weak self] in
+                    self?.scrollView.alpha = 0
+                }, completion: { [weak self] _ in
+                    self?.presenter.formDidReachedTransitionCenter()
+                    UIView.animate(
+                        withDuration: 0.22,
+                        animations: { [weak self] in
+                            self?.scrollView.alpha = 1
+                        }
+                    )
+                }
+            )
         }
     }
 }
