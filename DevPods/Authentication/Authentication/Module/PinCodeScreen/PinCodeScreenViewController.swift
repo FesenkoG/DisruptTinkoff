@@ -150,15 +150,14 @@ extension PinCodeScreenViewController: PinCodeScreenInputProtocol {
     }
 
     public func blinkForm() {
-        DispatchQueue.main.async { [weak presenter] in presenter?.formDidBeginTransitioning()
-
+        DispatchQueue.main.async {
             UIView.animate(withDuration: 0.22, animations: { [weak self] in
                 self?.scrollView.alpha = 0
-            }) { [weak presenter] (_) in presenter?.formDidReachedTransitionCenter()
+            }) { [weak self] (_) in self?.presenter.formDidReachedTransitionCenter()
 
                 UIView.animate(withDuration: 0.22, animations:  { [weak self] in
                     self?.scrollView.alpha = 1
-                }) { [weak presenter] (_) in presenter?.formDidEndTransitioning() }
+                })
             }
         }
     }

@@ -16,9 +16,7 @@ public protocol PinCodeScreenPresenterProtocol: class {
     func onDismissButtonTouchedUpInside()
     func onActionButtonTouchedUpInside()
 
-    func formDidBeginTransitioning()
     func formDidReachedTransitionCenter()
-    func formDidEndTransitioning()
 }
 
 public final class PinCodeScreenPresenter: PinCodeScreenPresenterProtocol {
@@ -94,8 +92,6 @@ extension PinCodeScreenPresenter {
         }
     }
 
-    public func formDidBeginTransitioning() { }
-
     public func formDidReachedTransitionCenter() {
         view?.clearPinCode()
         if !enteredPinCode.isEmpty {
@@ -106,6 +102,4 @@ extension PinCodeScreenPresenter {
             view?.setupButtonTitles(forDismiss: "Отмена", forAction: nil)
         }
     }
-
-    public func formDidEndTransitioning() { }
 }
