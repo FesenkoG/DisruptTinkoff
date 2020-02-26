@@ -22,7 +22,7 @@ public final class AuthenticationCoordinator {
     }
 
     private func showLoginScreen() {
-        if let email = keychain.getUserEmail() {
+        if keychain.isPinCodeExist, let email = keychain.getUserEmail() {
             showPinScreen(
                 userCredentials: PinCodeScreenPresenter.UserCredentials.init(
                     email: email
