@@ -21,9 +21,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let navigationController = navigationController else { return }
+        let coordinator = AuthenticationCoordinator(navigationController: navigationController)
+        coordinator.proceedWithAuthentication()
+
         view.backgroundColor = .white
         view.addSubview(topLabel)
-        topLabel.isHidden = true
         NSLayoutConstraint.activate([
             topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             topLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -33,9 +36,5 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let navigationController = navigationController else { return }
-        let coordinator = AuthenticationCoordinator(navigationController: navigationController)
-        coordinator.proceedWithAuthentication()
-        topLabel.isHidden = false
     }
 }
