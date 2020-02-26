@@ -20,7 +20,7 @@ Minimum height implemented and it's **44px**. No need for setting heightAnchor f
         ptf.error = "Invalid email"
     }
 */
-class PlainTextField: UITextField {
+public class PlainTextField: UITextField {
     // MARK: - Subviews
 
     private var borderView = UIView()
@@ -61,19 +61,19 @@ class PlainTextField: UITextField {
     public var title: String = "[Title]" {
         didSet { updateControl(animated: false) }
     }
-    override var textColor: UIColor? {
+    public override var textColor: UIColor? {
         didSet { updateControl(animated: false) }
     }
-    override var text: String? {
+    public override var text: String? {
         didSet { updateControl(animated: false) }
     }
-    override var isSelected: Bool {
+    public override var isSelected: Bool {
         didSet { updateControl(animated: true) }
     }
     fileprivate var hasError: Bool {
         return !error.isEmpty
     }
-    override var placeholder: String? {
+    public override var placeholder: String? {
         didSet {
             self.setNeedsDisplay()
             self.updatePlaceholder()
@@ -179,12 +179,12 @@ class PlainTextField: UITextField {
 
     // MARK: - Responder handling
 
-    override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         self.updateControl(animated: true)
         return super.becomeFirstResponder()
     }
 
-    override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         self.updateControl(animated: true)
         return super.resignFirstResponder()
     }
@@ -336,16 +336,16 @@ class PlainTextField: UITextField {
 
     // MARK: - UITextField rect's
 
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height)
             .inset(by: .init(top: 1, left: 16, bottom: 0, right: 16))
     }
 
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return textRect(forBounds: bounds)
     }
 
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    public override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return textRect(forBounds: bounds)
     }
 
@@ -403,7 +403,7 @@ class PlainTextField: UITextField {
 
     // MARK: - Layout
 
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.invalidateIntrinsicContentSize()
         self.titleLabel.frame = self.titleLabelRectForBounds(self.bounds)

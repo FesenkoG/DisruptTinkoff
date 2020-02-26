@@ -10,10 +10,31 @@ import UIKit
 import Authentication
 
 class ViewController: UIViewController {
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    private let topLabel: UILabel = {
+        let tl = UILabel()
+        tl.translatesAutoresizingMaskIntoConstraints = false
+        tl.text = "Путой экран"
+        tl.font = UIFont.systemFont(ofSize: 24)
+        return tl
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
         coordinator.proceedWithAuthentication()
+
+        view.backgroundColor = .white
+        view.addSubview(topLabel)
+        NSLayoutConstraint.activate([
+            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 public final class AuthenticationCoordinator {
     private weak var navigationController: UINavigationController?
+    private let keychain = KeychainAuthenticationService()
 
     var completionHandler: (() -> Void)?
 
@@ -21,17 +22,33 @@ public final class AuthenticationCoordinator {
     }
 
     private func showLoginScreen() {
-        // TODO: - Show Login screen and either show pin screen or proceed without it if not requested
-        showPinScreen(
-            userCredentials: PinCodeScreenPresenter.UserCredentials.init(
-                email: "feseneko.g@gmail.com"
+
+        if keychain.isPinCodeExist {
+            showPinScreen(
+                userCredentials: PinCodeScreenPresenter.UserCredentials.init(
+                    email: "feseneko.g@gmail.com")
             )
-        )
+        } else {
+            let loginPresenter = LoginPresenter()
+            let loginScreen = LoginViewController(presenter: loginPresenter)
+
+            loginPresenter.completionHandler = { email, shouldEnterPin in
+                self.navigationController?.presentedViewController?.dismiss(
+                    animated: true,
+                    completion: {
+                       if shouldEnterPin {
+                            self.showPinScreen(userCredentials: .init(email: email))
+                        }
+                    }
+                )
+            }
+            loginScreen.modalPresentationStyle = .fullScreen
+            navigationController?.present(loginScreen, animated: false)
+        }
     }
 
-    private func showPinScreen(
-        userCredentials: PinCodeScreenPresenter.UserCredentials
-    ) {
+    func showPinScreen(
+        userCredentials: PinCodeScreenPresenter.UserCredentials) {
         let pinScreenPresenter = PinCodeScreenPresenter(userCredentials: userCredentials)
         pinScreenPresenter.completionHandler = { completion in
             guard !completion.isLoggedOut else {
@@ -43,11 +60,7 @@ public final class AuthenticationCoordinator {
         }
 
         let pinCodeScreenViewController = PinCodeScreenViewController(presenter: pinScreenPresenter)
-        navigationController?.present(
-            pinCodeScreenViewController,
-            animated: true,
-            completion: nil
-        )
+        navigationController?.present(pinCodeScreenViewController, animated: true)
     }
 
     private func onPinCodeEntered(success: Bool) {
@@ -62,6 +75,12 @@ public final class AuthenticationCoordinator {
     }
 
     private func onLoggedOut() {
-        // TODO: - Show login screen
+
+        navigationController?.presentedViewController?.dismiss(
+            animated: false,
+            completion: {
+                self.showLoginScreen()
+            }
+        )
     }
 }
