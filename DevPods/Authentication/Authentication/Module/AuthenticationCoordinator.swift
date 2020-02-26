@@ -22,11 +22,11 @@ public final class AuthenticationCoordinator {
     }
 
     private func showLoginScreen() {
-
-        if keychain.isPinCodeExist {
+        if let email = keychain.getUserEmail() {
             showPinScreen(
                 userCredentials: PinCodeScreenPresenter.UserCredentials.init(
-                    email: "feseneko.g@gmail.com")
+                    email: email
+                )
             )
         } else {
             let loginPresenter = LoginPresenter()
@@ -48,7 +48,8 @@ public final class AuthenticationCoordinator {
     }
 
     func showPinScreen(
-        userCredentials: PinCodeScreenPresenter.UserCredentials) {
+        userCredentials: PinCodeScreenPresenter.UserCredentials
+    ) {
         let pinScreenPresenter = PinCodeScreenPresenter(userCredentials: userCredentials)
         pinScreenPresenter.completionHandler = { completion in
             guard !completion.isLoggedOut else {
@@ -75,7 +76,6 @@ public final class AuthenticationCoordinator {
     }
 
     private func onLoggedOut() {
-
         navigationController?.presentedViewController?.dismiss(
             animated: false,
             completion: {
