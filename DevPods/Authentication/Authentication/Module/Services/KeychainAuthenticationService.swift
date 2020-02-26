@@ -9,6 +9,7 @@ import KeychainAccess
 
 public protocol KeychainAuthenticationServiceProtocol {
     var isPinCodeExist: Bool { get }
+    func getUserEmail() -> String?
 
     @discardableResult
     func storeUserCredentials(email: String, password: String) -> Error?
@@ -39,6 +40,14 @@ public final class KeychainAuthenticationService: KeychainAuthenticationServiceP
             return try keychain.get(Keys.pin.rawValue) != nil
         } catch {
             return false
+        }
+    }
+
+    public func getUserEmail() -> String? {
+        do {
+            return try keychain.get(Keys.email.rawValue)
+        } catch {
+            return nil
         }
     }
 

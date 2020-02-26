@@ -49,7 +49,6 @@ public final class LoginViewController: UIViewController {
     public enum TypOfTextField {
         case login, password
     }
-    private let isSmallDevice = UIDevice.isSmall
     private let presenter: LoginPresenter
 
     public init(presenter: LoginPresenter) {
