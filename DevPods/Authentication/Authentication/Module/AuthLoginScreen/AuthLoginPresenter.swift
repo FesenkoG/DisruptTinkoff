@@ -8,13 +8,13 @@
 import Foundation
 
 protocol AuthLoginPresenterProtocol: class {
-
+    func showPinScreen(login: String)
+    func dismiss()
 }
 
 final class AuthLoginPresenter {
-
     private weak var viewController: AuthLoginPresenterProtocol?
-    private var keychainManager = KeychainAuthenticationService()
+    private let keychainManager = KeychainAuthenticationService()
     private var switchBoxIsOn: Bool = false
 
     init(_ viewController: AuthLoginPresenterProtocol) {
@@ -27,20 +27,17 @@ final class AuthLoginPresenter {
 }
 
 extension AuthLoginPresenter: AuthLoginViewDelegate {
-
     func signIn(login: String?, password: String?) {
-
         guard let login = login, !login.isEmpty,
               let password = password, !password.isEmpty else { return }
 
-        let isCredentialsValid = ValidationManager.validateEmail(email: login) &&
-                                 ValidationManager.validatePassword(password: password)
+        let isCredentialsValid = ValidationManager.validateEmail(email: login) && ValidationManager.validatePassword(password: password)
         if isCredentialsValid {
             if switchBoxIsOn {
-                //open pin code screen and pass credential
+                viewController?.showPinScreen(login: login)
             } else {
                 keychainManager.storeUserCredentials(email: login, password: password)
-                //open mainScreen
+                viewController?.dismiss()
             }
         } else {
             //show error

@@ -2,7 +2,7 @@
 //  UIDevice+Extension.swift
 //  Authentication
 //
-//  Created by MacBook-Игорь on 25.02.2020.
+//  Created by MacBook-Игорь on 24.02.2020.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ extension UIDevice {
         let feedbackGenerator = UISelectionFeedbackGenerator()
         feedbackGenerator.selectionChanged()
     }
-
+    
     enum Model: String {
         case simulator     = "simulator/sandbox",
         //iPod
@@ -35,11 +35,6 @@ extension UIDevice {
         iPadMini2          = "iPad Mini 2",
         iPadMini3          = "iPad Mini 3",
         iPadMini4          = "iPad Mini 4",
-        //iPad pro
-//        iPadPro9_7         = "iPad Pro 9.7\"",
-//        iPadPro10_5        = "iPad Pro 10.5\"",
-//        iPadPro12_9        = "iPad Pro 12.9\"",
-//        iPadPro2_12_9      = "iPad Pro 2 12.9\"",
         //iPhone
         iPhone4            = "iPhone 4",
         iPhone4S           = "iPhone 4S",
@@ -112,16 +107,6 @@ extension UIDevice {
             "iPad4,9": .iPadMini3,
             "iPad5,1": .iPadMini4,
             "iPad5,2": .iPadMini4,
-            //iPad pro
-            "iPad6,3": .iPadPro9_7,
-            "iPad6,4": .iPadPro9_7,
-            "iPad7,3": .iPadPro10_5,
-            "iPad7,4": .iPadPro10_5,
-            "iPad6,7": .iPadPro12_9,
-            "iPad6,8": .iPadPro12_9,
-            "iPad7,1": .iPadPro2_12_9,
-
-"iPad7,2": .iPadPro2_12_9,
             //iPhone
             "iPhone3,1": .iPhone4,
             "iPhone3,2": .iPhone4,
@@ -154,9 +139,8 @@ extension UIDevice {
             "iPhone11,8": .iPhoneXR,
             //AppleTV
             "AppleTV5,3": .appleTV,
-            "AppleTV6,2": .appleTV_4K
         ]
-
+        
         if let model = modelMap[String.init(validatingUTF8: modelCode!)!] {
             if model == .simulator {
                 if let simModelCode = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
@@ -169,7 +153,7 @@ extension UIDevice {
         }
         return Model.unrecognized
     }
-
+    
     static var isSmall: Bool {
         switch UIDevice().type {
         case .iPhoneSE, .iPhone5S, .iPhone5C, .iPhone5: return true
@@ -177,21 +161,21 @@ extension UIDevice {
         }
         return false
     }
-
+    
     enum ScreenSize {
         case small
         case normal
         case plus
     }
-
+    
     static var size: ScreenSize {
         switch UIDevice().type {
         case .iPhoneSE, .iPhone5S, .iPhone5C, .iPhone5:
             return .small
-
+            
         case .iPhone6plus, .iPhone6Splus, .iPhone7plus, .iPhone8plus, .iPhoneXSMax, .iPhoneXR:
             return .plus
-
+        
         default:
             return .normal
         }

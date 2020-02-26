@@ -8,7 +8,6 @@
 import UIKit
 
 public final class AuthLoginViewController: UIViewController {
-
     private lazy var presenter = AuthLoginPresenter(self)
     private var loginView = AuthLoginView()
     private var switchBox: UISwitchBox!
@@ -19,7 +18,7 @@ public final class AuthLoginViewController: UIViewController {
 
         loginView.delegate = presenter
 
-        switchBox = UISwitchBox(title: "Задать пин", onSwitchChange: { (isOn) in
+        switchBox = UISwitchBox(title: "Задать пин", onSwitchChange: { isOn in
             self.presenter.handleSwitchBoxToggle(isOn: isOn)
         })
 
@@ -40,7 +39,6 @@ public final class AuthLoginViewController: UIViewController {
             loginView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loginView.heightAnchor.constraint(equalToConstant: 230),
 
-
             switchBox.topAnchor.constraint(equalTo: view.bottomAnchor,
                                            constant: -switchBoxMinY),
             switchBox.leadingAnchor.constraint(equalTo: view.leadingAnchor,
@@ -52,6 +50,13 @@ public final class AuthLoginViewController: UIViewController {
 }
 
 extension AuthLoginViewController: AuthLoginPresenterProtocol {
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
 
+    func showPinScreen(login: String) {
+        guard let navigationController = navigationController else { return }
+        let coordinator = AuthenticationCoordinator(navigationController: navigationController)
+        coordinator.showPinScreen(userCredentials: .init(email: login))
+    }
 }
-
