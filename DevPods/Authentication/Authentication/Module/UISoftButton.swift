@@ -72,18 +72,18 @@ class UISoftButton: UIButton {
         case .accent:
             self.setTitleColor(.whiteText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? .accentBlue
-                : .accentBlueHighlighted
+                ? .accentBlueHighlighted
+                : .accentBlue
         case .common:
             self.setTitleColor(.blackText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? .commonGray
-                : .commonGrayHighlighted
+                ? .commonGrayHighlighted
+                : .commonGray
         case .danger:
             self.setTitleColor(.whiteText, for: .normal)
             self.backgroundColor = isHighlighted
-                ? .dangerRed
-                : .dangerRedHighlighted
+                ? .dangerRedHighlighted
+                : .dangerRed
         }
     }
 }
