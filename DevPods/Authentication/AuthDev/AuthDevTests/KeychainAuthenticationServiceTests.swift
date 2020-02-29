@@ -6,7 +6,8 @@
 //
 
 import XCTest
-@testable import Authentication
+@testable import AuthDev
+import KeychainAccess
 
 class KeychainAuthenticationServiceTests: XCTestCase {
     var service: KeychainAuthenticationService!

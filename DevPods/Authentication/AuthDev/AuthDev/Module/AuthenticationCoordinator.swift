@@ -5,7 +5,7 @@
 //  Created by Georgy Fesenko on 25/02/2020.
 //
 
-import Foundation
+import UIKit
 
 public final class AuthenticationCoordinator {
     private weak var navigationController: UINavigationController?

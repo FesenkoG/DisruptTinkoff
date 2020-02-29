@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Authentication
+import Auth
 
 final class ViewController: UIViewController {
     // MARK: - Private properties

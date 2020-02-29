@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'Authentication'
+  s.name             = 'Auth'
   s.version          = '0.1.0'
   s.summary          = 'A short description of Authentication.'
 
@@ -30,20 +30,18 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '13.0'
 
-  s.source_files = 'Authentication/Module/**/*.{swift}'
-  s.resources = "Authentication/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+  s.source_files = 'AuthDev/AuthDev/Module/**/*.{swift}'
+  s.resources = "AuthDev/AuthDev/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
 
   s.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Authentication/Tests/**/*.{swift}'
+      test_spec.source_files = 'AuthDev/AuthDevTests/**/*.{swift}'
   end
   
   # s.resource_bundles = {
-  #   'Authentication' => ['Authentication/Assets/*.png']
+  #   'Authentication' => ['AuthDev/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'R.swift'
-  s.dependency 'SwiftLint'
   s.dependency 'KeychainAccess'
 end

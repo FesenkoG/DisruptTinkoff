@@ -1,12 +1,8 @@
 PODS:
-  - Authentication (0.1.0):
+  - Auth (0.1.0):
     - KeychainAccess
-    - R.swift
-    - SwiftLint
-  - Authentication/Tests (0.1.0):
+  - Auth/Tests (0.1.0):
     - KeychainAccess
-    - R.swift
-    - SwiftLint
   - KeychainAccess (4.1.0)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
@@ -14,8 +10,8 @@ PODS:
   - SwiftLint (0.39.1)
 
 DEPENDENCIES:
-  - Authentication (from `DevPods/Authentication`)
-  - Authentication/Tests (from `DevPods/Authentication`)
+  - Auth (from `DevPods/Authentication`)
+  - Auth/Tests (from `DevPods/Authentication`)
   - R.swift
   - SwiftLint
 
@@ -27,16 +23,16 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
-  Authentication:
+  Auth:
     :path: DevPods/Authentication
 
 SPEC CHECKSUMS:
-  Authentication: bf8592e1c644f1056bb23c264ac6216b67d518f8
+  Auth: 755378d0933b163a539d8f33f0698e282b36e7d8
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: bb4a5d199927e5e6fd27ce1f6742100c9bd6d8b4
+PODFILE CHECKSUM: ed7680abba37ef0ed60fc9fa5440890079112a2e
 
 COCOAPODS: 1.8.4
