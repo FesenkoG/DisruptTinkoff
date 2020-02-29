@@ -27,8 +27,8 @@ public final class TableViewAdapter: NSObject {
         tableView.dataSource = self
     }
 
-    public func set(items: [TableViewCellViewModel]) {
-        self.viewModels = items
+    public func set(viewModels: [TableViewCellViewModel]) {
+        self.viewModels = viewModels
     }
 }
 
