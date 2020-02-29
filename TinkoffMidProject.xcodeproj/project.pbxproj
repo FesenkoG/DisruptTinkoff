@@ -25,8 +25,6 @@
 		E5060E2623FDBE66005812F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5060E2423FDBE66005812F1 /* LaunchScreen.storyboard */; };
 		E5060E3123FDBE66005812F1 /* TinkoffMidProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E3023FDBE66005812F1 /* TinkoffMidProjectTests.swift */; };
 		E5060E3D23FDC0B7005812F1 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E3C23FDC0B6005812F1 /* R.generated.swift */; };
-		E533D998240A45FA00718B24 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E533D997240A45FA00718B24 /* TableViewAdapter.swift */; };
-		E533D99A240A5C8B00718B24 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E533D999240A5C8B00718B24 /* Reusable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +64,6 @@
 		E5060E3223FDBE66005812F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5060E3C23FDC0B6005812F1 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		E533D9922409878600718B24 /* Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E533D997240A45FA00718B24 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
-		E533D999240A5C8B00718B24 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		E8EE9F421294ABBA3DDE2ADF /* Pods_TinkoffMidProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffMidProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,7 +155,6 @@
 		E5060E1823FDBE64005812F1 /* TinkoffMidProject */ = {
 			isa = PBXGroup;
 			children = (
-				E533D996240A459400718B24 /* TableViewAdapter */,
 				6E3E4A7D2402B470002C0D32 /* Resources */,
 				E5060E3C23FDC0B6005812F1 /* R.generated.swift */,
 				E5060E1923FDBE64005812F1 /* AppDelegate.swift */,
@@ -179,15 +174,6 @@
 				E5060E3223FDBE66005812F1 /* Info.plist */,
 			);
 			path = TinkoffMidProjectTests;
-			sourceTree = "<group>";
-		};
-		E533D996240A459400718B24 /* TableViewAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				E533D997240A45FA00718B24 /* TableViewAdapter.swift */,
-				E533D999240A5C8B00718B24 /* Reusable.swift */,
-			);
-			path = TableViewAdapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,11 +392,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E533D99A240A5C8B00718B24 /* Reusable.swift in Sources */,
 				E5060E1E23FDBE64005812F1 /* ViewController.swift in Sources */,
 				E5060E1A23FDBE64005812F1 /* AppDelegate.swift in Sources */,
 				E5060E1C23FDBE64005812F1 /* SceneDelegate.swift in Sources */,
-				E533D998240A45FA00718B24 /* TableViewAdapter.swift in Sources */,
 				E5060E3D23FDC0B7005812F1 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
