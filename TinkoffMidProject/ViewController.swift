@@ -9,14 +9,18 @@
 import UIKit
 import Authentication
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    // MARK: - Private properties
+
     private let topLabel: UILabel = {
-        let tl = UILabel()
-        tl.translatesAutoresizingMaskIntoConstraints = false
-        tl.text = "Путой экран"
-        tl.font = UIFont.systemFont(ofSize: 24)
-        return tl
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Путой экран"
+        label.font = UIFont.systemFont(ofSize: 24)
+        return label
     }()
+
+    // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +28,15 @@ class ViewController: UIViewController {
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
         coordinator.proceedWithAuthentication()
-
         view.backgroundColor = .white
         view.addSubview(topLabel)
-        NSLayoutConstraint.activate([
-            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
 
+        NSLayoutConstraint.activate(
+            [
+                topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                topLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ]
+        )
     }
 
     override func viewDidAppear(_ animated: Bool) {
