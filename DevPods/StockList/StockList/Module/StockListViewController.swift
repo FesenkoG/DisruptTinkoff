@@ -11,12 +11,10 @@ import UIKit
 private let sidePadding: CGFloat = 16
 
 public protocol StockListProtocol: AnyObject {
-    var stocks: [StockModel] { get set }
-    var filteredStocks: [StockModel] { get set }
     func setupHeader(_ text: String)
     func setupSubtitle(_ text: String)
     func showSpinner()
-    func showTable()
+    func showTable(with stocks: [StockModel])
     func showError()
 }
 
@@ -35,15 +33,8 @@ public final class StockListViewController: UIViewController {
         return label
     }()
     private let searchController = UISearchController(searchResultsController: nil)
-    private let tableView: UITableView = {
-        let table = UITableView()
-//        table.alpha = 0
-        return table
-    }()
-    private let indicatorView: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        return indicator
-    }()
+    private let tableView = UITableView()
+    private let indicatorView = UIActivityIndicatorView(style: .large)
     private let errorTitle: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hex: 0x999999)
@@ -63,10 +54,7 @@ public final class StockListViewController: UIViewController {
     // MARK: - Properties
 
     private let presenter: StockListPresenter
-    public var stocks: [StockModel] = []
-    public var filteredStocks: [StockModel] = [] {
-        didSet { tableView.reloadData() }
-    }
+    private var filteredStocks: [StockModel] = []
 
     // MARK: - Lifecycle
 
@@ -112,14 +100,17 @@ extension StockListViewController: StockListProtocol {
         }
     }
 
-    public func showTable() {
+    public func showTable(with stocks: [StockModel]) {
         indicatorView.stopAnimating()
 
-        UIView.animate(withDuration: 0.22) {
-            self.tableView.alpha = 1
-            self.errorTitle.alpha = 0
-            self.errorButton.alpha = 0
-        }
+        filteredStocks = stocks
+        tableView.reloadData()
+
+        UIView.animate(withDuration: 0.22, animations: {
+           self.tableView.alpha = 1
+           self.errorTitle.alpha = 0
+           self.errorButton.alpha = 0
+        })
     }
 
     public func showError() {
@@ -153,7 +144,7 @@ extension StockListViewController: UITableViewDataSource, UITableViewDelegate, U
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseIdentifier, for: indexPath) as? StockTableViewCell {
-            cell.bind(stocks[indexPath.row])
+            cell.bind(filteredStocks[indexPath.row])
             return cell
         } else {
             let cell = UITableViewCell()
@@ -163,7 +154,7 @@ extension StockListViewController: UITableViewDataSource, UITableViewDelegate, U
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 52
+        return StockTableViewCell.cellHeight
     }
 
     public func updateSearchResults(for searchController: UISearchController) {

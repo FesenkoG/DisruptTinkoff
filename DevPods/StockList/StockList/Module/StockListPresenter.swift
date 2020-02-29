@@ -22,6 +22,8 @@ public protocol StockListPresenterProtocol: AnyObject {
 public final class StockListPresenter: StockListPresenterProtocol {
     public weak var view: StockListProtocol?
 
+    private var stocks: [StockModel] = []
+
     public init() { }
 
     public func viewDidLoad() {
@@ -39,15 +41,16 @@ public final class StockListPresenter: StockListPresenterProtocol {
 extension StockListPresenter {
     public func updateSearchResults(for substring: String) {
         guard !substring.isEmpty else {
-            view?.filteredStocks = view?.stocks ?? []
+            view?.showTable(with: stocks)
             return
         }
-        let stocks = view?.stocks
-        view?.filteredStocks = stocks?.filter { $0.symbol.contains(substring) || $0.title.contains(substring) } ?? []
+
+        let filteredStocks = stocks.filter { $0.symbol.contains(substring) || $0.title.contains(substring) }
+        view?.showTable(with: filteredStocks)
     }
 
     public func didDismissSearchController() {
-        view?.filteredStocks = view?.stocks ?? []
+        view?.showTable(with: stocks)
     }
 }
 
@@ -57,13 +60,11 @@ extension StockListPresenter {
 
         // TODO: Implement network request here:
         let successfulQuery = true
-        let newStocks = StockModel.generate()
-        view?.stocks = newStocks
-        view?.filteredStocks = newStocks
+        stocks = StockModel.generate()
 
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
             if successfulQuery {
-                self.view?.showTable()
+                self.view?.showTable(with: self.stocks)
             } else {
                 self.view?.showError()
             }
