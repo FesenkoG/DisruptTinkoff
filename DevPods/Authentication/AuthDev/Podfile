@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '13.0'
+
+workspace 'Auth'
+
+project 'AuthDev.xcodeproj'
+project 'AuthExample.xcodeproj'
+
+target 'AuthDev' do
+  project 'AuthDev'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AuthDev
+
+  def shared
+      pod 'KeychainAccess'
+  end
+
+  shared
+
+  target 'AuthDevTests' do
+    shared
+  end
+end
+
+target 'AuthExample' do
+  project 'AuthExample'
+  use_frameworks!
+end

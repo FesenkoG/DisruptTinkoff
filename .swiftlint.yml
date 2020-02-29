@@ -10,6 +10,7 @@ line_length:
   error: 200
 excluded:
   - Pods
+  - DevPods
   - R.generated.swift
 opt_in_rules:
   - anyobject_protocol
