@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinkoffKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

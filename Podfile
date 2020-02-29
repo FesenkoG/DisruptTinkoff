@@ -5,8 +5,13 @@ def authentication_pod
   pod 'Auth', :path => 'DevPods/Authentication', :testspecs => ['Tests']
 end
 
+def tinkoff_kit_pod
+  pod 'TinkoffKit', :path => 'DevPods/TinkoffKit', :testspecs => ['Tests']
+end
+
 def development_pods
   authentication_pod
+  tinkoff_kit_pod
 end
 
 target 'TinkoffMidProject' do
