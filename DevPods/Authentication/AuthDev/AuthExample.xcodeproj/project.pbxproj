@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A68D1FC81E4642983973F5B8 /* Pods_AuthExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9149582D51F2735E2201730 /* Pods_AuthExample.framework */; };
 		D90D5B03240A999400855170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5B02240A999400855170 /* AppDelegate.swift */; };
 		D90D5B05240A999400855170 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5B04240A999400855170 /* SceneDelegate.swift */; };
 		D90D5B07240A999400855170 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5B06240A999400855170 /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		734F5462A06B04B51D176985 /* Pods-AuthExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthExample.debug.xcconfig"; path = "Target Support Files/Pods-AuthExample/Pods-AuthExample.debug.xcconfig"; sourceTree = "<group>"; };
+		79221F66D258AAA4AA408FF7 /* Pods-AuthExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthExample.release.xcconfig"; path = "Target Support Files/Pods-AuthExample/Pods-AuthExample.release.xcconfig"; sourceTree = "<group>"; };
 		D90D5AFF240A999400855170 /* AuthExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D90D5B02240A999400855170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D90D5B04240A999400855170 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		D90D5B0B240A999600855170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D90D5B0E240A999600855170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D90D5B10240A999600855170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9149582D51F2735E2201730 /* Pods_AuthExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AuthExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68D1FC81E4642983973F5B8 /* Pods_AuthExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390647E765EC6E80B4014D61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				734F5462A06B04B51D176985 /* Pods-AuthExample.debug.xcconfig */,
+				79221F66D258AAA4AA408FF7 /* Pods-AuthExample.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BBDC2A2B61415CD6F2E23224 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9149582D51F2735E2201730 /* Pods_AuthExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D90D5AF6240A999400855170 = {
 			isa = PBXGroup;
 			children = (
 				D90D5B01240A999400855170 /* AuthExample */,
 				D90D5B00240A999400855170 /* Products */,
+				390647E765EC6E80B4014D61 /* Pods */,
+				BBDC2A2B61415CD6F2E23224 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D90D5B13240A999600855170 /* Build configuration list for PBXNativeTarget "AuthExample" */;
 			buildPhases = (
+				E0F988BB20A593E49D95F739 /* [CP] Check Pods Manifest.lock */,
 				D90D5AFB240A999400855170 /* Sources */,
 				D90D5AFC240A999400855170 /* Frameworks */,
 				D90D5AFD240A999400855170 /* Resources */,
@@ -132,6 +158,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E0F988BB20A593E49D95F739 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AuthExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D90D5AFB240A999400855170 /* Sources */ = {
@@ -282,6 +333,7 @@
 		};
 		D90D5B14240A999600855170 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 734F5462A06B04B51D176985 /* Pods-AuthExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +351,7 @@
 		};
 		D90D5B15240A999600855170 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79221F66D258AAA4AA408FF7 /* Pods-AuthExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
