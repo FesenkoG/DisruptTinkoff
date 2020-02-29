@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinkoffKit
 
 private let sidePadding: CGFloat = 16
 
@@ -54,12 +55,18 @@ public final class StockListViewController: UIViewController {
     // MARK: - Properties
 
     private let presenter: StockListPresenter
-    private var filteredStocks: [StockModel] = []
+    private let tableViewAdapter: TableViewAdapter
+    private var filteredStocks: [StockModel] = [] {
+        didSet {
+            tableViewAdapter.set(viewModels: filteredStocks.map(StockTableViewCell.ViewModel.init))
+        }
+    }
 
     // MARK: - Lifecycle
 
     public init(presenter: StockListPresenter) {
         self.presenter = presenter
+        self.tableViewAdapter = TableViewAdapter(tableView: tableView)
         super.init(nibName: nil, bundle: nil)
         presenter.view = self
     }
@@ -104,7 +111,6 @@ extension StockListViewController: StockListProtocol {
         indicatorView.stopAnimating()
 
         filteredStocks = stocks
-        tableView.reloadData()
 
         UIView.animate(withDuration: 0.22, animations: {
            self.tableView.alpha = 1
@@ -124,37 +130,16 @@ extension StockListViewController: StockListProtocol {
     }
 }
 
-// MARK: - TableView & SearchController
+// MARK: - UISearchController
 
-extension StockListViewController: UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+extension StockListViewController: UISearchResultsUpdating, UISearchControllerDelegate {
 
     private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(StockTableViewCell.self, forCellReuseIdentifier: StockTableViewCell.reuseIdentifier)
+        tableView.register(StockTableViewCell.self)
         tableView.separatorStyle = .none
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredStocks.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.reuseIdentifier, for: indexPath) as? StockTableViewCell {
-            cell.bind(filteredStocks[indexPath.row])
-            return cell
-        } else {
-            let cell = UITableViewCell()
-            cell.textLabel?.text = "ERR"
-            return cell
-        }
-    }
-
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return StockTableViewCell.cellHeight
     }
 
     public func updateSearchResults(for searchController: UISearchController) {
@@ -193,9 +178,11 @@ extension StockListViewController {
                 tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
                 headerTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: sidePadding),
                 headerTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
                 headerTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding),
+
                 subTitle.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 2),
                 subTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
                 subTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding),

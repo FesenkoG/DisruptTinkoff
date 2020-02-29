@@ -6,12 +6,30 @@
 //
 
 import UIKit
-
+import TinkoffKit
 
 private let symbolViewSize: CGFloat = 44
 private let sidePadding: CGFloat = 16
 
-final class StockTableViewCell: UITableViewCell {
+public final class StockTableViewCell: UITableViewCell, Reusable {
+    public struct ViewModel: TableViewCellViewModel {
+        public let cellHeight: CGFloat = 52.0
+
+        public let symbol: String
+        public let title: String
+
+        public init(from model: StockModel) {
+            self.symbol = model.symbol
+            self.title = model.title
+        }
+
+        public func cellFor(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+            let cell: StockTableViewCell = tableView.dequeue(indexPath: indexPath)
+            cell.update(with: self)
+            return cell
+        }
+    }
+
     private let symbolView = UIView()
     private let symbolTitle: UILabel = {
         let label = UILabel()
@@ -32,9 +50,6 @@ final class StockTableViewCell: UITableViewCell {
         return view
     }()
 
-    static let reuseIdentifier: String = "_stockTableViewCell"
-    static let cellHeight: CGFloat = 52
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
@@ -45,18 +60,18 @@ final class StockTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func bind(_ model: StockModel) {
+    public func update(with viewModel: ViewModel) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.cornerRadius = 12
-        gradientLayer.colors = UIColor.cgGradient(for: model.symbol)
+        gradientLayer.colors = UIColor.cgGradient(for: viewModel.symbol)
         gradientLayer.frame = .init(x: 0, y: 0, width: symbolViewSize, height: symbolViewSize)
         symbolView.layer.insertSublayer(gradientLayer, at: 0)
         symbolView.layer.cornerRadius = 12
-        symbolTitle.text = model.symbol
-        titleTitle.text = model.title
+        symbolTitle.text = viewModel.symbol
+        titleTitle.text = viewModel.title
     }
 
-    override func prepareForReuse() {
+    override public func prepareForReuse() {
         super.prepareForReuse()
         self.symbolView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         symbolTitle.text = nil

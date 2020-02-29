@@ -14,7 +14,6 @@
 		D90D5AAF240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AAE240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift */; };
 		D90D5ABF240A904900855170 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */; };
 		D90D5AC0240A904900855170 /* UISoftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB2240A904900855170 /* UISoftButton.swift */; };
-		D90D5AC1240A904900855170 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB3240A904900855170 /* UIColor+Extension.swift */; };
 		D90D5AC2240A904900855170 /* PlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB4240A904900855170 /* PlainTextField.swift */; };
 		D90D5AC3240A904900855170 /* UISwitchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB5240A904900855170 /* UISwitchBox.swift */; };
 		D90D5AC4240A904900855170 /* PinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB6240A904900855170 /* PinCodeView.swift */; };
@@ -47,7 +46,6 @@
 		D90D5AAE240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAuthenticationServiceTests.swift; sourceTree = "<group>"; };
 		D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		D90D5AB2240A904900855170 /* UISoftButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISoftButton.swift; sourceTree = "<group>"; };
-		D90D5AB3240A904900855170 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D90D5AB4240A904900855170 /* PlainTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTextField.swift; sourceTree = "<group>"; };
 		D90D5AB5240A904900855170 /* UISwitchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchBox.swift; sourceTree = "<group>"; };
 		D90D5AB6240A904900855170 /* PinCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeView.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			children = (
 				D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */,
 				D90D5AB2240A904900855170 /* UISoftButton.swift */,
-				D90D5AB3240A904900855170 /* UIColor+Extension.swift */,
 				D90D5AB4240A904900855170 /* PlainTextField.swift */,
 				D90D5AB5240A904900855170 /* UISwitchBox.swift */,
 				D90D5AB6240A904900855170 /* PinCodeView.swift */,
@@ -362,7 +359,6 @@
 				D90D5AC7240A904900855170 /* LoginViewController.swift in Sources */,
 				D90D5AC3240A904900855170 /* UISwitchBox.swift in Sources */,
 				D90D5AC2240A904900855170 /* PlainTextField.swift in Sources */,
-				D90D5AC1240A904900855170 /* UIColor+Extension.swift in Sources */,
 				D90D5AC8240A904900855170 /* LoginPresenter.swift in Sources */,
 				D90D5ABF240A904900855170 /* AuthenticationCoordinator.swift in Sources */,
 				D90D5AC0240A904900855170 /* UISoftButton.swift in Sources */,
