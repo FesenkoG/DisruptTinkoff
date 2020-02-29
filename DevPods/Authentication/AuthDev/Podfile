@@ -17,4 +17,8 @@ target 'AuthDev' do
     shared
   end
 
+  target 'AuthExample' do
+    shared
+  end
+
 end
