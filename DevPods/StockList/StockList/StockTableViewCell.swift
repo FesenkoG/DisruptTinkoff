@@ -91,7 +91,5 @@ extension StockTableViewCell {
                 separator.heightAnchor.constraint(equalToConstant: 1),
             ]
         )
-        setNeedsLayout()
-        layoutIfNeeded()
     }
 }
