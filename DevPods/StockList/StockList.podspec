@@ -34,7 +34,7 @@ TODO: Add long description of the pod here.
   s.resources = "StockList/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
 
   s.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'StockList/StockListTests/**/*.{swift}'
+      test_spec.source_files = 'StockListTests/**/*.{swift}'
   end
   
   # s.resource_bundles = {

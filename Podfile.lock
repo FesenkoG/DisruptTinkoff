@@ -7,6 +7,8 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - StockList (0.1.0)
+  - StockList/Tests (0.1.0)
   - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0)
   - TinkoffKit/Tests (0.1.0)
@@ -15,6 +17,8 @@ DEPENDENCIES:
   - Auth (from `DevPods/Authentication`)
   - Auth/Tests (from `DevPods/Authentication`)
   - R.swift
+  - StockList (from `DevPods/StockList`)
+  - StockList/Tests (from `DevPods/StockList`)
   - SwiftLint
   - TinkoffKit (from `DevPods/TinkoffKit`)
   - TinkoffKit/Tests (from `DevPods/TinkoffKit`)
@@ -29,6 +33,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Auth:
     :path: DevPods/Authentication
+  StockList:
+    :path: DevPods/StockList
   TinkoffKit:
     :path: DevPods/TinkoffKit
 
@@ -37,9 +43,10 @@ SPEC CHECKSUMS:
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  StockList: 41ccdf2b74190d4168cb5d2cb9c4f93d6fdc87c4
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  TinkoffKit: 6930cc983d3f85d05c252a6c761b996bd0708ff5
+  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
 
-PODFILE CHECKSUM: 82b355ee8969d53a3e6ddb27b127357ba8b31ae3
+PODFILE CHECKSUM: 26200a8ff5f4356641b8c1c75c5ae4f60d26e212
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0
