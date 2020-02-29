@@ -44,7 +44,6 @@ extension StockListPresenter {
         }
         let stocks = view?.stocks
         view?.filteredStocks = stocks?.filter { $0.symbol.contains(substring) || $0.title.contains(substring) } ?? []
-        print("updateSearchResults", substring)
     }
 
     public func didDismissSearchController() {

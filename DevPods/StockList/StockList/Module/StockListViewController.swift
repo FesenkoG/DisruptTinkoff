@@ -167,7 +167,6 @@ extension StockListViewController: UITableViewDataSource, UITableViewDelegate, U
     }
 
     public func updateSearchResults(for searchController: UISearchController) {
-        print("outer")
         presenter.updateSearchResults(for: searchController.searchBar.text ?? "")
     }
 
