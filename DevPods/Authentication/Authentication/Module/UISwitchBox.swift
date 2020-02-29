@@ -36,7 +36,6 @@ class UISwitchBox: UIView {
         super.init(frame: .zero)
 
         translatesAutoresizingMaskIntoConstraints = false
-        
         self.titleLabel.text = title
         self.onSwitchChange = onSwitchChange
 

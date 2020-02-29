@@ -10,9 +10,12 @@ import UIKit
 
 public protocol LoginPresenterProtocol: AnyObject {
     var view: LoginProtocol? { get set }
-
     func viewDidLoad()
-    func editingDidEnd(_ loginTextField: PlainTextField, _ passwordTextField: PlainTextField, editedTextField: LoginViewController.TypOfTextField)
+    func editingDidEnd(
+        _ loginTextField: PlainTextField,
+        _ passwordTextField: PlainTextField,
+        editedTextField: LoginViewController.TypOfTextField
+    )
     func editingChanged(_ loginTextField: PlainTextField, _ passwordTextField: PlainTextField, editedTextField: LoginViewController.TypOfTextField)
     func signInButtonDidTapped(_ loginTextField: PlainTextField, _ passwordTextField: PlainTextField)
     func onPinSwitchChange(_ isOn: Bool)

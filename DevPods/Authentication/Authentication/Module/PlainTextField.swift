@@ -8,6 +8,7 @@
 
 import UIKit
 
+//swiftlint:disable type_body_length
 /**
 You use PlainTextField as common UITextField, but use **title** instead of **placeholder**.
 
@@ -70,7 +71,7 @@ public class PlainTextField: UITextField {
     public override var isSelected: Bool {
         didSet { updateControl(animated: true) }
     }
-    fileprivate var hasError: Bool {
+     private var hasError: Bool {
         return !error.isEmpty
     }
     public override var placeholder: String? {
@@ -100,7 +101,7 @@ public class PlainTextField: UITextField {
         setup()
     }
 
-    fileprivate final func setup() {
+     private final func setup() {
         self.clearButtonMode = .never
         self.font = UIFont.systemFont(ofSize: 14)
         self.contentVerticalAlignment = .center
@@ -132,7 +133,7 @@ public class PlainTextField: UITextField {
 
     // MARK: - Creating components
 
-    fileprivate func createBorderView() {
+     private func createBorderView() {
         let view = UIView()
 
         view.backgroundColor = mainBackgroundColor
@@ -145,7 +146,7 @@ public class PlainTextField: UITextField {
         self.addSubview(self.borderView)
     }
 
-    fileprivate func createTitleLabel() {
+     private func createTitleLabel() {
         let view = UIView()
         view.backgroundColor = mainBackgroundColor
         view.isUserInteractionEnabled = false
@@ -161,7 +162,7 @@ public class PlainTextField: UITextField {
         self.addSubview(self.titleLabel)
     }
 
-    fileprivate func createErrorLabel() {
+     private func createErrorLabel() {
         let view = UIView()
         view.backgroundColor = mainBackgroundColor
         view.isUserInteractionEnabled = false
@@ -191,7 +192,7 @@ public class PlainTextField: UITextField {
 
     // MARK: - Updates
 
-    fileprivate func updateControl(animated: Bool) {
+     private func updateControl(animated: Bool) {
         self.invalidateIntrinsicContentSize()
         self.updateColors()
         self.updateBorderView()
@@ -199,19 +200,17 @@ public class PlainTextField: UITextField {
         self.updateErrorLabel(animated)
     }
 
-    fileprivate func updateBorderView() {
+    private func updateBorderView() {
         self.borderView.frame = self.borderViewRectForBounds(self.bounds)
         self.updateColors()
     }
 
-    fileprivate func updatePlaceholder() {
-        if let font = self.placeholderFont ?? self.font {
-            let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: plainPlaceholderColor, .font: font]
-            self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? self.title, attributes: attributes)
-        }
+    private func updatePlaceholder() {
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: plainPlaceholderColor, .font: self.placeholderFont]
+        self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? self.title, attributes: attributes)
     }
 
-    fileprivate func updateColors() {
+    private func updateColors() {
         if self.hasError {
             self.borderView.layer.borderColor = self.errorColor.cgColor
             self.titleLabel.textColor = self.errorColor
@@ -233,26 +232,26 @@ public class PlainTextField: UITextField {
 
     // MARK: - Title & error handling
 
-    fileprivate func updateTitleLabel(_ animated: Bool = false) {
+     private func updateTitleLabel(_ animated: Bool = false) {
         self.titleLabel.text = self.title
         self.updateTitleVisibility(animated)
     }
 
-    fileprivate func updateErrorLabel(_ animated: Bool = false) {
+     private func updateErrorLabel(_ animated: Bool = false) {
         self.errorLabel.text = error
         self.updateErrorVisibility(animated)
     }
 
-    fileprivate func setTitleVisible(_ titleVisible: Bool, animated: Bool = false) {
+     private func setTitleVisible(_ titleVisible: Bool, animated: Bool = false) {
         self.updateColors()
         self.updateTitleVisibility(animated)
     }
 
-    fileprivate func isTitleVisible() -> Bool { return self.hasText }
+     private func isTitleVisible() -> Bool { return self.hasText }
 
-    fileprivate func isErrorVisible() -> Bool { return self.hasError }
+     private func isErrorVisible() -> Bool { return self.hasError }
 
-    fileprivate func updateTitleVisibility(_ animated: Bool = false) {
+     private func updateTitleVisibility(_ animated: Bool = false) {
         let alpha: CGFloat = isTitleVisible() ? 1.0 : 0.0
 
         self.titleView.frame = titleViewRectForBounds(self.bounds)
@@ -293,7 +292,7 @@ public class PlainTextField: UITextField {
         }
     }
 
-    fileprivate func updateErrorVisibility(_ animated: Bool = false) {
+     private func updateErrorVisibility(_ animated: Bool = false) {
         let alpha: CGFloat = isErrorVisible() ? 1.0 : 0.0
 
         self.errorView.frame = errorViewRectForBounds(self.bounds)
@@ -351,7 +350,7 @@ public class PlainTextField: UITextField {
 
     // MARK: - Title & error view positioning
 
-    fileprivate func titleLabelRectForBounds(_ bounds: CGRect) -> CGRect {
+     private func titleLabelRectForBounds(_ bounds: CGRect) -> CGRect {
         let xOrigin: CGFloat = sideLabelsOffset + sideLabelsInset
         let yOrigin: CGFloat = -self.titleLabel.intrinsicContentSize.height / 2
         let width: CGFloat = self.titleLabel.intrinsicContentSize.width + sideLabelsInset * 2
@@ -359,7 +358,7 @@ public class PlainTextField: UITextField {
         return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
-    fileprivate func titleViewRectForBounds(_ bounds: CGRect) -> CGRect {
+     private func titleViewRectForBounds(_ bounds: CGRect) -> CGRect {
         let xOrigin: CGFloat = sideLabelsOffset
         let yOrigin: CGFloat = 0
         let width: CGFloat = self.titleLabel.intrinsicContentSize.width + sideLabelsInset * 2
@@ -367,7 +366,7 @@ public class PlainTextField: UITextField {
         return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
-    fileprivate func errorLabelRectForBounds(_ bounds: CGRect) -> CGRect {
+     private func errorLabelRectForBounds(_ bounds: CGRect) -> CGRect {
         guard !error.isEmpty else { return CGRect.zero }
         let xOrigin: CGFloat = sideLabelsOffset + sideLabelsInset
         let yOrigin: CGFloat = textFieldHeight - 1 - self.errorLabel.intrinsicContentSize.height / 2
@@ -376,7 +375,7 @@ public class PlainTextField: UITextField {
         return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
-    fileprivate func errorViewRectForBounds(_ bounds: CGRect) -> CGRect {
+     private func errorViewRectForBounds(_ bounds: CGRect) -> CGRect {
         guard !error.isEmpty else { return CGRect.zero }
         let xOrigin: CGFloat = sideLabelsOffset
         let yOrigin: CGFloat = textFieldHeight - 1
@@ -385,19 +384,19 @@ public class PlainTextField: UITextField {
         return CGRect(x: xOrigin, y: yOrigin, width: width, height: height)
     }
 
-    fileprivate func borderViewRectForBounds(_ bounds: CGRect) -> CGRect {
+     private func borderViewRectForBounds(_ bounds: CGRect) -> CGRect {
         return CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height)
     }
 
-    fileprivate func titleHeight() -> CGFloat {
+     private func titleHeight() -> CGFloat {
         return self.titleLabel.font.lineHeight
     }
 
-    fileprivate func textHeight() -> CGFloat {
+     private func textHeight() -> CGFloat {
         return self.font!.lineHeight
     }
 
-    fileprivate func errorHeight() -> CGFloat {
+     private func errorHeight() -> CGFloat {
         return self.errorLabel.font.lineHeight
     }
 
