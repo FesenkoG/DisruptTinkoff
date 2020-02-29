@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinkoffKit
 
 //swiftlint:disable type_body_length
 /**

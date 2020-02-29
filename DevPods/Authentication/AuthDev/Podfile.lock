@@ -1,16 +1,23 @@
 PODS:
   - KeychainAccess (4.1.0)
+  - TinkoffKit (0.1.0)
 
 DEPENDENCIES:
   - KeychainAccess
+  - TinkoffKit (from `../../TinkoffKit`)
 
 SPEC REPOS:
   trunk:
     - KeychainAccess
 
+EXTERNAL SOURCES:
+  TinkoffKit:
+    :path: "../../TinkoffKit"
+
 SPEC CHECKSUMS:
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
+  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
 
-PODFILE CHECKSUM: 31a72ba15afd38ab8a1e8a39804991da0aa5b98d
+PODFILE CHECKSUM: 61e0b7bfaba49e3e0390ca17b3b1e1e33a716f7e
 
 COCOAPODS: 1.9.0

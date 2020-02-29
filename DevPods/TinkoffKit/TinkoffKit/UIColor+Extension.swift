@@ -1,8 +1,9 @@
 //
-//  UIColor+Extensions.swift
-//  Authentication
+//  UIColor+Extension.swift
+//  TinkoffMidProject
 //
-//  Created by Artyom Kudryashov on 28.02.2020.
+//  Created by Georgy Fesenko on 23/02/2020.
+//  Copyright © 2020 TinkoffFintech. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +25,7 @@ public extension UIColor {
     static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
 }
 
-extension UIColor {
+public extension UIColor {
     convenience init(red: Int, green: Int, blue: Int, alpha: Int = 255) {
         assert(red >= 0 && red <= 255, "Invalid red value")
         assert(green >= 0 && green <= 255, "Invalid green value")
@@ -70,5 +71,4 @@ extension UIColor {
         colors.forEach { cgColors.insert($0.cgColor, at: 0) }
         return cgColors
     }
-
 }

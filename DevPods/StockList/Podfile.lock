@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: eb82b1773464a4bfb8fce3e9719096113c285ceb
+PODS:
+  - TinkoffKit (0.1.0)
+
+DEPENDENCIES:
+  - TinkoffKit (from `../TinkoffKit`)
+
+EXTERNAL SOURCES:
+  TinkoffKit:
+    :path: "../TinkoffKit"
+
+SPEC CHECKSUMS:
+  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
+
+PODFILE CHECKSUM: 74fce711bc6e042413f1bf0fdd96058d7a625f37
 
 COCOAPODS: 1.9.0
