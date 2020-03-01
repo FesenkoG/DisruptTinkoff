@@ -25,6 +25,7 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
         coordinator.proceedWithAuthentication()
