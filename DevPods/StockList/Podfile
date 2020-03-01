@@ -1,11 +1,18 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '13.0'
+
+workspace 'StockList'
+
+project 'StockList'
+project 'StockListExample/StockListExample.xcodeproj'
+
 def shared_pods
   pod 'TinkoffKit', :path => '../TinkoffKit'
   pod 'SwiftLint'
 end
 
 target 'StockList' do
+  project 'StockList'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -16,5 +23,11 @@ target 'StockList' do
     # Pods for testing
     shared_pods
   end
-
 end
+
+target 'StockListExample' do
+  project 'StockListExample/StockListExample.xcodeproj'
+  use_frameworks!
+  pod 'StockList', :path => '../StockList'
+end
+
