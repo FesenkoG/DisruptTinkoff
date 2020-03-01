@@ -16,6 +16,16 @@ public protocol SpinnerShowingProtocol {
 
 public extension SpinnerShowingProtocol where Self: UIViewController {
     func showSpinner() {
+        if indicatorView.superview == nil {
+            view.addSubview(indicatorView)
+            indicatorView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate(
+                [
+                    indicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    indicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                ]
+            )
+        }
         indicatorView.startAnimating()
     }
 
