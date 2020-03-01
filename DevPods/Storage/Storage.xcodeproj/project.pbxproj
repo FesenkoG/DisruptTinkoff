@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9BE6F94240BFA8A005D9A3D /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F93240BFA8A005D9A3D /* StorageService.swift */; };
+		D9BE6F96240BFB28005D9A3D /* DBInsertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F95240BFB28005D9A3D /* DBInsertable.swift */; };
 		EA64D4B3A220B7CF00125FFF /* Pods_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C71DF0779063A1FE3F1F38 /* Pods_Container.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Container.debug.xcconfig"; path = "Target Support Files/Pods-Container/Pods-Container.debug.xcconfig"; sourceTree = "<group>"; };
 		86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Container.release.xcconfig"; path = "Target Support Files/Pods-Container/Pods-Container.release.xcconfig"; sourceTree = "<group>"; };
-		D9BE6F88240BED33005D9A3D /* Container.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Container.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9BE6F88240BED33005D9A3D /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BE6F8C240BED33005D9A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9BE6F93240BFA8A005D9A3D /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		D9BE6F95240BFB28005D9A3D /* DBInsertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBInsertable.swift; sourceTree = "<group>"; };
 		E9C71DF0779063A1FE3F1F38 /* Pods_Container.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Container.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,14 +48,13 @@
 				21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */,
 				86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		D9BE6F7E240BED33005D9A3D = {
 			isa = PBXGroup;
 			children = (
-				D9BE6F8A240BED33005D9A3D /* Container */,
+				D9BE6F8A240BED33005D9A3D /* Storage */,
 				D9BE6F89240BED33005D9A3D /* Products */,
 				D3753EEFC734C1E61CA0E6E4 /* Pods */,
 				1B77DDF426405A68DA4E8AA3 /* Frameworks */,
@@ -61,17 +64,19 @@
 		D9BE6F89240BED33005D9A3D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9BE6F88240BED33005D9A3D /* Container.framework */,
+				D9BE6F88240BED33005D9A3D /* Storage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9BE6F8A240BED33005D9A3D /* Container */ = {
+		D9BE6F8A240BED33005D9A3D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				D9BE6F8C240BED33005D9A3D /* Info.plist */,
+				D9BE6F93240BFA8A005D9A3D /* StorageService.swift */,
+				D9BE6F95240BFB28005D9A3D /* DBInsertable.swift */,
 			);
-			path = Container;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,9 +92,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D9BE6F87240BED33005D9A3D /* Container */ = {
+		D9BE6F87240BED33005D9A3D /* Storage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D9BE6F90240BED33005D9A3D /* Build configuration list for PBXNativeTarget "Container" */;
+			buildConfigurationList = D9BE6F90240BED33005D9A3D /* Build configuration list for PBXNativeTarget "Storage" */;
 			buildPhases = (
 				EA779B1ACA711A903C0CF227 /* [CP] Check Pods Manifest.lock */,
 				D9BE6F83240BED33005D9A3D /* Headers */,
@@ -101,9 +106,9 @@
 			);
 			dependencies = (
 			);
-			name = Container;
+			name = Storage;
 			productName = Container;
-			productReference = D9BE6F88240BED33005D9A3D /* Container.framework */;
+			productReference = D9BE6F88240BED33005D9A3D /* Storage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -117,10 +122,11 @@
 				TargetAttributes = {
 					D9BE6F87240BED33005D9A3D = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
-			buildConfigurationList = D9BE6F82240BED33005D9A3D /* Build configuration list for PBXProject "Container" */;
+			buildConfigurationList = D9BE6F82240BED33005D9A3D /* Build configuration list for PBXProject "Storage" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -133,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D9BE6F87240BED33005D9A3D /* Container */,
+				D9BE6F87240BED33005D9A3D /* Storage */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +184,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE6F96240BFB28005D9A3D /* DBInsertable.swift in Sources */,
+				D9BE6F94240BFA8A005D9A3D /* StorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -323,6 +332,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = disrupt.Container;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -332,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -355,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D9BE6F82240BED33005D9A3D /* Build configuration list for PBXProject "Container" */ = {
+		D9BE6F82240BED33005D9A3D /* Build configuration list for PBXProject "Storage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9BE6F8E240BED33005D9A3D /* Debug */,
@@ -364,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9BE6F90240BED33005D9A3D /* Build configuration list for PBXNativeTarget "Container" */ = {
+		D9BE6F90240BED33005D9A3D /* Build configuration list for PBXNativeTarget "Storage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9BE6F91240BED33005D9A3D /* Debug */,

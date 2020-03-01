@@ -6,6 +6,7 @@
 //  Copyright © 2020 TinkoffFintech. All rights reserved.
 //
 
+import Storage
 import CoreData
 
 final class DBStockSymbol: NSManagedObject, DBInsertable {
@@ -24,29 +25,5 @@ final class DBStockSymbol: NSManagedObject, DBInsertable {
         symbolDescription = model.description
         displaySymbol = model.displaySymbol
         symbol = model.symbol
-    }
-}
-
-protocol DBInsertable: NSManagedObject {
-    associatedtype DomainModel
-    static var entityName: String { get }
-    func toDomain() -> DomainModel
-}
-
-extension DBInsertable {
-    static func insertOrUpdate(
-        context: NSManagedObjectContext,
-        updateWith: (Self) -> Void,
-        predicate: NSPredicate
-    ) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        request.predicate = predicate
-        let object: Self
-        if let result = try? context.fetch(request).first as? Self {
-            object = result
-        } else {
-            object = Self(context: context)
-        }
-        updateWith(object)
     }
 }

@@ -17,6 +17,8 @@ PODS:
   - StockList/Tests (0.1.0):
     - SwiftLint
     - TinkoffKit
+  - Storage (0.0.1):
+    - SwiftLint
   - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0):
     - R.swift
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - R.swift
   - StockList (from `DevPods/StockList`)
   - StockList/Tests (from `DevPods/StockList`)
+  - Storage (from `DevPods/Storage`)
   - SwiftLint
   - TinkoffKit (from `DevPods/TinkoffKit`)
   - TinkoffKit/Tests (from `DevPods/TinkoffKit`)
@@ -51,6 +54,8 @@ EXTERNAL SOURCES:
     :path: DevPods/Authentication
   StockList:
     :path: DevPods/StockList
+  Storage:
+    :path: DevPods/Storage
   TinkoffKit:
     :path: DevPods/TinkoffKit
   TinkoffNetwork:
@@ -62,10 +67,11 @@ SPEC CHECKSUMS:
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   StockList: 5659905f3907dd98a4b44dd107d21e67a51b9450
+  Storage: 9ce3077d3088639ce9dabedaa7009f384f4fb575
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
   TinkoffNetwork: f140e77db9f191cc8a40b93f9a67b95b990289cb
 
-PODFILE CHECKSUM: 81e94a749fb0f6a5741ff5aca9ee8fa426eea99f
+PODFILE CHECKSUM: 70b6a1bfb16d1a717e3069c2f77572e390a3c572
 
 COCOAPODS: 1.8.4
