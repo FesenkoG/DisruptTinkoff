@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 def shared_pods
   pod 'TinkoffKit', :path => '../TinkoffKit'
+  pod 'SwiftLint'
 end
 
 target 'StockList' do

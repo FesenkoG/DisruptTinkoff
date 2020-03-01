@@ -30,7 +30,12 @@ public extension UIColor {
         assert(red >= 0 && red <= 255, "Invalid red value")
         assert(green >= 0 && green <= 255, "Invalid green value")
         assert(blue >= 0 && blue <= 255, "Invalid blue value")
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha) / 255.0 )
+        self.init(
+            red: CGFloat(red) / 255.0,
+            green: CGFloat(green) / 255.0,
+            blue: CGFloat(blue) / 255.0,
+            alpha: CGFloat(alpha) / 255.0
+        )
     }
 
     convenience init(hex: Int) {

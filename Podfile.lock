@@ -1,21 +1,27 @@
 PODS:
   - Auth (0.1.0):
     - KeychainAccess
+    - SwiftLint
     - TinkoffKit
   - Auth/Tests (0.1.0):
     - KeychainAccess
+    - SwiftLint
     - TinkoffKit
   - KeychainAccess (4.1.0)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - StockList (0.1.0):
+    - SwiftLint
     - TinkoffKit
   - StockList/Tests (0.1.0):
+    - SwiftLint
     - TinkoffKit
   - SwiftLint (0.39.1)
-  - TinkoffKit (0.1.0)
-  - TinkoffKit/Tests (0.1.0)
+  - TinkoffKit (0.1.0):
+    - SwiftLint
+  - TinkoffKit/Tests (0.1.0):
+    - SwiftLint
 
 DEPENDENCIES:
   - Auth (from `DevPods/Authentication`)
@@ -43,13 +49,13 @@ EXTERNAL SOURCES:
     :path: DevPods/TinkoffKit
 
 SPEC CHECKSUMS:
-  Auth: 581f09df3befca8052ffbc155bdec7525def56a1
+  Auth: 6dcd30795eed9f25d659b0da9984dffe070ece0c
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
-  StockList: 4fd02b2e278ab9c2767e0cf6c373e4298074a589
+  StockList: 5659905f3907dd98a4b44dd107d21e67a51b9450
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
+  TinkoffKit: 23b4e3c12e8dac1b63ad6b3479da667b1f65cb1d
 
 PODFILE CHECKSUM: 26200a8ff5f4356641b8c1c75c5ae4f60d26e212
 

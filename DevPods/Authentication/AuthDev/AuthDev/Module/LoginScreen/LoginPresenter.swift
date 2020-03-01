@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinkoffKit
 
 public protocol LoginPresenterProtocol: AnyObject {
     var view: LoginProtocol? { get set }

@@ -1,14 +1,18 @@
 PODS:
   - KeychainAccess (4.1.0)
-  - TinkoffKit (0.1.0)
+  - SwiftLint (0.39.1)
+  - TinkoffKit (0.1.0):
+    - SwiftLint
 
 DEPENDENCIES:
   - KeychainAccess
+  - SwiftLint
   - TinkoffKit (from `../../TinkoffKit`)
 
 SPEC REPOS:
   trunk:
     - KeychainAccess
+    - SwiftLint
 
 EXTERNAL SOURCES:
   TinkoffKit:
@@ -16,8 +20,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
-  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  TinkoffKit: 23b4e3c12e8dac1b63ad6b3479da667b1f65cb1d
 
-PODFILE CHECKSUM: 61e0b7bfaba49e3e0390ca17b3b1e1e33a716f7e
+PODFILE CHECKSUM: e2220f331c32347e966b53eed6ed4cd92ca0452f
 
 COCOAPODS: 1.9.0

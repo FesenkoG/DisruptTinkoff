@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinkoffKit
 
 public protocol LoginProtocol: AnyObject {
     func setupTitle(_ title: String)

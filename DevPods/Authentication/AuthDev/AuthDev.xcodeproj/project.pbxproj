@@ -13,9 +13,6 @@
 		D90D5AA5240A8E9B00855170 /* AuthDev.h in Headers */ = {isa = PBXBuildFile; fileRef = D90D5A97240A8E9B00855170 /* AuthDev.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D90D5AAF240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AAE240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift */; };
 		D90D5ABF240A904900855170 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */; };
-		D90D5AC0240A904900855170 /* UISoftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB2240A904900855170 /* UISoftButton.swift */; };
-		D90D5AC2240A904900855170 /* PlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB4240A904900855170 /* PlainTextField.swift */; };
-		D90D5AC3240A904900855170 /* UISwitchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB5240A904900855170 /* UISwitchBox.swift */; };
 		D90D5AC4240A904900855170 /* PinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB6240A904900855170 /* PinCodeView.swift */; };
 		D90D5AC5240A904900855170 /* PinCodeScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB8240A904900855170 /* PinCodeScreenPresenter.swift */; };
 		D90D5AC6240A904900855170 /* PinCodeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D5AB9240A904900855170 /* PinCodeScreenViewController.swift */; };
@@ -45,9 +42,6 @@
 		D90D5AA4240A8E9B00855170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D90D5AAE240A8F9A00855170 /* KeychainAuthenticationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAuthenticationServiceTests.swift; sourceTree = "<group>"; };
 		D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
-		D90D5AB2240A904900855170 /* UISoftButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISoftButton.swift; sourceTree = "<group>"; };
-		D90D5AB4240A904900855170 /* PlainTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTextField.swift; sourceTree = "<group>"; };
-		D90D5AB5240A904900855170 /* UISwitchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchBox.swift; sourceTree = "<group>"; };
 		D90D5AB6240A904900855170 /* PinCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeView.swift; sourceTree = "<group>"; };
 		D90D5AB8240A904900855170 /* PinCodeScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeScreenPresenter.swift; sourceTree = "<group>"; };
 		D90D5AB9240A904900855170 /* PinCodeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeScreenViewController.swift; sourceTree = "<group>"; };
@@ -132,9 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				D90D5AB1240A904900855170 /* AuthenticationCoordinator.swift */,
-				D90D5AB2240A904900855170 /* UISoftButton.swift */,
-				D90D5AB4240A904900855170 /* PlainTextField.swift */,
-				D90D5AB5240A904900855170 /* UISwitchBox.swift */,
 				D90D5AB6240A904900855170 /* PinCodeView.swift */,
 				D90D5AB7240A904900855170 /* PinCodeScreen */,
 				D90D5ABA240A904900855170 /* LoginScreen */,
@@ -200,6 +191,7 @@
 			buildPhases = (
 				399C1F60DC7FE54E54455BD9 /* [CP] Check Pods Manifest.lock */,
 				D90D5A8F240A8E9B00855170 /* Headers */,
+				E51FF073240B7B7C00CB1949 /* Swiftlint */,
 				D90D5A90240A8E9B00855170 /* Sources */,
 				D90D5A91240A8E9B00855170 /* Frameworks */,
 				D90D5A92240A8E9B00855170 /* Resources */,
@@ -327,6 +319,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AuthDev-AuthDevTests/Pods-AuthDev-AuthDevTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E51FF073240B7B7C00CB1949 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		F7BBFE750E32FCDEC5F37B4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,11 +367,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D90D5AC7240A904900855170 /* LoginViewController.swift in Sources */,
-				D90D5AC3240A904900855170 /* UISwitchBox.swift in Sources */,
-				D90D5AC2240A904900855170 /* PlainTextField.swift in Sources */,
 				D90D5AC8240A904900855170 /* LoginPresenter.swift in Sources */,
 				D90D5ABF240A904900855170 /* AuthenticationCoordinator.swift in Sources */,
-				D90D5AC0240A904900855170 /* UISoftButton.swift in Sources */,
 				D90D5AC5240A904900855170 /* PinCodeScreenPresenter.swift in Sources */,
 				D90D5AC9240A904900855170 /* KeychainAuthenticationService.swift in Sources */,
 				D90D5AC4240A904900855170 /* PinCodeView.swift in Sources */,
@@ -519,6 +526,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AuthDev/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,6 +551,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AuthDev/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

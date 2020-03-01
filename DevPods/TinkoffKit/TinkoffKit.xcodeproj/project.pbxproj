@@ -15,6 +15,9 @@
 		6619FE20240ABF1C002BF9AE /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619FE1E240ABF1C002BF9AE /* TableViewAdapter.swift */; };
 		6619FE21240ABF1C002BF9AE /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619FE1F240ABF1C002BF9AE /* Reusable.swift */; };
 		E503FEAC240AF01600B637BF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503FEAB240AF01600B637BF /* UIColor+Extension.swift */; };
+		E51FF078240B7D3500CB1949 /* UISoftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FF075240B7D3500CB1949 /* UISoftButton.swift */; };
+		E51FF079240B7D3500CB1949 /* PlainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FF076240B7D3500CB1949 /* PlainTextField.swift */; };
+		E51FF07A240B7D3500CB1949 /* UISwitchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51FF077240B7D3500CB1949 /* UISwitchBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		6619FE1E240ABF1C002BF9AE /* TableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
 		6619FE1F240ABF1C002BF9AE /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		E503FEAB240AF01600B637BF /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		E51FF075240B7D3500CB1949 /* UISoftButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISoftButton.swift; sourceTree = "<group>"; };
+		E51FF076240B7D3500CB1949 /* PlainTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTextField.swift; sourceTree = "<group>"; };
+		E51FF077240B7D3500CB1949 /* UISwitchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISwitchBox.swift; sourceTree = "<group>"; };
 		E7854A558BFDA534314615F2 /* Pods_TinkoffKit_TinkoffKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffKit_TinkoffKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				E503FEAB240AF01600B637BF /* UIColor+Extension.swift */,
+				E51FF074240B7D3500CB1949 /* UIComponents */,
 				6619FE1D240ABF1C002BF9AE /* TableViewAdapter */,
 				6619FDDF240ABC67002BF9AE /* TinkoffKit.h */,
 				6619FDE0240ABC67002BF9AE /* Info.plist */,
@@ -135,6 +142,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E51FF074240B7D3500CB1949 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E51FF075240B7D3500CB1949 /* UISoftButton.swift */,
+				E51FF076240B7D3500CB1949 /* PlainTextField.swift */,
+				E51FF077240B7D3500CB1949 /* UISwitchBox.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -155,6 +172,7 @@
 			buildPhases = (
 				79267376B19D002D8379465D /* [CP] Check Pods Manifest.lock */,
 				6619FDD7240ABC67002BF9AE /* Headers */,
+				E51FF071240B7A9E00CB1949 /* Swiftlint */,
 				6619FDD8240ABC67002BF9AE /* Sources */,
 				6619FDD9240ABC67002BF9AE /* Frameworks */,
 				6619FDDA240ABC67002BF9AE /* Resources */,
@@ -287,6 +305,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E51FF071240B7A9E00CB1949 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -296,7 +332,10 @@
 			files = (
 				E503FEAC240AF01600B637BF /* UIColor+Extension.swift in Sources */,
 				6619FE21240ABF1C002BF9AE /* Reusable.swift in Sources */,
+				E51FF079240B7D3500CB1949 /* PlainTextField.swift in Sources */,
+				E51FF07A240B7D3500CB1949 /* UISwitchBox.swift in Sources */,
 				6619FE20240ABF1C002BF9AE /* TableViewAdapter.swift in Sources */,
+				E51FF078240B7D3500CB1949 /* UISoftButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

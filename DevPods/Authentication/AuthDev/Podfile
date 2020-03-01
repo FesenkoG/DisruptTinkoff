@@ -16,6 +16,7 @@ target 'AuthDev' do
   def shared
       pod 'KeychainAccess'
       pod 'TinkoffKit', :path => '../../TinkoffKit'
+      pod 'SwiftLint'
   end
 
   shared
