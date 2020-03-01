@@ -56,13 +56,13 @@ extension StockListPresenter {
 
 extension StockListPresenter {
     public func getStocks() {
-        self.view?.showSpinner()
+        self.view?.showLoading()
 
         // TODO: Implement network request here:
         let successfulQuery = true
         stocks = StockModel.generate()
 
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (_) in
             if successfulQuery {
                 self.view?.showTable(with: self.stocks)
             } else {

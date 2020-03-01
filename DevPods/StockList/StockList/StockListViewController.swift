@@ -14,12 +14,12 @@ private let sidePadding: CGFloat = 16
 public protocol StockListProtocol: AnyObject {
     func setupHeader(_ text: String)
     func setupSubtitle(_ text: String)
-    func showSpinner()
     func showTable(with stocks: [StockModel])
+    func showLoading()
     func showError()
 }
 
-public final class StockListViewController: UIViewController {
+public final class StockListViewController: UIViewController, SpinnerShowingProtocol {
     // MARK: - Subviews
     private let headerTitle: UILabel = {
         let label = UILabel()
@@ -35,7 +35,7 @@ public final class StockListViewController: UIViewController {
     }()
     private let searchController = UISearchController(searchResultsController: nil)
     private let tableView = UITableView()
-    private let indicatorView = UIActivityIndicatorView(style: .large)
+    public var indicatorView = UIActivityIndicatorView(style: .large)
     private let errorTitle: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hex: 0x999999)
@@ -71,6 +71,7 @@ public final class StockListViewController: UIViewController {
         presenter.view = self
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,8 +98,8 @@ extension StockListViewController: StockListProtocol {
         subTitle.text = text
     }
 
-    public func showSpinner() {
-        indicatorView.startAnimating()
+    public func showLoading() {
+        showSpinner()
 
         UIView.animate(withDuration: 0.22) {
             self.tableView.alpha = 0
@@ -108,19 +109,19 @@ extension StockListViewController: StockListProtocol {
     }
 
     public func showTable(with stocks: [StockModel]) {
-        indicatorView.stopAnimating()
+        hideSpinner()
 
         filteredStocks = stocks
 
-        UIView.animate(withDuration: 0.22, animations: {
-           self.tableView.alpha = 1
-           self.errorTitle.alpha = 0
-           self.errorButton.alpha = 0
-        })
+        UIView.animate(withDuration: 0.22) {
+            self.tableView.alpha = 1
+            self.errorTitle.alpha = 0
+            self.errorButton.alpha = 0
+        }
     }
 
     public func showError() {
-        indicatorView.stopAnimating()
+        hideSpinner()
 
         UIView.animate(withDuration: 0.22) {
             self.tableView.alpha = 0
@@ -133,7 +134,6 @@ extension StockListViewController: StockListProtocol {
 // MARK: - UISearchController
 
 extension StockListViewController: UISearchResultsUpdating, UISearchControllerDelegate {
-
     private func setupTableView() {
         tableView.register(StockTableViewCell.self)
         tableView.separatorStyle = .none
@@ -149,7 +149,6 @@ extension StockListViewController: UISearchResultsUpdating, UISearchControllerDe
     public func didDismissSearchController(_ searchController: UISearchController) {
         presenter.didDismissSearchController()
     }
-
 }
 
 // MARK: - Layout
@@ -193,7 +192,7 @@ extension StockListViewController {
                 errorButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 errorButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                 errorTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                errorTitle.bottomAnchor.constraint(equalTo: errorButton.topAnchor, constant: -12),
+                errorTitle.bottomAnchor.constraint(equalTo: errorButton.topAnchor, constant: -12)
             ]
         )
     }

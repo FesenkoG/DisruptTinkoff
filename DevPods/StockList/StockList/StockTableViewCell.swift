@@ -98,12 +98,12 @@ extension StockTableViewCell {
 
                 titleTitle.leadingAnchor.constraint(equalTo: symbolView.trailingAnchor, constant: 8),
                 titleTitle.centerYAnchor.constraint(equalTo: centerYAnchor),
-                titleTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sidePadding*2),
+                titleTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sidePadding * 2),
 
                 separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 68),
                 separator.bottomAnchor.constraint(equalTo: bottomAnchor),
                 separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16),
-                separator.heightAnchor.constraint(equalToConstant: 1),
+                separator.heightAnchor.constraint(equalToConstant: 1)
             ]
         )
     }
