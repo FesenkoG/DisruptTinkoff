@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import TinkoffKit
-
-//swiftlint:disable type_body_length
 /**
 You use PlainTextField as common UITextField, but use **title** instead of **placeholder**.
 
@@ -22,7 +19,7 @@ Minimum height implemented and it's **44px**. No need for setting heightAnchor f
         ptf.error = "Invalid email"
     }
 */
-public class PlainTextField: UITextField {
+public final class PlainTextField: UITextField {
     // MARK: - Subviews
 
     private var borderView = UIView()
@@ -85,7 +82,7 @@ public class PlainTextField: UITextField {
 
     // MARK: - Init
 
-    init(title: String, placeholder: String? = nil) {
+    public init(title: String, placeholder: String? = nil) {
         super.init(frame: .zero)
         setup()
         self.title = title

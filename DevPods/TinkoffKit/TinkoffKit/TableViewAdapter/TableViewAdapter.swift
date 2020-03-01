@@ -10,7 +10,7 @@ import UIKit
 
 public protocol TableViewCellViewModel {
     var cellHeight: CGFloat { get }
-    
+
     func cellFor(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
 }
 
@@ -42,7 +42,7 @@ extension TableViewAdapter: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return viewModels[indexPath.row].cellFor(tableView: tableView, indexPath: indexPath)
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModels[indexPath.row].cellHeight
     }

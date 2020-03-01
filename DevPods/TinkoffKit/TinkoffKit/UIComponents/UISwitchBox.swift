@@ -10,7 +10,7 @@ import UIKit
 
 private let uiSwitchBoxHeight: CGFloat = 44
 
-class UISwitchBox: UIView {
+public class UISwitchBox: UIView {
     // MARK: - Subviews
 
     private let titleLabel: UILabel = {
@@ -32,7 +32,7 @@ class UISwitchBox: UIView {
 
     // MARK: - Init
 
-    init(title: String, onSwitchChange: ((Bool) -> Void)? = nil) {
+    public init(title: String, onSwitchChange: ((Bool) -> Void)? = nil) {
         super.init(frame: .zero)
 
         translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ class UISwitchBox: UIView {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required public  init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -72,10 +72,10 @@ class UISwitchBox: UIView {
 
 // MARK: - UISwitch behaviour
 
-extension UISwitchBox {
-    public var isOn: Bool { innerSwitch.isOn }
+public extension UISwitchBox {
+    var isOn: Bool { innerSwitch.isOn }
 
-    public func setOn(_ isOn: Bool, animated: Bool) {
+    func setOn(_ isOn: Bool, animated: Bool) {
         innerSwitch.setOn(isOn, animated: animated)
     }
 

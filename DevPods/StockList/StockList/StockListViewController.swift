@@ -208,8 +208,8 @@ extension StockModel {
     static func generate() -> [StockModel] {
         var stocks: [StockModel] = []
         for _ in 0..<25 {
-            let s = StockModel(symbol: randStr(length: 2), title: randStr(length: 64))
-            stocks.insert(s, at: 0)
+            let stockModel = StockModel(symbol: randStr(length: 2), title: randStr(length: 64))
+            stocks.insert(stockModel, at: 0)
         }
         return stocks
     }

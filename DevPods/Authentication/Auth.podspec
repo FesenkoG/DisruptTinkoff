@@ -45,4 +45,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'KeychainAccess'
   s.dependency 'TinkoffKit'
+  s.dependency 'SwiftLint'
 end

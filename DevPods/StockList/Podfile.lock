@@ -1,16 +1,23 @@
 PODS:
+  - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0)
 
 DEPENDENCIES:
+  - SwiftLint
   - TinkoffKit (from `../TinkoffKit`)
+
+SPEC REPOS:
+  trunk:
+    - SwiftLint
 
 EXTERNAL SOURCES:
   TinkoffKit:
     :path: "../TinkoffKit"
 
 SPEC CHECKSUMS:
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
 
-PODFILE CHECKSUM: 74fce711bc6e042413f1bf0fdd96058d7a625f37
+PODFILE CHECKSUM: f3dc5ae45debb5156b59e44ee8b63294e639f3eb
 
 COCOAPODS: 1.9.0

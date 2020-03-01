@@ -20,8 +20,8 @@ Also, height is already set up **44px**.
     let button = UISoftButton(style: .accent, title: "Buy item")
     button.isEnabled = false
 */
-class UISoftButton: UIButton {
-    enum Style {
+public class UISoftButton: UIButton {
+    public enum Style {
         case accent
         case common
         case danger
@@ -30,19 +30,19 @@ class UISoftButton: UIButton {
     // MARK: - Properties
 
     private let uiSoftButtonHeight: CGFloat = 44
-    var style: Style = .accent {
+    public var style: Style = .accent {
         didSet { updateColors() }
     }
-    override var isEnabled: Bool {
+    override public var isEnabled: Bool {
         didSet { updateColors() }
     }
-    override var isHighlighted: Bool {
+    override public var isHighlighted: Bool {
         didSet { updateColors() }
     }
 
     // MARK: - Init
 
-    init(style: Style = .common, title: String = "") {
+    public init(style: Style = .common, title: String = "") {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         layer.cornerRadius = 8
@@ -55,13 +55,13 @@ class UISoftButton: UIButton {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Handling
 
-    func updateColors() {
+    public func updateColors() {
         guard isEnabled else {
             self.backgroundColor = .commonGray
             self.setTitleColor(.disabledText, for: .normal)
