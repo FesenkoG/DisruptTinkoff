@@ -1,6 +1,11 @@
 PODS:
+  - R.swift (5.1.0):
+    - R.swift.Library (~> 5.1.0)
+  - R.swift.Library (5.1.0)
   - SwiftLint (0.39.1)
-  - TinkoffKit (0.1.0)
+  - TinkoffKit (0.1.0):
+    - R.swift
+    - SwiftLint
 
 DEPENDENCIES:
   - SwiftLint
@@ -8,6 +13,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - R.swift
+    - R.swift.Library
     - SwiftLint
 
 EXTERNAL SOURCES:
@@ -15,8 +22,10 @@ EXTERNAL SOURCES:
     :path: "../TinkoffKit"
 
 SPEC CHECKSUMS:
+  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
+  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  TinkoffKit: df3e4e7a25b6defceda41d3678383d4deedc7103
+  TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
 
 PODFILE CHECKSUM: f3dc5ae45debb5156b59e44ee8b63294e639f3eb
 
