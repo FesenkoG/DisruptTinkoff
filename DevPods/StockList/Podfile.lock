@@ -2,12 +2,16 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - StockList (0.1.0):
+    - SwiftLint
+    - TinkoffKit
   - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0):
     - R.swift
     - SwiftLint
 
 DEPENDENCIES:
+  - StockList (from `../StockList`)
   - SwiftLint
   - TinkoffKit (from `../TinkoffKit`)
 
@@ -18,15 +22,18 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
+  StockList:
+    :path: "../StockList"
   TinkoffKit:
     :path: "../TinkoffKit"
 
 SPEC CHECKSUMS:
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  StockList: 5659905f3907dd98a4b44dd107d21e67a51b9450
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
 
-PODFILE CHECKSUM: f3dc5ae45debb5156b59e44ee8b63294e639f3eb
+PODFILE CHECKSUM: 5491fd0b5a81d1357d1eb57f79d3bd22f563c337
 
 COCOAPODS: 1.9.0
