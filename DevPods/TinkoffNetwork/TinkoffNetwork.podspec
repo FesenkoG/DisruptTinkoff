@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source          = { :git => 'https://github.com/FesenkoG/TinkoffNetwork.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '13.0'
-  s.source_files  = "Classes", "Classes/**/*.swift"
+  s.source_files  = "TinkoffNetwork", "TinkoffNetwork/**/*.swift"
 
   s.dependency 'SwiftLint'
   s.dependency 'R.swift'

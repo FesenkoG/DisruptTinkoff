@@ -9,6 +9,9 @@
 import Foundation
 
 public final class NetworkClient {
+
+    public init() { }
+
     public func fetch<T: Decodable>(
         _ request: URLRequest,
         completion: @escaping (Result<T,Error>) -> Void

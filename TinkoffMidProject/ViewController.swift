@@ -11,6 +11,9 @@ import Auth
 
 final class ViewController: UIViewController {
     // MARK: - Private properties
+    let apiService = StocksApiService()
+
+    let service = CoreDataService()
 
     private let topLabel: UILabel = {
         let label = UILabel()
@@ -25,6 +28,36 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        apiService.fetchExchanges { result in
+            switch result {
+            case .success(let exchanges):
+                let firstCode = exchanges.first!.code
+                self.apiService.fetchStockSymbols(exchangeCode: firstCode) {
+                    switch $0 {
+                    case .success(let symbols):
+                        let firstTen = symbols.prefix(10)
+
+                        firstTen.forEach { symbol in
+                            self.service.persist(
+                                updateWith: { (dbSymbol: DBStockSymbol) in
+                                    dbSymbol.displaySymbol = symbol.displaySymbol
+                                    dbSymbol.symbolDescription = symbol.description
+                                    dbSymbol.symbol = symbol.symbol
+                            },
+                                predicate: NSPredicate(format: "symbol = %@", "\(symbol.symbol)")
+                            )
+                        }
+
+                        let symbols: [DBStockSymbol]? = self.service.fetch(predicate: nil)
+                        print(symbols!.map { $0.symbolDescription })
+                    default:
+                        break
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
 
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
