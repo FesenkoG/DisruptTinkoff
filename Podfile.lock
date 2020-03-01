@@ -19,8 +19,10 @@ PODS:
     - TinkoffKit
   - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0):
+    - R.swift
     - SwiftLint
   - TinkoffKit/Tests (0.1.0):
+    - R.swift
     - SwiftLint
 
 DEPENDENCIES:
@@ -55,7 +57,7 @@ SPEC CHECKSUMS:
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   StockList: 5659905f3907dd98a4b44dd107d21e67a51b9450
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  TinkoffKit: 23b4e3c12e8dac1b63ad6b3479da667b1f65cb1d
+  TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
 
 PODFILE CHECKSUM: 26200a8ff5f4356641b8c1c75c5ae4f60d26e212
 
