@@ -9,6 +9,8 @@ project 'StockListExample/StockListExample.xcodeproj'
 def shared_pods
   pod 'TinkoffKit', :path => '../TinkoffKit'
   pod 'SwiftLint'
+  pod 'Storage', :path => '../Storage'
+  pod 'TinkoffNetwork', :path => '../TinkoffNetwork'
 end
 
 target 'StockList' do

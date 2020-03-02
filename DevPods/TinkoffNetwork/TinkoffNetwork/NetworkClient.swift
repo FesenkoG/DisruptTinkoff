@@ -18,8 +18,9 @@ public final class NetworkClient {
     ) {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(.failure(error))
-                return
+                return DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
 
             if let data = data {
@@ -28,9 +29,13 @@ public final class NetworkClient {
                         T.self,
                         from: data
                     )
-                    completion(.success(model))
+                    DispatchQueue.main.async {
+                        completion(.success(model))
+                    }
                 } catch {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
         }.resume()

@@ -8,11 +8,10 @@
 
 import UIKit
 import Auth
+import StockList
 
 final class ViewController: UIViewController {
     // MARK: - Private properties
-    let apiService = StocksApiService()
-    let storageService = StockSymbolStorgeService()
 
     private let topLabel: UILabel = {
         let label = UILabel()
@@ -27,28 +26,11 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO api and storage services usage example
-        apiService.fetchExchanges { result in
-            switch result {
-            case .success(let exchanges):
-                let firstCode = exchanges.first!.code
-                self.apiService.fetchStockSymbols(exchangeCode: firstCode) {
-                    switch $0 {
-                    case .success(let symbols):
-                        let firstTen = Array(symbols.prefix(10))
-                        self.storageService.persist(stockSymbols: firstTen)
-                        print(self.storageService.loadStockSymbols())
-                    default:
-                        break
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
+        coordinator.completionHandler = {
+            StocksMainCoordinator(rootViewController: self).showStocksList()
+        }
         coordinator.proceedWithAuthentication()
         view.backgroundColor = .white
         view.addSubview(topLabel)

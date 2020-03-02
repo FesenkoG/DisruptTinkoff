@@ -22,7 +22,10 @@ public protocol StockListPresenterProtocol: AnyObject {
 public final class StockListPresenter: StockListPresenterProtocol {
     public weak var view: StockListProtocol?
 
-    private var stocks: [StockModel] = []
+    private var stocks: [StockSymbol] = []
+
+    private let apiService = StocksApiService()
+    private let storageService = StockSymbolStorgeService()
 
     public init() { }
 
@@ -30,6 +33,8 @@ public final class StockListPresenter: StockListPresenterProtocol {
         view?.setupHeader("Companies")
         view?.setupSubtitle("US exchanges")
 
+        stocks = storageService.loadStockSymbols()
+        view?.showTable(with: stocks.map(StockDisplayModel.init))
         getStocks()
     }
 
@@ -41,31 +46,34 @@ public final class StockListPresenter: StockListPresenterProtocol {
 extension StockListPresenter {
     public func updateSearchResults(for substring: String) {
         guard !substring.isEmpty else {
-            view?.showTable(with: stocks)
+            view?.showTable(with: stocks.map(StockDisplayModel.init))
             return
         }
 
-        let filteredStocks = stocks.filter { $0.symbol.contains(substring) || $0.title.contains(substring) }
-        view?.showTable(with: filteredStocks)
+        let filteredStocks = stocks.filter { $0.symbol.contains(substring) || $0.description.contains(substring) }
+        view?.showTable(with: filteredStocks.map(StockDisplayModel.init))
     }
 
     public func didDismissSearchController() {
-        view?.showTable(with: stocks)
+        view?.showTable(with: stocks.map(StockDisplayModel.init))
     }
 }
 
 extension StockListPresenter {
     public func getStocks() {
-        self.view?.showLoading()
-
-        // TODO: Implement network request here:
-        let successfulQuery = true
-        stocks = StockModel.generate()
-
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (_) in
-            if successfulQuery {
-                self.view?.showTable(with: self.stocks)
-            } else {
+        if stocks.isEmpty {
+            self.view?.showLoading()
+        }
+        
+        apiService.fetchStockSymbols(
+            exchangeCode: "US"
+        ) {
+            switch $0 {
+            case .success(let stocks):
+                self.storageService.persist(stockSymbols: stocks)
+                self.stocks = stocks
+                self.view?.showTable(with: stocks.map(StockDisplayModel.init))
+            case .failure:
                 self.view?.showError()
             }
         }

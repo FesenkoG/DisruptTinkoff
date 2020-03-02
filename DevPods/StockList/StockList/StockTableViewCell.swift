@@ -18,7 +18,7 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
         public let symbol: String
         public let title: String
 
-        public init(from model: StockModel) {
+        public init(from model: StockDisplayModel) {
             self.symbol = model.symbol
             self.title = model.title
         }

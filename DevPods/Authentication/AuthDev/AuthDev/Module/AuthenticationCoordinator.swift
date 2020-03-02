@@ -11,7 +11,7 @@ public final class AuthenticationCoordinator {
     private weak var navigationController: UINavigationController?
     private let keychain = KeychainAuthenticationService()
 
-    var completionHandler: (() -> Void)?
+    public var completionHandler: (() -> Void)?
 
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -36,8 +36,10 @@ public final class AuthenticationCoordinator {
                 self.navigationController?.presentedViewController?.dismiss(
                     animated: true,
                     completion: {
-                       if shouldEnterPin {
+                        if shouldEnterPin {
                             self.showPinScreen(userCredentials: .init(email: email))
+                        } else {
+                            self.completionHandler?()
                         }
                     }
                 )
@@ -70,7 +72,7 @@ public final class AuthenticationCoordinator {
         navigationController?.presentedViewController?.dismiss(
             animated: true,
             completion: {
-                // TODO: - Show authorized user screen
+                self.completionHandler?()
             }
         )
     }
