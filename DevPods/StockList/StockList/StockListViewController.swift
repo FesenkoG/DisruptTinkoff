@@ -14,7 +14,7 @@ private let sidePadding: CGFloat = 16
 public protocol StockListProtocol: AnyObject {
     func setupHeader(_ text: String)
     func setupSubtitle(_ text: String)
-    func showTable(with stocks: [StockModel])
+    func showTable(with stocks: [StockDisplayModel])
     func showLoading()
     func showError()
 }
@@ -56,11 +56,11 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
 
     private let presenter: StockListPresenter
     private let tableViewAdapter: TableViewAdapter
-    private var filteredStocks: [StockModel] = [] {
-        didSet {
-            tableViewAdapter.set(viewModels: filteredStocks.map(StockTableViewCell.ViewModel.init))
-        }
-    }
+//    private var filteredStocks: [StockModel] = [] {
+//        didSet {
+//            tableViewAdapter.set(viewModels: filteredStocks.map(StockTableViewCell.ViewModel.init))
+//        }
+//    }
 
     // MARK: - Lifecycle
 
@@ -108,10 +108,10 @@ extension StockListViewController: StockListProtocol {
         }
     }
 
-    public func showTable(with stocks: [StockModel]) {
+    public func showTable(with stocks: [StockDisplayModel]) {
         hideSpinner()
 
-        filteredStocks = stocks
+        tableViewAdapter.set(viewModels: stocks.map(StockTableViewCell.ViewModel.init))
 
         UIView.animate(withDuration: 0.22) {
             self.tableView.alpha = 1
@@ -198,22 +198,12 @@ extension StockListViewController {
     }
 }
 
-public struct StockModel {
-    let symbol: String
-    let title: String
-}
+public struct StockDisplayModel {
+    public let symbol: String
+    public let title: String
 
-extension StockModel {
-    static func generate() -> [StockModel] {
-        var stocks: [StockModel] = []
-        for _ in 0..<25 {
-            let stockModel = StockModel(symbol: randStr(length: 2), title: randStr(length: 64))
-            stocks.insert(stockModel, at: 0)
-        }
-        return stocks
+    init(from dto: StockSymbol) {
+        self.symbol = dto.displaySymbol
+        self.title = dto.description
     }
-}
-func randStr(length: Int) -> String {
-    let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    return String((0..<length).map{ _ in letters.randomElement()! })
 }

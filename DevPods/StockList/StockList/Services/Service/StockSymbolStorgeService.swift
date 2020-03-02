@@ -9,10 +9,10 @@
 import Storage
 
 final class StockSymbolStorgeService {
-    let storageService = StorageService(
+    lazy var storageService = StorageService(
         modelURL:
-        Bundle.main.url(
-            forResource: "TinkoffMidProject",
+        Bundle(for: Self.self).url(
+            forResource: "StockList",
             withExtension: "momd"
         )!
     )
