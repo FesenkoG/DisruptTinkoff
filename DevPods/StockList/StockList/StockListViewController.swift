@@ -56,11 +56,6 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
 
     private let presenter: StockListPresenter
     private let tableViewAdapter: TableViewAdapter
-//    private var filteredStocks: [StockModel] = [] {
-//        didSet {
-//            tableViewAdapter.set(viewModels: filteredStocks.map(StockTableViewCell.ViewModel.init))
-//        }
-//    }
 
     // MARK: - Lifecycle
 
