@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		34C9F0C83D1CBE727E760541 /* Pods_TinkoffMidProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE9F421294ABBA3DDE2ADF /* Pods_TinkoffMidProject.framework */; };
 		43FEAA0CB29EC9AC7B309522 /* libPods-TinkoffMidProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD61DC2BB1D7C61F77DC6E87 /* libPods-TinkoffMidProjectTests.a */; };
+		D9BE6F72240BC023005D9A3D /* StockSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F71240BC023005D9A3D /* StockSymbol.swift */; };
+		D9BE6F74240BC0AB005D9A3D /* StockSymbolApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F73240BC0AB005D9A3D /* StockSymbolApiService.swift */; };
+		D9BE6F76240BC559005D9A3D /* StockExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F75240BC559005D9A3D /* StockExchange.swift */; };
+		D9BE6F78240BD1AE005D9A3D /* DBStockSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F77240BD1AE005D9A3D /* DBStockSymbol.swift */; };
+		D9BE6F7B240BD768005D9A3D /* TinkoffMidProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F79240BD768005D9A3D /* TinkoffMidProject.xcdatamodeld */; };
+		D9BE6F9A240BFB8E005D9A3D /* StockSymbolStorgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F99240BFB8E005D9A3D /* StockSymbolStorgeService.swift */; };
 		E5060E1A23FDBE64005812F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E1923FDBE64005812F1 /* AppDelegate.swift */; };
 		E5060E1C23FDBE64005812F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */; };
 		E5060E1E23FDBE64005812F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5060E1D23FDBE64005812F1 /* ViewController.swift */; };
@@ -34,6 +40,12 @@
 		47F0F02CEC48B7FFB6CA5837 /* Pods-TinkoffMidProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffMidProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-TinkoffMidProjectTests/Pods-TinkoffMidProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F85AD9C1AB42451E797BCA8 /* Pods-TinkoffMidProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffMidProjectTests.release.xcconfig"; path = "Target Support Files/Pods-TinkoffMidProjectTests/Pods-TinkoffMidProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		CD61DC2BB1D7C61F77DC6E87 /* libPods-TinkoffMidProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TinkoffMidProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9BE6F71240BC023005D9A3D /* StockSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbol.swift; sourceTree = "<group>"; };
+		D9BE6F73240BC0AB005D9A3D /* StockSymbolApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbolApiService.swift; sourceTree = "<group>"; };
+		D9BE6F75240BC559005D9A3D /* StockExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockExchange.swift; sourceTree = "<group>"; };
+		D9BE6F77240BD1AE005D9A3D /* DBStockSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStockSymbol.swift; sourceTree = "<group>"; };
+		D9BE6F7A240BD768005D9A3D /* TinkoffMidProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffMidProject.xcdatamodel; sourceTree = "<group>"; };
+		D9BE6F99240BFB8E005D9A3D /* StockSymbolStorgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSymbolStorgeService.swift; sourceTree = "<group>"; };
 		E5060E1623FDBE64005812F1 /* TinkoffMidProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffMidProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5060E1923FDBE64005812F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +102,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D9BE6F97240BFB6F005D9A3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE6F71240BC023005D9A3D /* StockSymbol.swift */,
+				D9BE6F77240BD1AE005D9A3D /* DBStockSymbol.swift */,
+				D9BE6F75240BC559005D9A3D /* StockExchange.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D9BE6F98240BFB7D005D9A3D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE6F73240BC0AB005D9A3D /* StockSymbolApiService.swift */,
+				D9BE6F99240BFB8E005D9A3D /* StockSymbolStorgeService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		E5060E0D23FDBE64005812F1 = {
 			isa = PBXGroup;
 			children = (
@@ -113,10 +144,13 @@
 		E5060E1823FDBE64005812F1 /* TinkoffMidProject */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE6F98240BFB7D005D9A3D /* Service */,
+				D9BE6F97240BFB6F005D9A3D /* Model */,
 				E5060E3C23FDC0B6005812F1 /* R.generated.swift */,
 				E5060E1923FDBE64005812F1 /* AppDelegate.swift */,
 				E5060E1B23FDBE64005812F1 /* SceneDelegate.swift */,
 				E5060E1D23FDBE64005812F1 /* ViewController.swift */,
+				D9BE6F79240BD768005D9A3D /* TinkoffMidProject.xcdatamodeld */,
 				E5060E2223FDBE66005812F1 /* Assets.xcassets */,
 				E5060E2423FDBE66005812F1 /* LaunchScreen.storyboard */,
 				E5060E2723FDBE66005812F1 /* Info.plist */,
@@ -343,7 +377,13 @@
 				E5060E1E23FDBE64005812F1 /* ViewController.swift in Sources */,
 				E5060E1A23FDBE64005812F1 /* AppDelegate.swift in Sources */,
 				E5060E1C23FDBE64005812F1 /* SceneDelegate.swift in Sources */,
+				D9BE6F72240BC023005D9A3D /* StockSymbol.swift in Sources */,
 				E5060E3D23FDC0B7005812F1 /* R.generated.swift in Sources */,
+				D9BE6F76240BC559005D9A3D /* StockExchange.swift in Sources */,
+				D9BE6F9A240BFB8E005D9A3D /* StockSymbolStorgeService.swift in Sources */,
+				D9BE6F78240BD1AE005D9A3D /* DBStockSymbol.swift in Sources */,
+				D9BE6F7B240BD768005D9A3D /* TinkoffMidProject.xcdatamodeld in Sources */,
+				D9BE6F74240BC0AB005D9A3D /* StockSymbolApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +646,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D9BE6F79240BD768005D9A3D /* TinkoffMidProject.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D9BE6F7A240BD768005D9A3D /* TinkoffMidProject.xcdatamodel */,
+			);
+			currentVersion = D9BE6F7A240BD768005D9A3D /* TinkoffMidProject.xcdatamodel */;
+			path = TinkoffMidProject.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E5060E0E23FDBE64005812F1 /* Project object */;
 }

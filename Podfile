@@ -13,10 +13,20 @@ def stock_list_pod
   pod 'StockList', :path => 'DevPods/StockList', :testspecs => ['Tests']
 end
 
+def tinkoff_network_pod
+  pod 'TinkoffNetwork', :path => 'DevPods/TinkoffNetwork'
+end
+
+def storage_pod
+  pod 'Storage', :path => 'DevPods/Storage'
+end
+
 def development_pods
   authentication_pod
   tinkoff_kit_pod
   stock_list_pod
+  tinkoff_network_pod
+  storage_pod
 end
 
 target 'TinkoffMidProject' do
