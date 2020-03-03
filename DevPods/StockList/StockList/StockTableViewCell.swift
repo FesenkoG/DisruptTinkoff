@@ -33,20 +33,21 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
     private let symbolView = UIView()
     private let symbolTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0xffffff)
+        label.textColor = .whiteText
         label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textAlignment = .center
         return label
     }()
     private let titleTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0x333333)
+        label.textColor = .blackText
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.numberOfLines = 2
         return label
     }()
     private let separator: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: 0xececec)
+        view.backgroundColor = .borderGrey
         return view
     }()
 
@@ -67,8 +68,9 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
         gradientLayer.frame = .init(x: 0, y: 0, width: symbolViewSize, height: symbolViewSize)
         symbolView.layer.insertSublayer(gradientLayer, at: 0)
         symbolView.layer.cornerRadius = 12
+
         symbolTitle.text = viewModel.symbol
-        titleTitle.text = viewModel.title
+        titleTitle.text = viewModel.title.isEmpty ? "(no decription)" : viewModel.title
     }
 
     override public func prepareForReuse() {
@@ -86,6 +88,9 @@ extension StockTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
+        symbolTitle.adjustsFontSizeToFitWidth = true
+        symbolTitle.minimumScaleFactor = 0.5
+
         NSLayoutConstraint.activate(
             [
                 symbolView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sidePadding),
@@ -94,7 +99,8 @@ extension StockTableViewCell {
                 symbolView.centerYAnchor.constraint(equalTo: centerYAnchor),
 
                 symbolTitle.centerYAnchor.constraint(equalTo: symbolView.centerYAnchor),
-                symbolTitle.centerXAnchor.constraint(equalTo: symbolView.centerXAnchor),
+                symbolTitle.leadingAnchor.constraint(equalTo: symbolView.leadingAnchor, constant: 4),
+                symbolTitle.trailingAnchor.constraint(equalTo: symbolView.trailingAnchor, constant: -4),
 
                 titleTitle.leadingAnchor.constraint(equalTo: symbolView.trailingAnchor, constant: 8),
                 titleTitle.centerYAnchor.constraint(equalTo: centerYAnchor),

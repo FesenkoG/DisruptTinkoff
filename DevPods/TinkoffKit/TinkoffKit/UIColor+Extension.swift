@@ -20,6 +20,7 @@ public extension UIColor {
     static let greyText = UIColor(hex: 0x888888)
     static let disabledText = UIColor(hex: 0xAAAAAA)
     static let borderGrey = UIColor(hex: 0xECECEC)
+    static let backgroundGrey = UIColor(hex: 0xF3F2F8)
 
     // PlainTextField
     static let plainPlaceholder = UIColor(hex: 0xBBBBBB)
@@ -58,7 +59,7 @@ public extension UIColor {
 
     static func gradient(for seed: String) -> [UIColor] {
         let iSeed: CGFloat = seed.unicodeScalars.reduce(into: 0) { (total, scalar) in
-            total += CGFloat(UInt32(scalar))
+            total += CGFloat(UInt32(scalar)) * 123
         }
 
         let hue1 = iSeed.truncatingRemainder(dividingBy: 360)

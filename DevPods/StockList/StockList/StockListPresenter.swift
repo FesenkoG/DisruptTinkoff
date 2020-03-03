@@ -30,8 +30,7 @@ public final class StockListPresenter: StockListPresenterProtocol {
     public init() { }
 
     public func viewDidLoad() {
-        view?.setupHeader("Companies")
-        view?.setupSubtitle("US exchanges")
+        view?.setupTitle(for: ExchangeCode("US"))
 
         stocks = storageService.loadStockSymbols()
         view?.showTable(with: stocks.map(StockDisplayModel.init))
@@ -50,7 +49,10 @@ extension StockListPresenter {
             return
         }
 
-        let filteredStocks = stocks.filter { $0.symbol.contains(substring) || $0.description.contains(substring) }
+        let filteredStocks = stocks.filter {
+            $0.symbol.lowercased().contains(substring.lowercased())
+            || $0.description.lowercased().contains(substring.lowercased())
+        }
         view?.showTable(with: filteredStocks.map(StockDisplayModel.init))
     }
 
@@ -64,7 +66,7 @@ extension StockListPresenter {
         if stocks.isEmpty {
             self.view?.showLoading()
         }
-        
+
         apiService.fetchStockSymbols(
             exchangeCode: "US"
         ) {

@@ -12,8 +12,7 @@ import TinkoffKit
 private let sidePadding: CGFloat = 16
 
 public protocol StockListProtocol: AnyObject {
-    func setupHeader(_ text: String)
-    func setupSubtitle(_ text: String)
+    func setupTitle(for exchangeCode: String)
     func showTable(with stocks: [StockDisplayModel])
     func showLoading()
     func showError()
@@ -21,24 +20,12 @@ public protocol StockListProtocol: AnyObject {
 
 public final class StockListViewController: UIViewController, SpinnerShowingProtocol {
     // MARK: - Subviews
-    private let headerTitle: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(hex: 0x333333)
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        return label
-    }()
-    private let subTitle: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(hex: 0x999999)
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        return label
-    }()
     private let searchController = UISearchController(searchResultsController: nil)
     private let tableView = UITableView()
     public var indicatorView = UIActivityIndicatorView(style: .large)
     private let errorTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0x999999)
+        label.textColor = .blackText
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Ошибка загрузки"
         label.alpha = 0
@@ -71,6 +58,19 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
         fatalError("init(coder:) has not been implemented")
     }
 
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.barTintColor = .backgroundGrey
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.blackText,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)
+        ]
+
+        navigationItem.searchController = searchController
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,12 +85,8 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
 }
 
 extension StockListViewController: StockListProtocol {
-    public func setupHeader(_ text: String) {
-        headerTitle.text = text
-    }
-
-    public func setupSubtitle(_ text: String) {
-        subTitle.text = text
+    public func setupTitle(for exchangeCode: String) {
+        navigationItem.title = "Companies \(exchangeCode)"
     }
 
     public func showLoading() {
@@ -132,6 +128,7 @@ extension StockListViewController: UISearchResultsUpdating, UISearchControllerDe
     private func setupTableView() {
         tableView.register(StockTableViewCell.self)
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -150,9 +147,9 @@ extension StockListViewController: UISearchResultsUpdating, UISearchControllerDe
 
 extension StockListViewController {
     private func setupLayout() {
-        view.backgroundColor = UIColor(hex: 0xf3f2f8)
+        view.backgroundColor = .backgroundGrey
 
-        [tableView, headerTitle, subTitle, indicatorView, errorButton, errorTitle].forEach {
+        [tableView, indicatorView, errorButton, errorTitle].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -160,26 +157,17 @@ extension StockListViewController {
         tableView.alpha = 0
         tableView.backgroundView = UIView()
         tableView.backgroundColor = .clear
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.barTintColor = UIColor(hex: 0xf3f2f8)
-        searchController.searchBar.backgroundColor = UIColor(hex: 0xf3f2f8)
+        searchController.searchBar.barTintColor = .backgroundGrey
+        searchController.searchBar.backgroundColor = .backgroundGrey
         searchController.searchBar.searchBarStyle = .minimal
-        searchController.searchBar.directionalLayoutMargins = .init(top: 0, leading: sidePadding, bottom: 40, trailing: sidePadding)
+        searchController.searchBar.directionalLayoutMargins = .init(top: 0, leading: sidePadding, bottom: 0, trailing: sidePadding)
 
         NSLayoutConstraint.activate(
             [
-                tableView.topAnchor.constraint(equalTo: subTitle.bottomAnchor, constant: 12),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor),
                 tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-                headerTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: sidePadding),
-                headerTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
-                headerTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding),
-
-                subTitle.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 2),
-                subTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
-                subTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding),
 
                 indicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 indicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
