@@ -68,8 +68,9 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
         gradientLayer.frame = .init(x: 0, y: 0, width: symbolViewSize, height: symbolViewSize)
         symbolView.layer.insertSublayer(gradientLayer, at: 0)
         symbolView.layer.cornerRadius = 12
+
         symbolTitle.text = viewModel.symbol
-        titleTitle.text = viewModel.title
+        titleTitle.text = viewModel.title.isEmpty ? "(no decription)" : viewModel.title
     }
 
     override public func prepareForReuse() {
