@@ -35,6 +35,7 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
         let label = UILabel()
         label.textColor = UIColor(hex: 0xffffff)
         label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textAlignment = .center
         return label
     }()
     private let titleTitle: UILabel = {
@@ -86,6 +87,9 @@ extension StockTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
+        symbolTitle.adjustsFontSizeToFitWidth = true
+        symbolTitle.minimumScaleFactor = 0.5
+
         NSLayoutConstraint.activate(
             [
                 symbolView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sidePadding),
@@ -94,7 +98,8 @@ extension StockTableViewCell {
                 symbolView.centerYAnchor.constraint(equalTo: centerYAnchor),
 
                 symbolTitle.centerYAnchor.constraint(equalTo: symbolView.centerYAnchor),
-                symbolTitle.centerXAnchor.constraint(equalTo: symbolView.centerXAnchor),
+                symbolTitle.leadingAnchor.constraint(equalTo: symbolView.leadingAnchor, constant: 4),
+                symbolTitle.trailingAnchor.constraint(equalTo: symbolView.trailingAnchor, constant: -4),
 
                 titleTitle.leadingAnchor.constraint(equalTo: symbolView.trailingAnchor, constant: 8),
                 titleTitle.centerYAnchor.constraint(equalTo: centerYAnchor),
