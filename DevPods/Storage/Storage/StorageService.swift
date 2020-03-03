@@ -31,9 +31,10 @@ public final class StorageService {
         return container
     }()
 
-    public var viewContext: NSManagedObjectContext {
+    private var viewContext: NSManagedObjectContext {
         container.viewContext
     }
+    private lazy var backgroundContext = container.newBackgroundContext()
 
     public func fetch<T: DBInsertable>(predicate: NSPredicate?) -> [T]? {
         var objects: [T]?
@@ -48,20 +49,24 @@ public final class StorageService {
     }
 
     public func persist<T: DBInsertable>(
-        updateWith: (T) -> Void,
-        predicate: NSPredicate
+        updateWith: @escaping (T) -> Void,
+        predicate: NSPredicate,
+        completion: @escaping () -> Void
     ) {
-        viewContext.performAndWait {
+        backgroundContext.perform {
             T.insertOrUpdate(
-                context: viewContext,
+                context: self.viewContext,
                 updateWith: updateWith,
                 predicate: predicate
             )
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            viewContext.rollback()
+            do {
+                try self.viewContext.save()
+            } catch {
+                self.viewContext.rollback()
+            }
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
 }

@@ -72,9 +72,10 @@ extension StockListPresenter {
         ) {
             switch $0 {
             case .success(let stocks):
-                self.storageService.persist(stockSymbols: stocks)
-                self.stocks = stocks
-                self.view?.showTable(with: stocks.map(StockDisplayModel.init))
+                self.storageService.persist(stockSymbols: stocks) {
+                    self.stocks = stocks
+                    self.view?.showTable(with: stocks.map(StockDisplayModel.init))
+                }
             case .failure:
                 self.view?.showError()
             }

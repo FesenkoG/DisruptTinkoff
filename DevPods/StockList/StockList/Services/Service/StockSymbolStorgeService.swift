@@ -17,13 +17,17 @@ final class StockSymbolStorgeService {
         )!
     )
 
-    func persist(stockSymbols: [StockSymbol]) {
+    func persist(
+        stockSymbols: [StockSymbol],
+        completion: @escaping () -> Void
+    ) {
         stockSymbols.forEach { symbol in
             storageService.persist(
                 updateWith: { (dbSymbol: DBStockSymbol) in
                     dbSymbol.updateWithDomainModel(symbol)
                 },
-                predicate: NSPredicate(format: "symbol = %@", "\(symbol.symbol)")
+                predicate: NSPredicate(format: "symbol = %@", "\(symbol.symbol)"),
+                completion: completion
             )
         }
     }
