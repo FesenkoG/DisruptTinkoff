@@ -33,21 +33,21 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
     private let symbolView = UIView()
     private let symbolTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0xffffff)
+        label.textColor = .whiteText
         label.font = .systemFont(ofSize: 14, weight: .bold)
         label.textAlignment = .center
         return label
     }()
     private let titleTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0x333333)
+        label.textColor = .blackText
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.numberOfLines = 2
         return label
     }()
     private let separator: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: 0xececec)
+        view.backgroundColor = .borderGrey
         return view
     }()
 

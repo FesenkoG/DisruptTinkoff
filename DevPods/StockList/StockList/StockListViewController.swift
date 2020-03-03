@@ -25,7 +25,7 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
     public var indicatorView = UIActivityIndicatorView(style: .large)
     private let errorTitle: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(hex: 0x999999)
+        label.textColor = .blackText
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Ошибка загрузки"
         label.alpha = 0
@@ -61,10 +61,10 @@ public final class StockListViewController: UIViewController, SpinnerShowingProt
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.barTintColor = UIColor(hex: 0xf3f2f8)
+        navigationController?.navigationBar.barTintColor = .backgroundGrey
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(hex: 0x333333),
+            NSAttributedString.Key.foregroundColor: UIColor.blackText,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)
         ]
 
@@ -147,7 +147,7 @@ extension StockListViewController: UISearchResultsUpdating, UISearchControllerDe
 
 extension StockListViewController {
     private func setupLayout() {
-        view.backgroundColor = UIColor(hex: 0xf3f2f8)
+        view.backgroundColor = .backgroundGrey
 
         [tableView, indicatorView, errorButton, errorTitle].forEach {
             view.addSubview($0)
@@ -157,8 +157,8 @@ extension StockListViewController {
         tableView.alpha = 0
         tableView.backgroundView = UIView()
         tableView.backgroundColor = .clear
-        searchController.searchBar.barTintColor = UIColor(hex: 0xf3f2f8)
-        searchController.searchBar.backgroundColor = UIColor(hex: 0xf3f2f8)
+        searchController.searchBar.barTintColor = .backgroundGrey
+        searchController.searchBar.backgroundColor = .backgroundGrey
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.directionalLayoutMargins = .init(top: 0, leading: sidePadding, bottom: 0, trailing: sidePadding)
 
