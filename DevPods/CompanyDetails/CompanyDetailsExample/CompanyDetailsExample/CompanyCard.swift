@@ -7,8 +7,19 @@
 
 import SwiftUI
 
+extension AnyTransition {
+    static var expandText: AnyTransition {
+        return .asymmetric(insertion: .opacity, removal: .identity)
+    }
+    static var collapseText: AnyTransition {
+        return .asymmetric(insertion: .identity, removal: .opacity)
+    }
+}
+
 struct CompanyCard: View {
+
     let company: CompanyViewModel
+    @State private var isAboutExpanded: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -37,14 +48,23 @@ struct CompanyCard: View {
                 Spacer()
             }
 
-            Text(company.about)
-                .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
-                .lineLimit(3)
+            if isAboutExpanded {
+                Text(company.about)
+                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+                    .transition(.expandText)
+            } else {
+                Text(company.aboutShort)
+                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+                    .transition(.collapseText)
+            }
 
-            Button("Read more...", action: { print("gjeuwigjwegiw") })
-                .font(Font.system(size: 16, weight: .medium, design: .rounded))
-                .foregroundColor(Color(UIColor.accentBlue))
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
+            Button(
+                textForExpandButton(),
+                action: toggleTextSize
+            )
+            .font(Font.system(size: 16, weight: .medium, design: .rounded))
+            .foregroundColor(Color(UIColor.accentBlue))
+            .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
 
             Spacer()
             Rectangle()
@@ -52,6 +72,16 @@ struct CompanyCard: View {
                 .frame(height: 1)
 
         }.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+    }
+
+    func toggleTextSize() {
+        withAnimation(.easeInOut(duration: isAboutExpanded ? 0.1 : 0.33)) {
+            isAboutExpanded.toggle()
+        }
+    }
+
+    func textForExpandButton() -> String {
+        return isAboutExpanded ? "Show less" : "Read more..."
     }
 }
 
@@ -74,6 +104,10 @@ struct CompanyViewModel {
             currency: "USD",
             about: "Apple, Inc. engages in the design, manufacture, and sale of smartphones, personal computers, tablets, wearables and accessories, and other variety of related services. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. Its products and services include iPhone, Mac, iPad, AirPods, Apple TV, Apple Watch, Beats products, Apple Care, iCloud, digital content stores, streaming, and licensing services. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA."
         )
+    }
+
+    var aboutShort: String {
+        return about.prefix(180).trimmingCharacters(in: .whitespacesAndNewlines) + "..."
     }
 
     var cardGradient: Gradient {

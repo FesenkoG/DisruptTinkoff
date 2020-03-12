@@ -73,6 +73,8 @@ struct ArticleViewModel: Identifiable {
             ArticleViewModel(id: 2, title: "Лена и Тамара из Винницы выцарапали свои имена на фреске Рафаэля", source: "The Guardian", date: "Feb 10, 12:44"),
             ArticleViewModel(id: 3, title: "Урок математики от американских журналистов: как поделить деньги Майка Блумберга и обсчитаться на всю страну", source: "Forbes", date: "Jan 28, 19:00"),
             ArticleViewModel(id: 4, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
+            ArticleViewModel(id: 5, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
+            ArticleViewModel(id: 6, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
         ]
     }
 
