@@ -13,7 +13,7 @@ struct ArticleRow: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color(UIColor(hex: 0xf8f8f8))) // F8F8F8
+                .fill(Color(UIColor.greyUnderlay))
                 .cornerRadius(16)
 
             HStack() {
