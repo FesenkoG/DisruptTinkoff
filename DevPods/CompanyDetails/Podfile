@@ -7,7 +7,7 @@ project 'CompanyDetails'
 project 'CompanyDetailsExample/CompanyDetailsExample.xcodeproj'
 
 def shared_pods
-  # pod 'TinkoffKit', :path => '../TinkoffKit'
+  pod 'TinkoffKit', :path => '../TinkoffKit'
   pod 'SwiftLint'
 end
 

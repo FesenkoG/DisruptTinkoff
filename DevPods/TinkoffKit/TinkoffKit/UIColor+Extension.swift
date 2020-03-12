@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 public extension UIColor {
     static let accentBlue = UIColor(hex: 0x528BFF)
@@ -57,6 +58,14 @@ public extension UIColor {
         )
     }
 
+    func withBrightness(_ B: CGFloat) -> UIColor {
+        var H: CGFloat = 0
+        if getHue(&H, saturation: nil, brightness: nil, alpha: nil) {
+            return UIColor(hue: H, saturation: 1.0, brightness: B, alpha: 1.0)
+        }
+        return self
+    }
+
     static func gradient(for seed: String) -> [UIColor] {
         let iSeed: CGFloat = seed.unicodeScalars.reduce(into: 0) { (total, scalar) in
             total += CGFloat(UInt32(scalar)) * 123
@@ -76,5 +85,15 @@ public extension UIColor {
         let colors = gradient(for: seed)
         colors.forEach { cgColors.insert($0.cgColor, at: 0) }
         return cgColors
+    }
+}
+
+public extension Color {
+    init(hex: Int) {
+        self.init(UIColor(hex: hex))
+    }
+
+    init(hexa: Int) {
+        self.init(UIColor(hex: hexa))
     }
 }

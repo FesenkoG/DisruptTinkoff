@@ -38,6 +38,6 @@ Pod::Spec.new do |s|
   #     test_spec.source_files = 'CompanyDetailsTests/**/*.{swift}'
   # end
   
-  # s.dependency 'TinkoffKit'
+  s.dependency 'TinkoffKit'
   s.dependency 'SwiftLint'
 end
