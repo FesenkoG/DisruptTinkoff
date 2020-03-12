@@ -1,0 +1,24 @@
+PODS:
+  - CompanyDetails (0.0.1):
+    - SwiftLint
+  - SwiftLint (0.39.1)
+
+DEPENDENCIES:
+  - CompanyDetails (from `../CompanyDetails`)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  CompanyDetails:
+    :path: "../CompanyDetails"
+
+SPEC CHECKSUMS:
+  CompanyDetails: eb96336fc3fa9e9f3f8b4e8023d5d9f7f3c1d8eb
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+
+PODFILE CHECKSUM: dbc71db0a6d28cb1554706310ed694be48ea57d1
+
+COCOAPODS: 1.9.0
