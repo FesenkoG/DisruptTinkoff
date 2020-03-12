@@ -20,16 +20,17 @@ struct CompanyCard: View {
                         .shadow(color: company.cardBottomColor, radius: 8, x: 0, y: 4)
                         .frame(width: 44, height: 44)
 
-                    Text("A32APL")
+                    Text(company.ticker)
                         .font(Font.system(size: 25, weight: .bold, design: .rounded))
                         .foregroundColor(Color(UIColor.whiteText))
                         .lineLimit(1).minimumScaleFactor(0.3).padding(4)
+                        .frame(width: 44, height: 44)
                     }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Apple Inc")
+                    Text(company.name)
                         .font(Font.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(Color(UIColor.blackText))
-                    Text("USD")
+                    Text(company.currency)
                         .font(Font.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundColor(Color(UIColor.greyText))
                 }
