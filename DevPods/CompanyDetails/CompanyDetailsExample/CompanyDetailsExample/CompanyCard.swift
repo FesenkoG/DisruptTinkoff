@@ -71,7 +71,7 @@ struct CompanyCard: View {
                 .fill(Color(UIColor.borderGrey))
                 .frame(height: 1)
 
-        }.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+        }.padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
     }
 
     func toggleTextSize() {

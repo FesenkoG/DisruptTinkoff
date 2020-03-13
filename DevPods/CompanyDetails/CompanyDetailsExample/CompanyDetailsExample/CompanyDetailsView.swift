@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CompanyDetailsView.swift
 //  CompanyDetailsExample
 //
 //  Created by Artyom Kudryashov on 12.03.2020.
@@ -38,36 +38,32 @@ struct CompanyDetailsView: View {
     }
 
     var body: some View {
-        NavigationView {
+        VStack {
+            List {
 
-            VStack {
-                List {
-
-                    Section {
-                        CompanyCard(company: company)
-                            .buttonStyle(PlainButtonStyle())
-                    }
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
-
-                    Section {
-                        Text("News")
-                            .font(Font.system(size: 20, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(UIColor.blackText))
-                            .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
-                        ForEach(articles) { (article: ArticleViewModel) in
-                            ArticleRow(article: article)
-                        }
-                    }
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-
+                Section {
+                    CompanyCard(company: company)
+                        .buttonStyle(PlainButtonStyle())
                 }
-            }
-            .navigationBarTitle(
-                Text(company.ticker)
-                    .foregroundColor(Color(UIColor.blackText))
-            )
+                .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
 
+                Section {
+                    Text("News")
+                        .font(Font.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(UIColor.blackText))
+                        .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
+                    ForEach(articles) { (article: ArticleViewModel) in
+                        ArticleRow(article: article)
+                    }
+                }
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+
+            }
         }
+        .navigationBarTitle(
+            Text(company.ticker)
+                .foregroundColor(Color(UIColor.blackText))
+        )
     }
 }
 
