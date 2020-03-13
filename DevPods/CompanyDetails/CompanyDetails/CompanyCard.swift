@@ -16,12 +16,12 @@ extension AnyTransition {
     }
 }
 
-struct CompanyCard: View {
+public struct CompanyCard: View {
 
     let company: CompanyViewModel
     @State private var isAboutExpanded: Bool = false
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading) {
 
             HStack(alignment: .center, spacing: 8) {
@@ -91,7 +91,7 @@ struct CompanyCard_Previews: PreviewProvider {
     }
 }
 
-struct CompanyViewModel {
+public struct CompanyViewModel {
     let ticker: String
     let name: String
     let currency: String

@@ -8,14 +8,14 @@
 import SwiftUI
 import TinkoffKit
 
-struct CompanyDetailsView: View {
+public struct CompanyDetailsView: View {
 
     var title: String = "Title"
 
     let company = CompanyViewModel.mock
     var articles = ArticleViewModel.mock
 
-    init() {
+    public init() {
         UITableView.appearance().separatorStyle = .none
 
         if let largeTitleDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .headline)
@@ -37,7 +37,7 @@ struct CompanyDetailsView: View {
         }
     }
 
-    var body: some View {
+    public var body: some View {
         VStack {
             List {
 

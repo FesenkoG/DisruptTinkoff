@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ArticleRow: View {
+public struct ArticleRow: View {
     let article: ArticleViewModel
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             Rectangle()
                 .fill(Color(UIColor.greyUnderlay))
@@ -59,12 +59,12 @@ struct ArticleRow_Previews: PreviewProvider {
     }
 }
 
-struct ArticleViewModel: Identifiable {
+public struct ArticleViewModel: Identifiable {
 
-    let id: Int
-    let title: String
-    let source: String
-    let date: String
+    public let id: Int
+    public let title: String
+    public let source: String
+    public let date: String
 
     static var mock: [ArticleViewModel] {
         [
