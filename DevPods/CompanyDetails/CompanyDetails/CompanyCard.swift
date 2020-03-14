@@ -19,7 +19,8 @@ extension AnyTransition {
 
 public struct CompanyCard: View {
 
-    let company: CompanyViewModel
+    @State var ticker: String
+    let company: CompanyViewModel?
     @State private var isAboutExpanded: Bool = false
 
     public var body: some View {
@@ -28,41 +29,52 @@ public struct CompanyCard: View {
             HStack(alignment: .center, spacing: 8) {
                 ZStack {
                     Rectangle()
-                        .fill(company.cardLinearGradient).cornerRadius(12)
-                        .shadow(color: company.cardBottomColor, radius: 8, x: 0, y: 4)
+                        .fill(CompanyViewModel.cardLinearGradient(for: ticker)).cornerRadius(12)
+                        .shadow(color: CompanyViewModel.cardBottomColor(for: ticker), radius: 8, x: 0, y: 4)
                         .frame(width: 44, height: 44)
 
-                    Text(company.ticker)
+                    Text(ticker)
                         .font(Font.system(size: 25, weight: .bold, design: .rounded))
                         .foregroundColor(Color(UIColor.whiteText))
                         .lineLimit(1).minimumScaleFactor(0.3).padding(4)
                         .frame(width: 44, height: 44)
-                    }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(company.name)
-                        .font(Font.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundColor(Color(UIColor.blackText))
-                    Text(company.currency)
-                        .font(Font.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundColor(Color(UIColor.greyText))
                 }
+
+                if company == nil {
+                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
+                } else {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(company!.name)
+                            .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                            .foregroundColor(Color(UIColor.blackText))
+                        Text(company!.currency)
+                            .font(Font.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundColor(Color(UIColor.greyText))
+                    }
+                }
+
                 Spacer()
             }
 
-            if isAboutExpanded {
-                Text(company.about)
-                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
-                    .transition(.expandText)
-            } else {
-                Text(company.aboutShort)
-                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
-                    .transition(.collapseText)
-            }
+            if company != nil {
+                if isAboutExpanded {
+                    Text(company!.about)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .transition(.expandText)
+                } else {
+                    Text(company!.aboutShort)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .transition(.collapseText)
+                }
 
-            Button(textForExpandButton(), action: toggleTextSize)
-                .font(Font.system(size: 16, weight: .medium, design: .rounded))
-                .foregroundColor(Color(UIColor.accentBlue))
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
+                if company!.about.count > 180 {
+                    Button(textForExpandButton(), action: toggleTextSize)
+                        .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(Color(UIColor.accentBlue))
+                        .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
+                }
+            }
 
             Spacer()
             Rectangle()
@@ -85,7 +97,7 @@ public struct CompanyCard: View {
 
 struct CompanyCard_Previews: PreviewProvider {
     static var previews: some View {
-        CompanyCard(company: CompanyViewModel.mock)
+        CompanyCard(ticker: "Test", company: CompanyViewModel.mock)
     }
 }
 
@@ -95,7 +107,7 @@ public struct CompanyViewModel {
     public let currency: String
     public let about: String
 
-    init (ticker: String, name: String, currency: String, about: String) {
+    init(ticker: String, name: String, currency: String, about: String) {
         self.ticker = ticker
         self.name = name
         self.currency = currency
@@ -121,30 +133,32 @@ public struct CompanyViewModel {
     var aboutShort: String {
         return about.prefix(180).trimmingCharacters(in: .whitespacesAndNewlines) + "..."
     }
+}
 
-    var cardGradient: Gradient {
+extension CompanyViewModel {
+    static func cardGradient(for ticker: String) -> Gradient {
         let uiColors = UIColor.gradient(for: ticker)
         return uiColors.count == 2
             ? Gradient(colors: [Color(uiColors[0]), Color(uiColors[1])])
             : Gradient(colors: [Color.red, Color.blue])
     }
 
-    var cardTopColor: Color {
-        if cardGradient.stops.count == 2  {
-            return cardGradient.stops[0].color
+    static func cardTopColor(for ticker: String) -> Color {
+        if cardGradient(for: ticker).stops.count == 2  {
+            return cardGradient(for: ticker).stops[0].color
         }
         return .red
     }
 
-    var cardBottomColor: Color {
-        if cardGradient.stops.count == 2  {
-            return cardGradient.stops[1].color
+    static func cardBottomColor(for ticker: String) -> Color {
+        if cardGradient(for: ticker).stops.count == 2  {
+            return cardGradient(for: ticker).stops[1].color
         }
         return .red
     }
 
-    var cardLinearGradient: LinearGradient {
+    static func cardLinearGradient(for ticker: String) -> LinearGradient {
         let (start, end) = (UnitPoint(x: 0.0, y: 0.0), UnitPoint(x: 0.0, y: 1.0))
-        return LinearGradient(gradient: cardGradient, startPoint: start, endPoint: end)
+        return LinearGradient(gradient: cardGradient(for: ticker), startPoint: start, endPoint: end)
     }
 }

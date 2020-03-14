@@ -19,18 +19,19 @@ public struct CompanyDetailsView: View {
     public var body: some View {
         VStack {
             List {
-                if companyDetails.company == nil {
-                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
-                } else {
-                    Section {
-                        CompanyCard(company: companyDetails.company!)
-                            .buttonStyle(PlainButtonStyle())
-                    }
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
+                Section {
+                    CompanyCard(ticker: companyDetails.symbol, company: companyDetails.company)
+                        .buttonStyle(PlainButtonStyle())
                 }
+                .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
 
                 if companyDetails.articles.isEmpty {
-                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                    HStack {
+                        Spacer()
+                        ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                        Spacer()
+                    }
+                    .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                 } else {
                     Section {
                         Text("News")
