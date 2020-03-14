@@ -1,0 +1,39 @@
+PODS:
+  - CompanyDetails (0.0.1):
+    - SwiftLint
+    - TinkoffKit
+  - R.swift (5.1.0):
+    - R.swift.Library (~> 5.1.0)
+  - R.swift.Library (5.1.0)
+  - SwiftLint (0.39.1)
+  - TinkoffKit (0.1.0):
+    - R.swift
+    - SwiftLint
+
+DEPENDENCIES:
+  - CompanyDetails (from `../CompanyDetails`)
+  - SwiftLint
+  - TinkoffKit (from `../TinkoffKit`)
+
+SPEC REPOS:
+  trunk:
+    - R.swift
+    - R.swift.Library
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  CompanyDetails:
+    :path: "../CompanyDetails"
+  TinkoffKit:
+    :path: "../TinkoffKit"
+
+SPEC CHECKSUMS:
+  CompanyDetails: 01c598b11a2f370d464b7055a1062bd204c84092
+  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
+  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
+
+PODFILE CHECKSUM: 312e11b021e26f40be301cf405c4f1bd8420b377
+
+COCOAPODS: 1.9.0
