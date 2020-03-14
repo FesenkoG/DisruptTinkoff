@@ -6,64 +6,89 @@
 //
 
 import SwiftUI
+import Combine
 import TinkoffKit
 
 public struct CompanyDetailsView: View {
-
-    var title: String = "Title"
-
-    let company = CompanyViewModel.mock
-    var articles = ArticleViewModel.mock
+    @EnvironmentObject var companyDetails: CompanyDetailsViewModel
 
     public init() {
         UITableView.appearance().separatorStyle = .none
-
-        if let largeTitleDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .headline)
-            .withDesign(.rounded) {
-            let font = UIFont(descriptor: largeTitleDescriptor, size: 34)
-            UINavigationBar.appearance().largeTitleTextAttributes = [
-                .font : font,
-                .foregroundColor: UIColor.blackText
-            ]
-        }
-
-        if let titleDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .headline)
-            .withDesign(.rounded) {
-            let font = UIFont(descriptor: titleDescriptor, size: 17)
-            UINavigationBar.appearance().titleTextAttributes = [
-                .font : font,
-                .foregroundColor: UIColor.blackText
-            ]
-        }
     }
 
     public var body: some View {
         VStack {
             List {
-
-                Section {
-                    CompanyCard(company: company)
-                        .buttonStyle(PlainButtonStyle())
-                }
-                .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
-
-                Section {
-                    Text("News")
-                        .font(Font.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(UIColor.blackText))
-                        .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
-                    ForEach(articles) { (article: ArticleViewModel) in
-                        ArticleRow(article: article)
+                if companyDetails.company == nil {
+                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                } else {
+                    Section {
+                        CompanyCard(company: companyDetails.company!)
+                            .buttonStyle(PlainButtonStyle())
                     }
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
                 }
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
 
+                if companyDetails.articles.isEmpty {
+                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                } else {
+                    Section {
+                        Text("News")
+                            .font(Font.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(UIColor.blackText))
+                            .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
+                        ForEach(companyDetails.articles) { (article: ArticleViewModel) in
+                            ArticleRow(article: article)
+                        }
+                    }
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }
             }
+
         }
+        .onAppear(perform: getData)
         .navigationBarTitle(
-            Text(company.ticker)
-                .foregroundColor(Color(UIColor.blackText))
+            Text(companyDetails.symbol)
         )
+    }
+
+    func getData() {
+        self.companyDetails.getCompany()
+        self.companyDetails.getArticles()
+    }
+}
+
+public class CompanyDetailsViewModel: ObservableObject {
+    let symbol: String
+
+    @Published var company: CompanyViewModel?
+    var getCompanyTask: AnyCancellable?
+
+    @Published var articles: [ArticleViewModel] = []
+    var getArticlesTask: AnyCancellable?
+
+    public init(symbol: String) {
+        self.symbol = symbol
+    }
+
+    func getCompany() {
+        getCompanyTask = nil
+        getCompanyTask = CompanyApiService().combineFetchCompany(symbol: symbol).sink(receiveCompletion: { (completion) in
+            print(completion)
+        }, receiveValue: { (company) in
+            self.company = CompanyViewModel(from: company)
+        })
+    }
+
+    func getArticles() {
+        getArticlesTask = nil
+        getArticlesTask = CompanyApiService().combineFetchArticles(symbol: symbol).sink(receiveCompletion: { (completion) in
+            print(completion)
+        }, receiveValue: { (articles) in
+            articles.forEach { (article) in
+                self.articles.append(ArticleViewModel(from: article))
+            }
+        })
     }
 }
 

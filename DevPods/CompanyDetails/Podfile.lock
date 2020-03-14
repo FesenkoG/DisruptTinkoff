@@ -1,19 +1,28 @@
 PODS:
   - CompanyDetails (0.0.1):
+    - Storage
     - SwiftLint
     - TinkoffKit
+    - TinkoffNetwork
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - Storage (0.0.1):
+    - SwiftLint
   - SwiftLint (0.39.1)
   - TinkoffKit (0.1.0):
+    - R.swift
+    - SwiftLint
+  - TinkoffNetwork (0.0.1):
     - R.swift
     - SwiftLint
 
 DEPENDENCIES:
   - CompanyDetails (from `../CompanyDetails`)
+  - Storage (from `../Storage`)
   - SwiftLint
   - TinkoffKit (from `../TinkoffKit`)
+  - TinkoffNetwork (from `../TinkoffNetwork`)
 
 SPEC REPOS:
   trunk:
@@ -24,16 +33,22 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   CompanyDetails:
     :path: "../CompanyDetails"
+  Storage:
+    :path: "../Storage"
   TinkoffKit:
     :path: "../TinkoffKit"
+  TinkoffNetwork:
+    :path: "../TinkoffNetwork"
 
 SPEC CHECKSUMS:
-  CompanyDetails: 01c598b11a2f370d464b7055a1062bd204c84092
+  CompanyDetails: 7f8cab6e862d994975c072fee1db92adab39c4ff
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  Storage: 9ce3077d3088639ce9dabedaa7009f384f4fb575
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
+  TinkoffNetwork: f140e77db9f191cc8a40b93f9a67b95b990289cb
 
-PODFILE CHECKSUM: 312e11b021e26f40be301cf405c4f1bd8420b377
+PODFILE CHECKSUM: ed97b25b1ed8dfd5f5e9c7d8916f8edef1326ec3
 
 COCOAPODS: 1.9.0

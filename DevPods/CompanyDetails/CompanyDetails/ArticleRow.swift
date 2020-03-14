@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+import TinkoffKit
+
+public struct Awowow {
+    
+}
 
 public struct ArticleRow: View {
     let article: ArticleViewModel
@@ -65,6 +70,20 @@ public struct ArticleViewModel: Identifiable {
     public let title: String
     public let source: String
     public let date: String
+
+    init(from dto: Article) {
+        id = dto.id
+        title = dto.summary
+        source = dto.source
+        date = "\(dto.datetime)"
+    }
+
+    init(id: Int, title: String, source: String, date: String) {
+        self.id = id
+        self.title = title
+        self.source = source
+        self.date = date
+    }
 
     static var mock: [ArticleViewModel] {
         [

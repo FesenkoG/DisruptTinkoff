@@ -40,4 +40,6 @@ Pod::Spec.new do |s|
   
   s.dependency 'TinkoffKit'
   s.dependency 'SwiftLint'
+  s.dependency 'Storage'
+  s.dependency 'TinkoffNetwork'
 end

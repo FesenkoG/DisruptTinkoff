@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TinkoffKit
 
 extension AnyTransition {
     static var expandText: AnyTransition {
@@ -58,13 +59,10 @@ public struct CompanyCard: View {
                     .transition(.collapseText)
             }
 
-            Button(
-                textForExpandButton(),
-                action: toggleTextSize
-            )
-            .font(Font.system(size: 16, weight: .medium, design: .rounded))
-            .foregroundColor(Color(UIColor.accentBlue))
-            .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
+            Button(textForExpandButton(), action: toggleTextSize)
+                .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                .foregroundColor(Color(UIColor.accentBlue))
+                .padding(EdgeInsets(top: 4, leading: 0, bottom: 16, trailing: 0))
 
             Spacer()
             Rectangle()
@@ -92,10 +90,24 @@ struct CompanyCard_Previews: PreviewProvider {
 }
 
 public struct CompanyViewModel {
-    let ticker: String
-    let name: String
-    let currency: String
-    let about: String
+    public let ticker: String
+    public let name: String
+    public let currency: String
+    public let about: String
+
+    init (ticker: String, name: String, currency: String, about: String) {
+        self.ticker = ticker
+        self.name = name
+        self.currency = currency
+        self.about = about
+    }
+
+    init(from dto: Company) {
+        self.ticker = dto.ticker
+        self.name = dto.name
+        self.currency = dto.currency
+        self.about = dto.description
+    }
 
     static var mock: CompanyViewModel {
         CompanyViewModel(
