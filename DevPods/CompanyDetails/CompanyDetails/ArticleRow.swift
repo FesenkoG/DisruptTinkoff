@@ -8,10 +8,6 @@
 import SwiftUI
 import TinkoffKit
 
-public struct Awowow {
-    
-}
-
 public struct ArticleRow: View {
     let article: ArticleViewModel
 
@@ -70,30 +66,33 @@ public struct ArticleViewModel: Identifiable {
     public let title: String
     public let source: String
     public let date: String
+    public let stringUrl: String
 
     init(from dto: Article) {
         id = dto.id
         title = dto.summary
         source = dto.source
         date = "\(dto.datetime)"
+        stringUrl = dto.url
     }
 
-    init(id: Int, title: String, source: String, date: String) {
+    init(id: Int, title: String, source: String, date: String, stringUrl: String) {
         self.id = id
         self.title = title
         self.source = source
         self.date = date
+        self.stringUrl = stringUrl
     }
 
     static var mock: [ArticleViewModel] {
         [
-            ArticleViewModel(id: 0, title: "Поведение слизевика оказалось неплохим методом выявления космической паутины", source: "Hacker News", date: "Feb 31, 20:21"),
-            ArticleViewModel(id: 1, title: "Нервные и мышечные клетки ускорили развитие друг друга", source: "Techcrunch", date: "Feb 22, 09:01"),
-            ArticleViewModel(id: 2, title: "Лена и Тамара из Винницы выцарапали свои имена на фреске Рафаэля", source: "The Guardian", date: "Feb 10, 12:44"),
-            ArticleViewModel(id: 3, title: "Урок математики от американских журналистов: как поделить деньги Майка Блумберга и обсчитаться на всю страну", source: "Forbes", date: "Jan 28, 19:00"),
-            ArticleViewModel(id: 4, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
-            ArticleViewModel(id: 5, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
-            ArticleViewModel(id: 6, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59"),
+            ArticleViewModel(id: 0, title: "Поведение слизевика оказалось неплохим методом выявления космической паутины", source: "Hacker News", date: "Feb 31, 20:21", stringUrl: "https://www.notion.so/"),
+            ArticleViewModel(id: 1, title: "Нервные и мышечные клетки ускорили развитие друг друга", source: "Techcrunch", date: "Feb 22, 09:01", stringUrl:  "https://tightype.com/shop/#plaid"),
+            ArticleViewModel(id: 2, title: "Лена и Тамара из Винницы выцарапали свои имена на фреске Рафаэля", source: "The Guardian", date: "Feb 10, 12:44", stringUrl: "lgk9449h4h5"),
+            ArticleViewModel(id: 3, title: "Урок математики от американских журналистов: как поделить деньги Майка Блумберга и обсчитаться на всю страну", source: "Forbes", date: "Jan 28, 19:00", stringUrl: "dqwdq"),
+            ArticleViewModel(id: 4, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59", stringUrl: "3h54j5j"),
+            ArticleViewModel(id: 5, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59", stringUrl: "175411"),
+            ArticleViewModel(id: 6, title: "В Minecraft построили самолет из слизи и поршней. Летать он может, а вот приземляться и поворачивать — увы!", source: "SPSRT", date: "Jan 04, 02:59", stringUrl: "3h544424242j5j"),
         ]
     }
 

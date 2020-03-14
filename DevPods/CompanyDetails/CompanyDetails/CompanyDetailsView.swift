@@ -11,6 +11,10 @@ import TinkoffKit
 
 public struct CompanyDetailsView: View {
     @EnvironmentObject var companyDetails: CompanyDetailsViewModel
+    
+    @State private var highlightedArticleId: Int?
+    @State var isPresentedSafari: Bool = false
+    @State var urlToOpen: URL? = nil
 
     public init() {
         UITableView.appearance().separatorStyle = .none
@@ -40,6 +44,16 @@ public struct CompanyDetailsView: View {
                             .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
                         ForEach(companyDetails.articles) { (article: ArticleViewModel) in
                             ArticleRow(article: article)
+                                .scaleEffect(self.hightlightedScaleEffect(for: article.id))
+                                .animation(self.animation(for: article.id))
+                                .onTapGesture(perform: {
+                                    self.presentSafari(for: article.stringUrl)
+                                })
+                                .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 0, pressing: { (hasTap) in
+                                    self.highlightedArticleId = hasTap ? article.id : nil
+                                }) {
+                                    self.presentSafari(for: article.stringUrl)
+                                }
                         }
                     }
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -51,11 +65,31 @@ public struct CompanyDetailsView: View {
         .navigationBarTitle(
             Text(companyDetails.symbol)
         )
+        .sheet(isPresented: $isPresentedSafari) {
+            if self.urlToOpen != nil {
+                SafariView(url: self.urlToOpen!)
+            } else {
+                // alert
+            }
+        }
     }
 
     func getData() {
         self.companyDetails.getCompany()
         self.companyDetails.getArticles()
+    }
+
+    func presentSafari(for stringUrl: String) {
+        urlToOpen = URL(string: stringUrl)
+        isPresentedSafari = true
+    }
+
+    private func hightlightedScaleEffect(for articleId: Int) -> CGFloat {
+        return articleId == highlightedArticleId ? 0.95 : 1
+    }
+
+    private func animation(for articleId: Int) -> Animation {
+        return .easeInOut(duration: self.highlightedArticleId != nil ? 0.5 : 0.2)
     }
 }
 

@@ -6,6 +6,21 @@
 //
 
 import SwiftUI
+import SafariServices
+
+public struct SafariView: UIViewControllerRepresentable {
+    private let url: URL
+
+    public init(url: URL) {
+        self.url = url
+    }
+
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        SFSafariViewController(url: url)
+    }
+
+    public func updateUIViewController(_ safariViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) { }
+}
 
 public struct ActivityIndicator: UIViewRepresentable {
     @Binding var isAnimating: Bool
