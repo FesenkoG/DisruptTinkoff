@@ -17,16 +17,22 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
 
         public let symbol: String
         public let title: String
+        public let tapAction: () -> Void
 
-        public init(from model: StockDisplayModel) {
+        public init(from model: StockDisplayModel, tapAction: @escaping () -> Void) {
             self.symbol = model.symbol
             self.title = model.title
+            self.tapAction = tapAction
         }
 
         public func cellFor(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
             let cell: StockTableViewCell = tableView.dequeue(indexPath: indexPath)
             cell.update(with: self)
             return cell
+        }
+
+        public func didTap() {
+            tapAction()
         }
     }
 
@@ -56,6 +62,19 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
         setupLayout()
     }
 
+    override public func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        let scale: CGFloat = highlighted ? 0.98 : 1
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.beginFromCurrentState, .curveEaseInOut], animations: {
+            self.transform = .init(scaleX: scale, y: scale)
+        }, completion: nil)
+    }
+
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(false, animated: false)
+    }
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -83,6 +102,9 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
 
 extension StockTableViewCell {
     private func setupLayout() {
+        selectedBackgroundView = UIView()
+        backgroundColor = .clear
+
         [symbolView, symbolTitle, titleTitle, separator].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false

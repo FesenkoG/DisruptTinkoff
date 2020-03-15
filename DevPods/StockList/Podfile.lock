@@ -1,8 +1,18 @@
 PODS:
+  - CompanyDetails (0.0.1):
+    - Kingfisher/SwiftUI
+    - Storage
+    - SwiftLint
+    - TinkoffKit
+    - TinkoffNetwork
+  - Kingfisher/Core (5.13.2)
+  - Kingfisher/SwiftUI (5.13.2):
+    - Kingfisher/Core
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - StockList (0.1.0):
+    - CompanyDetails
     - Storage
     - SwiftLint
     - TinkoffKit
@@ -18,6 +28,7 @@ PODS:
     - SwiftLint
 
 DEPENDENCIES:
+  - CompanyDetails (from `../CompanyDetails`)
   - StockList (from `../StockList`)
   - Storage (from `../Storage`)
   - SwiftLint
@@ -26,11 +37,14 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - R.swift
     - R.swift.Library
     - SwiftLint
 
 EXTERNAL SOURCES:
+  CompanyDetails:
+    :path: "../CompanyDetails"
   StockList:
     :path: "../StockList"
   Storage:
@@ -41,14 +55,16 @@ EXTERNAL SOURCES:
     :path: "../TinkoffNetwork"
 
 SPEC CHECKSUMS:
+  CompanyDetails: bdf9e5fe96337d04d9d4912ee03ead5525c32dc3
+  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
-  StockList: ec35c5d192101b402285426ddc598a9526a2c034
+  StockList: aba9ed49d92ca60b68ae258203566babc61be6c1
   Storage: 9ce3077d3088639ce9dabedaa7009f384f4fb575
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
   TinkoffNetwork: f140e77db9f191cc8a40b93f9a67b95b990289cb
 
-PODFILE CHECKSUM: 48dce668118cdb6453f4bb18f7410e6b7c6b7f19
+PODFILE CHECKSUM: 9ba5ca92e748015897a4e53588caf7f0fa754725
 
 COCOAPODS: 1.9.0

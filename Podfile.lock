@@ -21,11 +21,13 @@ PODS:
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - StockList (0.1.0):
+    - CompanyDetails
     - Storage
     - SwiftLint
     - TinkoffKit
     - TinkoffNetwork
   - StockList/Tests (0.1.0):
+    - CompanyDetails
     - Storage
     - SwiftLint
     - TinkoffKit
@@ -85,7 +87,7 @@ SPEC CHECKSUMS:
   Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
-  StockList: ec35c5d192101b402285426ddc598a9526a2c034
+  StockList: aba9ed49d92ca60b68ae258203566babc61be6c1
   Storage: 9ce3077d3088639ce9dabedaa7009f384f4fb575
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
