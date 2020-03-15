@@ -79,7 +79,7 @@ public struct ArticleViewModel: Identifiable {
         id = dto.id
         title = dto.summary
         source = dto.source
-        date = "\(dto.datetime)"
+        date = ArticleViewModel.formatDate(timestamp: dto.datetime)
         stringUrl = dto.url
         imageUrl = dto.image
     }
@@ -108,5 +108,17 @@ public struct ArticleViewModel: Identifiable {
     func sourceColorWithBrightness(of value: CGFloat) -> Color {
         let uiColor = UIColor.gradient(for: source).first?.withBrightness(value) ?? .blackText
         return Color(uiColor)
+    }
+
+    static func formatDate(timestamp: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+
+        let formatter = DateFormatter()
+        formatter.dateFormat =
+            Calendar.current.component(.year, from: date) == Calendar.current.component(.year, from: Date())
+            ? "MMM d, HH:mm"
+            : "yyyy, MMMM d"
+
+        return formatter.string(from: date)
     }
 }
