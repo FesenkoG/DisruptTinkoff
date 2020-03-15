@@ -27,9 +27,9 @@ public struct CompanyDetailsView: View {
                     CompanyCard(ticker: companyDetails.symbol, company: companyDetails.company, error: $companyDetails.getCompanyError, refreshAction: getData)
                         .buttonStyle(PlainButtonStyle())
                 }
-                .listRowInsets(.init(top: 0, leading: 0, bottom: -12, trailing: 0))
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
 
-                if companyDetails.articles.isEmpty {
+                if companyDetails.articles == nil {
                     HStack {
                         Spacer()
 
@@ -60,18 +60,25 @@ public struct CompanyDetailsView: View {
                             .font(Font.system(size: 20, weight: .bold, design: .rounded))
                             .foregroundColor(Color(UIColor.blackText))
                             .padding(EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 0))
-                        ForEach(companyDetails.articles) { (article: ArticleViewModel) in
-                            ArticleRow(article: article)
-                                .scaleEffect(self.hightlightedScaleEffect(for: article.id))
-                                .animation(self.animation(for: article.id))
-                                .onTapGesture(perform: {
-                                    self.presentSafari(for: article.stringUrl)
-                                })
-                                .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 0, pressing: { (hasTap) in
-                                    self.highlightedArticleId = hasTap ? article.id : nil
-                                }) {
-                                    self.presentSafari(for: article.stringUrl)
+                        if companyDetails.articles!.isEmpty {
+                            Text("No news for this company")
+                                .font(Font.system(size: 14, weight: .light, design: .rounded))
+                                .foregroundColor(Color(UIColor.disabledText))
+                                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
+                        } else {
+                            ForEach(companyDetails.articles!) { (article: ArticleViewModel) in
+                                ArticleRow(article: article)
+                                    .scaleEffect(self.hightlightedScaleEffect(for: article.id))
+                                    .animation(self.animation(for: article.id))
+                                    .onTapGesture(perform: {
+                                        self.presentSafari(for: article.stringUrl)
+                                    })
+                                    .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 0, pressing: { (hasTap) in
+                                        self.highlightedArticleId = hasTap ? article.id : nil
+                                    }) {
+                                        self.presentSafari(for: article.stringUrl)
                                 }
+                            }
                         }
                     }
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -97,7 +104,7 @@ public struct CompanyDetailsView: View {
             companyDetails.getCompany {
                 self.companyDetails.getArticles()
             }
-        } else if companyDetails.articles.isEmpty {
+        } else if companyDetails.articles == nil {
             companyDetails.getArticles()
         }
     }
@@ -123,7 +130,7 @@ public class CompanyDetailsViewModel: ObservableObject {
     @Published var getCompanyTask: AnyCancellable?
     @Published var getCompanyError: String?
 
-    @Published var articles: [ArticleViewModel] = []
+    @Published var articles: [ArticleViewModel]?
     @Published var getArticlesTask: AnyCancellable?
     @Published var getArticlesError: String?
 
@@ -132,18 +139,19 @@ public class CompanyDetailsViewModel: ObservableObject {
     }
 
     func getCompany(completion: (() -> Void)?) {
+        print(1)
         getCompanyTask = nil
         getCompanyError = nil
-        getCompanyTask = CompanyApiService().combineFetchCompany(symbol: symbol).sink(receiveCompletion: { (completion) in
-            switch completion {
+        getCompanyTask = CompanyApiService().combineFetchCompany(symbol: symbol).sink(receiveCompletion: { (receiveCompletion) in
+            switch receiveCompletion {
             case .failure(let error):
                 self.getCompanyError = error.localizedDescription
             case .finished:
                 self.getCompanyError = nil
             }
+            completion?()
         }, receiveValue: { (company) in
             self.company = CompanyViewModel(from: company)
-            completion?()
         })
     }
 
@@ -158,8 +166,9 @@ public class CompanyDetailsViewModel: ObservableObject {
                 self.getArticlesError = nil
             }
         }, receiveValue: { (articles) in
+            self.articles = [ArticleViewModel]()
             articles.forEach { (article) in
-                self.articles.append(ArticleViewModel(from: article))
+                self.articles!.append(ArticleViewModel(from: article))
             }
         })
     }

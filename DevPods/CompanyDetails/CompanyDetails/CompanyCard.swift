@@ -48,12 +48,18 @@ public struct CompanyCard: View {
                             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
                     } else {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("Couldn't load data")
-                                .font(Font.system(size: 16, weight: .medium, design: .rounded))
-                                .foregroundColor(Color(UIColor.blackText))
-                            Button("Try again", action: refreshAction)
-                                .font(Font.system(size: 16, weight: .medium, design: .rounded))
-                                .foregroundColor(Color(UIColor.accentBlue))
+                            HStack {
+                                Text("Couldn't load data")
+                                    .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                                    .foregroundColor(Color(UIColor.blackText))
+                                Spacer()
+                                Button("Try again", action: refreshAction)
+                                    .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                                    .foregroundColor(Color(UIColor.accentBlue))
+                            }
+                            Text(error!)
+                                .font(Font.system(size: 10, weight: .light, design: .rounded))
+                                .foregroundColor(Color(UIColor.disabledText))
                         }
                     }
                 } else {
@@ -93,7 +99,7 @@ public struct CompanyCard: View {
             Rectangle()
                 .fill(Color(UIColor.borderGrey))
                 .frame(height: 1)
-
+                .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
         }
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
         .lineLimit(nil)
