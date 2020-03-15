@@ -42,27 +42,30 @@ final class ViewController: UIViewController {
     }
 
     private func setupTabBar() {
+        let sfSymbol: ((String) -> UIImage?) = { name -> UIImage? in
+            let config = UIImage.SymbolConfiguration(weight: .semibold)
+            return UIImage(systemName: name, withConfiguration: config)
+        }
+
         let stockListPresenter = StockListPresenter()
         let stockListViewController = StockListViewController(presenter: stockListPresenter)
-        stockListViewController.tabBarItem.title = "Stocks"
+        stockListViewController.tabBarItem = .init(title: "Stocks", image: sfSymbol("rectangle.grid.1x2.fill"), tag: 0)
 
         let articlesView = ArticlesView()
-        let articlesViewController = UIHostingController(
-            rootView: articlesView
-                .environmentObject(
-                ArticlesViewModel()
-            )
-        )
-        articlesViewController.tabBarItem.title = "News"
+            .environment(\.title, "Articles")
+            .environmentObject(ArticlesViewModel())
+        let articlesViewController = UIHostingController(rootView: articlesView)
+        articlesViewController.tabBarItem = .init(title: "Articles", image: sfSymbol("doc.text.fill"), tag: 1)
+
+        let controllers = [stockListViewController, articlesViewController]
 
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [
-            stockListViewController,
-            articlesViewController
-        ]
-
-        let navigationController = UINavigationController(rootViewController: tabBar)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
+        tabBar.viewControllers = controllers.map {
+            let controller = UINavigationController(rootViewController: $0)
+            $0.navigationController?.navigationBar.prefersLargeTitles = true
+            return controller
+        }
+        tabBar.modalPresentationStyle = .fullScreen
+        present(tabBar, animated: true)
     }
 }
