@@ -15,6 +15,8 @@
 		6E833E1E241B95EE00AE9DB7 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E833E1A241B95EE00AE9DB7 /* ArticleRow.swift */; };
 		6E833E1F241B95EE00AE9DB7 /* CompanyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E833E1B241B95EE00AE9DB7 /* CompanyDetailsView.swift */; };
 		6E9BDA90241A606D00BBF557 /* CompanyDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E9BDA8E241A606D00BBF557 /* CompanyDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E50FADD4241E70DA00370E2C /* ArticlesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FADD3241E70DA00370E2C /* ArticlesViewModel.swift */; };
+		E59E3DA7241E769300B87C3C /* ArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E3DA6241E769300B87C3C /* ArticlesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		6E9BDA8F241A606D00BBF557 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91F217780D2B3F551C72F269 /* Pods-CompanyDetails.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompanyDetails.debug.xcconfig"; path = "Target Support Files/Pods-CompanyDetails/Pods-CompanyDetails.debug.xcconfig"; sourceTree = "<group>"; };
 		A1417822F87EC6A511C79B57 /* Pods-CompanyDetails.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompanyDetails.release.xcconfig"; path = "Target Support Files/Pods-CompanyDetails/Pods-CompanyDetails.release.xcconfig"; sourceTree = "<group>"; };
+		E50FADD3241E70DA00370E2C /* ArticlesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesViewModel.swift; sourceTree = "<group>"; };
+		E59E3DA6241E769300B87C3C /* ArticlesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,7 @@
 		6E9BDA8D241A606D00BBF557 /* CompanyDetails */ = {
 			isa = PBXGroup;
 			children = (
+				E50FADD2241E70DA00370E2C /* ArticlesView */,
 				6E5EB885241D68D900D49E1E /* Article.swift */,
 				6E70D1E8241D6B1C00C5452B /* CompanyApiService.swift */,
 				6E5EB887241D691900D49E1E /* Company.swift */,
@@ -92,6 +97,15 @@
 				6E458C66ED9C15A3827C22C9 /* Pods_CompanyDetails.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E50FADD2241E70DA00370E2C /* ArticlesView */ = {
+			isa = PBXGroup;
+			children = (
+				E59E3DA6241E769300B87C3C /* ArticlesView.swift */,
+				E50FADD3241E70DA00370E2C /* ArticlesViewModel.swift */,
+			);
+			path = ArticlesView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +215,10 @@
 				6E5EB886241D68D900D49E1E /* Article.swift in Sources */,
 				6E833E1F241B95EE00AE9DB7 /* CompanyDetailsView.swift in Sources */,
 				6E833E1D241B95EE00AE9DB7 /* CompanyCard.swift in Sources */,
+				E59E3DA7241E769300B87C3C /* ArticlesView.swift in Sources */,
 				6E70D1E9241D6B1C00C5452B /* CompanyApiService.swift in Sources */,
 				6E5EB888241D691900D49E1E /* Company.swift in Sources */,
+				E50FADD4241E70DA00370E2C /* ArticlesViewModel.swift in Sources */,
 				6E833E1E241B95EE00AE9DB7 /* ArticleRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
