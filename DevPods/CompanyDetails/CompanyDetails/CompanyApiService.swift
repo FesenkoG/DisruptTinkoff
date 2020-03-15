@@ -38,12 +38,7 @@ public class CompanyApiService {
         let request = URLRequest(url: url)
 
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map {
-
-                print(String(decoding: $0.data, as: UTF8.self))
-                return $0.data
-
-        }
+            .map { $0.data }
             .decode(type: Company.self, decoder: decoder)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()

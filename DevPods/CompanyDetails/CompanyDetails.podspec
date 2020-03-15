@@ -42,4 +42,5 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftLint'
   s.dependency 'Storage'
   s.dependency 'TinkoffNetwork'
+  s.dependency 'Kingfisher/SwiftUI'
 end

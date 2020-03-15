@@ -7,6 +7,7 @@
 
 import SwiftUI
 import TinkoffKit
+import struct Kingfisher.KFImage
 
 public struct ArticleRow: View {
     let article: ArticleViewModel
@@ -18,11 +19,22 @@ public struct ArticleRow: View {
                 .cornerRadius(16)
 
             HStack() {
-                Rectangle()
-                    .fill(Color(UIColor.accentBlue))
-                    .frame(width: 88, height: 88)
-                    .cornerRadius(12)
-                    .padding(8)
+                ZStack {
+                    Rectangle()
+                        .fill(article.sourceColorWithBrightness(of: 0.88))
+                        .frame(width: 88, height: 88)
+                        .cornerRadius(12)
+                        .padding(8)
+                    KFImage(URL(string: article.imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 88, height: 88)
+                        .cornerRadius(12)
+                        .padding(8)
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(UIColor.commonGray), lineWidth: 1)
+                        .frame(width: 88, height: 88)
+                }
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(article.title)
@@ -43,7 +55,7 @@ public struct ArticleRow: View {
                 Text(article.source)
                     .padding(6)
                     .font(Font.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundColor(article.sourceColor)
+                    .foregroundColor(article.sourceColorWithBrightness(of: 0.66))
                     .background(Color(UIColor.commonGray))
                     .cornerRadius(8)
                 .offset(x: -12, y: -12),
@@ -67,6 +79,7 @@ public struct ArticleViewModel: Identifiable {
     public let source: String
     public let date: String
     public let stringUrl: String
+    public let imageUrl: String
 
     init(from dto: Article) {
         id = dto.id
@@ -74,6 +87,7 @@ public struct ArticleViewModel: Identifiable {
         source = dto.source
         date = "\(dto.datetime)"
         stringUrl = dto.url
+        imageUrl = dto.image
     }
 
     init(id: Int, title: String, source: String, date: String, stringUrl: String) {
@@ -82,6 +96,7 @@ public struct ArticleViewModel: Identifiable {
         self.source = source
         self.date = date
         self.stringUrl = stringUrl
+        self.imageUrl = ""
     }
 
     static var mock: [ArticleViewModel] {
@@ -96,8 +111,8 @@ public struct ArticleViewModel: Identifiable {
         ]
     }
 
-    var sourceColor: Color {
-        let uiColor = UIColor.gradient(for: source).first?.withBrightness(0.66) ?? .blackText
+    func sourceColorWithBrightness(of value: CGFloat) -> Color {
+        let uiColor = UIColor.gradient(for: source).first?.withBrightness(value) ?? .blackText
         return Color(uiColor)
     }
 }
