@@ -27,7 +27,7 @@ public struct CompanyDetailsView: View {
                     CompanyCard(ticker: companyDetails.symbol, company: companyDetails.company, error: $companyDetails.getCompanyError, refreshAction: getData)
                         .buttonStyle(PlainButtonStyle())
                 }
-                .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
+                .listRowInsets(.init(top: 0, leading: 0, bottom: -12, trailing: 0))
 
                 if companyDetails.articles.isEmpty {
                     HStack {
