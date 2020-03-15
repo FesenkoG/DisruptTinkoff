@@ -18,9 +18,11 @@ extension AnyTransition {
 }
 
 public struct CompanyCard: View {
-
     @State var ticker: String
     let company: CompanyViewModel?
+    @Binding var error: String?
+    var refreshAction: (() -> Void)
+
     @State private var isAboutExpanded: Bool = false
 
     public var body: some View {
@@ -41,8 +43,19 @@ public struct CompanyCard: View {
                 }
 
                 if company == nil {
-                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
+                    if error == nil {
+                        ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
+                    } else {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Couldn't load data")
+                                .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                                .foregroundColor(Color(UIColor.blackText))
+                            Button("Try again", action: refreshAction)
+                                .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                                .foregroundColor(Color(UIColor.accentBlue))
+                        }
+                    }
                 } else {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(company!.name)
@@ -81,7 +94,9 @@ public struct CompanyCard: View {
                 .fill(Color(UIColor.borderGrey))
                 .frame(height: 1)
 
-        }.padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        }
+        .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        .lineLimit(nil)
     }
 
     func toggleTextSize() {
@@ -95,11 +110,11 @@ public struct CompanyCard: View {
     }
 }
 
-struct CompanyCard_Previews: PreviewProvider {
-    static var previews: some View {
-        CompanyCard(ticker: "Test", company: CompanyViewModel.mock)
-    }
-}
+//struct CompanyCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CompanyCard(ticker: "Test", company: CompanyViewModel.mock, error: ..., refreshAction: { print("refresh") })
+//    }
+//}
 
 public struct CompanyViewModel {
     public let ticker: String

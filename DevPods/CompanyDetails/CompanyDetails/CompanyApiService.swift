@@ -9,7 +9,7 @@ import Combine
 import TinkoffNetwork
 
 public class CompanyApiService {
-    private let token = "bpmht7frh5rf2as7vin0"
+    private let token = "bpmnqavrh5rf2as80pc0"
     private let baseUrl = "https://finnhub.io/api/v1"
 
     private let networkClient = NetworkClient()
@@ -38,7 +38,12 @@ public class CompanyApiService {
         let request = URLRequest(url: url)
 
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map { $0.data }
+            .map {
+
+                print(String(decoding: $0.data, as: UTF8.self))
+                return $0.data
+
+        }
             .decode(type: Company.self, decoder: decoder)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -51,7 +56,6 @@ public class CompanyApiService {
         return URLSession.shared.dataTaskPublisher(for: request)
             .map { $0.data }
             .decode(type: [Article].self, decoder: decoder)
-            .map { $0 }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

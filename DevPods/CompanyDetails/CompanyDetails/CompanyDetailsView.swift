@@ -11,7 +11,7 @@ import TinkoffKit
 
 public struct CompanyDetailsView: View {
     @EnvironmentObject var companyDetails: CompanyDetailsViewModel
-    
+
     @State private var highlightedArticleId: Int?
     @State var isPresentedSafari: Bool = false
     @State var urlToOpen: URL? = nil
@@ -24,7 +24,7 @@ public struct CompanyDetailsView: View {
         VStack {
             List {
                 Section {
-                    CompanyCard(ticker: companyDetails.symbol, company: companyDetails.company)
+                    CompanyCard(ticker: companyDetails.symbol, company: companyDetails.company, error: $companyDetails.getCompanyError, refreshAction: getData)
                         .buttonStyle(PlainButtonStyle())
                 }
                 .listRowInsets(.init(top: 0, leading: 0, bottom: -24, trailing: 0))
@@ -32,10 +32,28 @@ public struct CompanyDetailsView: View {
                 if companyDetails.articles.isEmpty {
                     HStack {
                         Spacer()
-                        ActivityIndicator(isAnimating: .constant(true), style: .medium)
+
+                        if companyDetails.getArticlesError == nil {
+                            ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                        } else {
+                            VStack {
+                                Text("Error occured while loading company details")
+                                    .font(Font.system(size: 14, weight: .regular, design: .rounded))
+                                    .foregroundColor(Color(UIColor.blackText))
+                                Button("Try again", action: getData)
+                                    .font(Font.system(size: 16, weight: .medium, design: .rounded))
+                                    .foregroundColor(Color(UIColor.accentBlue))
+                                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 48, trailing: 0))
+                                Text(companyDetails.getArticlesError!)
+                                    .font(Font.system(size: 10, weight: .light, design: .rounded))
+                                    .foregroundColor(Color(UIColor.disabledText))
+                            }
+                        }
+
                         Spacer()
                     }
                     .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
+                    .buttonStyle(PlainButtonStyle())
                 } else {
                     Section {
                         Text("News")
@@ -75,8 +93,13 @@ public struct CompanyDetailsView: View {
     }
 
     func getData() {
-        self.companyDetails.getCompany()
-        self.companyDetails.getArticles()
+        if companyDetails.company == nil {
+            companyDetails.getCompany {
+                self.companyDetails.getArticles()
+            }
+        } else if companyDetails.articles.isEmpty {
+            companyDetails.getArticles()
+        }
     }
 
     func presentSafari(for stringUrl: String) {
@@ -97,28 +120,43 @@ public class CompanyDetailsViewModel: ObservableObject {
     let symbol: String
 
     @Published var company: CompanyViewModel?
-    var getCompanyTask: AnyCancellable?
+    @Published var getCompanyTask: AnyCancellable?
+    @Published var getCompanyError: String?
 
     @Published var articles: [ArticleViewModel] = []
-    var getArticlesTask: AnyCancellable?
+    @Published var getArticlesTask: AnyCancellable?
+    @Published var getArticlesError: String?
 
     public init(symbol: String) {
         self.symbol = symbol
     }
 
-    func getCompany() {
+    func getCompany(completion: (() -> Void)?) {
         getCompanyTask = nil
+        getCompanyError = nil
         getCompanyTask = CompanyApiService().combineFetchCompany(symbol: symbol).sink(receiveCompletion: { (completion) in
-            print(completion)
+            switch completion {
+            case .failure(let error):
+                self.getCompanyError = error.localizedDescription
+            case .finished:
+                self.getCompanyError = nil
+            }
         }, receiveValue: { (company) in
             self.company = CompanyViewModel(from: company)
+            completion?()
         })
     }
 
     func getArticles() {
         getArticlesTask = nil
+        getArticlesError = nil
         getArticlesTask = CompanyApiService().combineFetchArticles(symbol: symbol).sink(receiveCompletion: { (completion) in
-            print(completion)
+            switch completion {
+            case .failure(let error):
+                self.getArticlesError = error.localizedDescription
+            case .finished:
+                self.getArticlesError = nil
+            }
         }, receiveValue: { (articles) in
             articles.forEach { (article) in
                 self.articles.append(ArticleViewModel(from: article))
