@@ -17,6 +17,7 @@ public protocol StockListPresenterProtocol: AnyObject {
     func errorButtonDidTapped()
 
     func getStocks()
+    func didTappedStockCell(with stock: StockDisplayModel)
 }
 
 public final class StockListPresenter: StockListPresenterProtocol {
@@ -79,5 +80,9 @@ extension StockListPresenter {
                 self.view?.showError()
             }
         }
+    }
+
+    public func didTappedStockCell(with stock: StockDisplayModel) {
+        view?.pushDetailsController(for: stock.symbol)
     }
 }

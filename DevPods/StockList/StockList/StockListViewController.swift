@@ -8,6 +8,8 @@
 
 import UIKit
 import TinkoffKit
+import CompanyDetails
+import SwiftUI
 
 private let sidePadding: CGFloat = 16
 
@@ -16,6 +18,7 @@ public protocol StockListProtocol: AnyObject {
     func showTable(with stocks: [StockDisplayModel])
     func showLoading()
     func showError()
+    func pushDetailsController(for symbol: String)
 }
 
 public final class StockListViewController: UIViewController, SpinnerShowingProtocol {
@@ -102,7 +105,11 @@ extension StockListViewController: StockListProtocol {
     public func showTable(with stocks: [StockDisplayModel]) {
         hideSpinner()
 
-        tableViewAdapter.set(viewModels: stocks.map(StockTableViewCell.ViewModel.init))
+        tableViewAdapter.set(viewModels: stocks.map({ (stock) -> TableViewCellViewModel in
+            return StockTableViewCell.ViewModel(from: stock) { [weak self] in
+                self?.presenter.didTappedStockCell(with: stock)
+            }
+        }))
 
         UIView.animate(withDuration: 0.22) {
             self.tableView.alpha = 1
@@ -120,6 +127,15 @@ extension StockListViewController: StockListProtocol {
             self.errorButton.alpha = 1
         }
     }
+
+    public func pushDetailsController(for symbol: String) {
+        let detailsView = CompanyDetailsView()
+        let hosting = UIHostingController(
+            rootView: detailsView
+                .environmentObject(CompanyDetailsViewModel(symbol: symbol))
+        )
+        navigationController?.pushViewController(hosting, animated: true)
+    }
 }
 
 // MARK: - UISearchController
@@ -128,7 +144,6 @@ extension StockListViewController: UISearchResultsUpdating, UISearchControllerDe
     private func setupTableView() {
         tableView.register(StockTableViewCell.self)
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false

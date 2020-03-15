@@ -47,4 +47,5 @@ TODO: Add long description of the pod here.
   s.dependency 'SwiftLint'
   s.dependency 'Storage'
   s.dependency 'TinkoffNetwork'
+  s.dependency 'CompanyDetails'
 end
