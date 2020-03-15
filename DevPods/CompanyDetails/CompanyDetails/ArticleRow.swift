@@ -66,7 +66,7 @@ public struct ArticleViewModel: Identifiable {
     public let source: String
     public let date: String
 
-    static var mock: [ArticleViewModel] {
+    public static var mock: [ArticleViewModel] {
         [
             ArticleViewModel(id: 0, title: "Поведение слизевика оказалось неплохим методом выявления космической паутины", source: "Hacker News", date: "Feb 31, 20:21"),
             ArticleViewModel(id: 1, title: "Нервные и мышечные клетки ускорили развитие друг друга", source: "Techcrunch", date: "Feb 22, 09:01"),

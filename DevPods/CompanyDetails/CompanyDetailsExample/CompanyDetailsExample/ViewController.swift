@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
 
     @objc func buttonDidTapped() {
-        let detailsView = CompanyDetailsView()
+        let detailsView = ArticlesView(articles: ArticleViewModel.mock)
         let hosting = UIHostingController(rootView: detailsView)
         navigationController?.pushViewController(hosting, animated: true)
     }

@@ -9,10 +9,10 @@
 import UIKit
 import Auth
 import StockList
+import SwiftUI
+import CompanyDetails
 
 final class ViewController: UIViewController {
-    // MARK: - Private properties
-
     private let topLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,15 +21,13 @@ final class ViewController: UIViewController {
         return label
     }()
 
-    // MARK: - Life cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         guard let navigationController = navigationController else { return }
         let coordinator = AuthenticationCoordinator(navigationController: navigationController)
         coordinator.completionHandler = {
-            StocksMainCoordinator(rootViewController: self).showStocksList()
+            self.setupTabBar()
         }
         coordinator.proceedWithAuthentication()
         view.backgroundColor = .white
@@ -43,7 +41,22 @@ final class ViewController: UIViewController {
         )
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    private func setupTabBar() {
+        let stockListPresenter = StockListPresenter()
+        let stockListViewController = StockListViewController(presenter: stockListPresenter)
+        stockListViewController.tabBarItem.title = "Stocks"
+
+        let articlesViewController = UIHostingController(rootView: ArticlesView(articles: ArticleViewModel.mock))
+        articlesViewController.tabBarItem.title = "News"
+
+        let tabBar = UITabBarController()
+        tabBar.viewControllers = [
+            stockListViewController,
+            articlesViewController
+        ]
+
+        let navigationController = UINavigationController(rootViewController: tabBar)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
 }

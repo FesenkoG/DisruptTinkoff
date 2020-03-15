@@ -7,6 +7,9 @@ PODS:
     - KeychainAccess
     - SwiftLint
     - TinkoffKit
+  - CompanyDetails (0.0.1):
+    - SwiftLint
+    - TinkoffKit
   - KeychainAccess (4.1.0)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
@@ -37,6 +40,7 @@ PODS:
 DEPENDENCIES:
   - Auth (from `DevPods/Authentication`)
   - Auth/Tests (from `DevPods/Authentication`)
+  - CompanyDetails (from `DevPods/CompanyDetails`)
   - R.swift
   - StockList (from `DevPods/StockList`)
   - StockList/Tests (from `DevPods/StockList`)
@@ -56,6 +60,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Auth:
     :path: DevPods/Authentication
+  CompanyDetails:
+    :path: DevPods/CompanyDetails
   StockList:
     :path: DevPods/StockList
   Storage:
@@ -67,6 +73,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Auth: bd6ecb9358b54fabe708163a0f5999ae8bd693d2
+  CompanyDetails: 01c598b11a2f370d464b7055a1062bd204c84092
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
@@ -76,6 +83,6 @@ SPEC CHECKSUMS:
   TinkoffKit: a9d62c67775e684e6b701a0b3b39e375448b8849
   TinkoffNetwork: f140e77db9f191cc8a40b93f9a67b95b990289cb
 
-PODFILE CHECKSUM: 70b6a1bfb16d1a717e3069c2f77572e390a3c572
+PODFILE CHECKSUM: 6569dc62971e2fc54315fe828501cdc84ba164cc
 
 COCOAPODS: 1.9.0
