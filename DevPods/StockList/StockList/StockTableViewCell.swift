@@ -13,10 +13,6 @@ private let sidePadding: CGFloat = 16
 
 public final class StockTableViewCell: UITableViewCell, Reusable {
     public struct ViewModel: TableViewCellViewModel {
-        public func didSelect(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tapAction()
-        }
-
         public let cellHeight: CGFloat = 52.0
 
         public let symbol: String
@@ -33,6 +29,10 @@ public final class StockTableViewCell: UITableViewCell, Reusable {
             let cell: StockTableViewCell = tableView.dequeue(indexPath: indexPath)
             cell.update(with: self)
             return cell
+        }
+
+        public func didTap() {
+            tapAction()
         }
     }
 

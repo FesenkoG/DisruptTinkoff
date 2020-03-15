@@ -12,7 +12,7 @@ public protocol TableViewCellViewModel {
     var cellHeight: CGFloat { get }
 
     func cellFor(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
-    func didSelect(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    func didTap()
 }
 
 public final class TableViewAdapter: NSObject {
@@ -49,7 +49,7 @@ extension TableViewAdapter: UITableViewDelegate, UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModels[indexPath.row].didSelect(tableView, didSelectRowAt: indexPath)
+        viewModels[indexPath.row].didTap()
     }
 }
 
