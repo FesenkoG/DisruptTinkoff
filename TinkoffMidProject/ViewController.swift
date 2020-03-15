@@ -46,7 +46,13 @@ final class ViewController: UIViewController {
         let stockListViewController = StockListViewController(presenter: stockListPresenter)
         stockListViewController.tabBarItem.title = "Stocks"
 
-        let articlesViewController = UIHostingController(rootView: ArticlesView(articles: ArticleViewModel.mock))
+        let articlesView = ArticlesView()
+        let articlesViewController = UIHostingController(
+            rootView: articlesView
+                .environmentObject(
+                ArticlesViewModel()
+            )
+        )
         articlesViewController.tabBarItem.title = "News"
 
         let tabBar = UITabBarController()

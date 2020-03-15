@@ -54,4 +54,15 @@ public class CompanyApiService {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+    public func combineFetchArticles() -> AnyPublisher<[Article], Error> {
+        let url = URL(string: "\(baseUrl)/news?category=general&token=\(token)")!
+        let request = URLRequest(url: url)
+
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .map { $0.data }
+            .decode(type: [Article].self, decoder: decoder)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
 }
