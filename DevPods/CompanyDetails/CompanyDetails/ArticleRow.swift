@@ -66,12 +66,6 @@ public struct ArticleRow: View {
     }
 }
 
-struct ArticleRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ArticleRow(article: ArticleViewModel.mock.first!)
-    }
-}
-
 public struct ArticleViewModel: Identifiable {
 
     public let id: Int

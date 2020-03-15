@@ -8,8 +8,7 @@
 import Foundation
 
 public struct Company: Decodable {
-    public let ticker: String  // As ID.
-
+    public let ticker: String
     public let address: String
     public let city: String
     public let country: String

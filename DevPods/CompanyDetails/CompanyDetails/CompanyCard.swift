@@ -116,12 +116,6 @@ public struct CompanyCard: View {
     }
 }
 
-//struct CompanyCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CompanyCard(ticker: "Test", company: CompanyViewModel.mock, error: ..., refreshAction: { print("refresh") })
-//    }
-//}
-
 public struct CompanyViewModel {
     public let ticker: String
     public let name: String

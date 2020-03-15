@@ -8,8 +8,7 @@
 import SwiftUI
 
 public struct Article: Decodable {
-    let id: Int  // As ID.
-
+    let id: Int
     let category: String
     let datetime: Int
     let headline: String

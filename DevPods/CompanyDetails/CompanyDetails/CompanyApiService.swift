@@ -9,7 +9,7 @@ import Combine
 import TinkoffNetwork
 
 public class CompanyApiService {
-    private let token = "bpmnqavrh5rf2as80pc0"
+    private let token = "bpn1uenrh5rf2as82ra0"
     private let baseUrl = "https://finnhub.io/api/v1"
 
     private let networkClient = NetworkClient()
