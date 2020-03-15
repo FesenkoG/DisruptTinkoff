@@ -9,6 +9,9 @@ project 'CompanyDetailsExample/CompanyDetailsExample.xcodeproj'
 def shared_pods
   pod 'TinkoffKit', :path => '../TinkoffKit'
   pod 'SwiftLint'
+  pod 'Storage', :path => '../Storage'
+  pod 'TinkoffNetwork', :path => '../TinkoffNetwork'
+  pod 'Kingfisher/SwiftUI'
 end
 
 target 'CompanyDetails' do

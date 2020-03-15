@@ -21,8 +21,12 @@ class ViewController: UIViewController {
     }
 
     @objc func buttonDidTapped() {
-        let detailsView = ArticlesView(articles: ArticleViewModel.mock)
-        let hosting = UIHostingController(rootView: detailsView)
+        
+        let detailsView = CompanyDetailsView()
+        let hosting = UIHostingController(
+            rootView: detailsView
+                .environmentObject(CompanyDetailsViewModel(symbol: "AA"))
+        )
         navigationController?.pushViewController(hosting, animated: true)
     }
 }
