@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D7FC6FA6B39EFA82189AE56 /* Pods_Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E5B5075D9B764A83369F32 /* Pods_Storage.framework */; };
 		D9BE6F94240BFA8A005D9A3D /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F93240BFA8A005D9A3D /* StorageService.swift */; };
 		D9BE6F96240BFB28005D9A3D /* DBInsertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE6F95240BFB28005D9A3D /* DBInsertable.swift */; };
-		EA64D4B3A220B7CF00125FFF /* Pods_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C71DF0779063A1FE3F1F38 /* Pods_Container.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Container.debug.xcconfig"; path = "Target Support Files/Pods-Container/Pods-Container.debug.xcconfig"; sourceTree = "<group>"; };
+		4405B5D406F7C81598FDCA90 /* Pods-Storage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Storage.debug.xcconfig"; path = "Target Support Files/Pods-Storage/Pods-Storage.debug.xcconfig"; sourceTree = "<group>"; };
 		86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Container.release.xcconfig"; path = "Target Support Files/Pods-Container/Pods-Container.release.xcconfig"; sourceTree = "<group>"; };
+		96E5B5075D9B764A83369F32 /* Pods_Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BE6F88240BED33005D9A3D /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BE6F8C240BED33005D9A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9BE6F93240BFA8A005D9A3D /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		D9BE6F95240BFB28005D9A3D /* DBInsertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBInsertable.swift; sourceTree = "<group>"; };
-		E9C71DF0779063A1FE3F1F38 /* Pods_Container.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Container.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63F0C955B35A82BDF62ECC4 /* Pods-Storage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Storage.release.xcconfig"; path = "Target Support Files/Pods-Storage/Pods-Storage.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA64D4B3A220B7CF00125FFF /* Pods_Container.framework in Frameworks */,
+				3D7FC6FA6B39EFA82189AE56 /* Pods_Storage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,7 +39,7 @@
 		1B77DDF426405A68DA4E8AA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9C71DF0779063A1FE3F1F38 /* Pods_Container.framework */,
+				96E5B5075D9B764A83369F32 /* Pods_Storage.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -47,6 +49,8 @@
 			children = (
 				21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */,
 				86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */,
+				4405B5D406F7C81598FDCA90 /* Pods-Storage.debug.xcconfig */,
+				E63F0C955B35A82BDF62ECC4 /* Pods-Storage.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -170,7 +174,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Container-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Storage-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -314,7 +318,7 @@
 		};
 		D9BE6F91240BED33005D9A3D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21647414F3C4263CA586C215 /* Pods-Container.debug.xcconfig */;
+			baseConfigurationReference = 4405B5D406F7C81598FDCA90 /* Pods-Storage.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -322,7 +326,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Container/Info.plist;
+				INFOPLIST_FILE = Storage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -340,7 +344,7 @@
 		};
 		D9BE6F92240BED33005D9A3D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86F52DFEDC248438C25D6756 /* Pods-Container.release.xcconfig */;
+			baseConfigurationReference = E63F0C955B35A82BDF62ECC4 /* Pods-Storage.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -348,7 +352,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Container/Info.plist;
+				INFOPLIST_FILE = Storage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
